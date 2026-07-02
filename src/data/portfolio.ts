@@ -37,39 +37,30 @@ export const projects: Project[] = [
     status: "Contributed",
     description:
       "Career guidance platform with resume analysis and personalized recommendations.",
-    role: ["Backend planning", "Database organization", "UI discussions", "AI-assisted workflows"],
-    stack: ["Backend Setup", "Database", "AI Dev Tools", "UI/UX Discussion"],
+    role: ["Frontend Developer", "Backend planning", "Database organization", "UI discussions", "AI-assisted workflows"],
+    stack: ["Frontend Full Stack", "Backend Setup", "Database", "AI Dev Tools", "UI/UX Discussion"],
   },
   {
     id: "desi-drip",
     name: "Desi-Drip",
-    status: "Contributed",
+    status: "Individual",
     description:
       "Fashion-focused application designed to help users explore styling ideas and recommendations.",
-    role: ["Project setup", "Backend configuration", "Testing"],
-    stack: ["Backend Configuration", "Project Setup", "Testing"],
+    role: ["Project setup", "Frontend Developer", "Backend configuration", "Testing"],
+    stack: ["Frontend Full Stack", "Backend Configuration", "Project Setup", "Testing"],
   },
   {
-    id: "settlex-v2",
-    name: "SettleX V2",
+    id: "settlex",
+    name: "SettleX",
     status: "Contributed",
     description: "Expense-splitting application with collaborative planning and backend setup.",
-    role: ["Collaborative planning", "Database organization", "Backend setup"],
-    stack: ["Database", "Backend Setup", "Project Planning"],
-  },
-  {
-    id: "client-backend",
-    name: "Client Backend Project",
-    status: "Ongoing",
-    description:
-      "Developing and organizing the backend and database structure for a client-facing application while collaborating on requirements and implementation.",
-    role: ["Backend architecture", "Database organization", "Requirements collaboration"],
-    stack: ["Backend Setup", "Database", "Client Collaboration"],
+    role: ["Collaborative planning","Frontend Development", "Database organization", "Backend setup"],
+    stack: ["Frontend Full Stack", "Database", "Backend Setup", "Project Planning"],
   },
   {
     id: "2d-games",
     name: "2D Games Collection",
-    status: "Contributed",
+    status: "Individual",
     description: "Browser-based games created using HTML and CSS to explore interactive web experiences.",
     role: ["Game design", "Front-end build"],
     stack: ["HTML", "CSS"],
@@ -82,7 +73,8 @@ export const hackathon = {
   rounds: [
     { label: "Round 1 — Aptitude", result: "Top 3 Rank", note: "Certificate of Excellence" },
     { label: "Round 2 — Submission", result: "Qualified", note: "Advanced to next round" },
-    { label: "Round 3 — Hackathon", result: "Participated", note: "Completed final round" },
+    { label: "Round 3 — Hackathon", result: "Qualified", note: "Advanced to next round" },
+    { label: "Round 4 — Hackathon", result: "Top 10", note: "Completed final round" },
   ],
   summary:
     "Demonstrated teamwork, problem-solving, and project execution skills in a competitive environment.",
@@ -107,10 +99,10 @@ export const skillGroups = [
 export const experience = [
   {
     id: "client-backend",
-    title: "Backend & Database — Client Project",
+    title: "Backend & Database — Collabration Project",
     period: "Ongoing",
     description:
-      "Developing and organizing the backend and database structure for a client-facing application, collaborating on requirements and implementation.",
+      "Developing and organizing the backend and database structure for a application, collaborating on requirements and implementation.",
   },
   {
     id: "hackathon",
@@ -122,9 +114,9 @@ export const experience = [
   {
     id: "projects",
     title: "Independent & Collaborative Projects",
-    period: "VersaCareer AI · Desi-Drip · SettleX V2 · 2D Games",
+    period: "VersaCareer AI · Desi-Drip · SettleX · 2D Games",
     description:
-      "Contributed to backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
+      "Contributed to forntend developing, backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
   },
 ];
 
