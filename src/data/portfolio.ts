@@ -121,7 +121,7 @@ export const hackathon = {
       note: "Advanced to next round",
     },
     {
-      label: "Round 4 — Hackathon",
+      label: "Round 4 — Interview",
       result: "Top 10",
       note: "Completed final round",
     },
