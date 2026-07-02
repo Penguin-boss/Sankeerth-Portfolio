@@ -8,8 +8,8 @@ export const profile = {
   email: "sankeerthdevella@gmail.com",
   github: "https://github.com/Penguin-boss",
   githubHandle: "github.com/Penguin-boss",
-  linkedin: "https://www.linkedin.com/in/sankeerth-devella-730314416",
-  linkedinHandle: "www.linkedin.com/in/sankeerth-devella-730314416",
+  linkedin: "https://www.linkedin.com/in/sankeerth-devella-730314416?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+  linkedinHandle: "https://www.linkedin.com/in/sankeerth-devella-730314416?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
   resumeFile: "/resume.pdf",
 };
 
