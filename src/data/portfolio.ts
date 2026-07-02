@@ -160,7 +160,7 @@ export const experience = [
   {
     id: "hackathon",
     title: "Enginow Hackathon — WishCraft Warriors",
-    period: "Rounds 1–3",
+    period: "Rounds 1–4",
     description:
       "Top 3 rank in the Aptitude round (Certificate of Excellence), qualified through the Submission round, and completed the Hackathon round as part of a team.",
   },
