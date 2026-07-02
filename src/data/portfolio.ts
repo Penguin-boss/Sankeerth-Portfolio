@@ -24,7 +24,7 @@ export const about = {
 export type Project = {
   id: string;
   name: string;
-  status: "Ongoing" | "Contributed";
+  status: "Ongoing" | "Contributed" | "Individual";
   description: string;
   role: string[];
   stack: string[];
@@ -37,8 +37,20 @@ export const projects: Project[] = [
     status: "Contributed",
     description:
       "Career guidance platform with resume analysis and personalized recommendations.",
-    role: ["Frontend Developer", "Backend planning", "Database organization", "UI discussions", "AI-assisted workflows"],
-    stack: ["Frontend Full Stack", "Backend Setup", "Database", "AI Dev Tools", "UI/UX Discussion"],
+    role: [
+      "Frontend Developer",
+      "Backend planning",
+      "Database organization",
+      "UI discussions",
+      "AI-assisted workflows",
+    ],
+    stack: [
+      "Frontend Full Stack",
+      "Backend Setup",
+      "Database",
+      "AI Dev Tools",
+      "UI/UX Discussion",
+    ],
   },
   {
     id: "desi-drip",
@@ -46,22 +58,44 @@ export const projects: Project[] = [
     status: "Individual",
     description:
       "Fashion-focused application designed to help users explore styling ideas and recommendations.",
-    role: ["Project setup", "Frontend Developer", "Backend configuration", "Testing"],
-    stack: ["Frontend Full Stack", "Backend Configuration", "Project Setup", "Testing"],
+    role: [
+      "Project setup",
+      "Frontend Developer",
+      "Backend configuration",
+      "Testing",
+    ],
+    stack: [
+      "Frontend Full Stack",
+      "Backend Configuration",
+      "Project Setup",
+      "Testing",
+    ],
   },
   {
     id: "settlex",
     name: "SettleX",
     status: "Contributed",
-    description: "Expense-splitting application with collaborative planning and backend setup.",
-    role: ["Collaborative planning","Frontend Development", "Database organization", "Backend setup"],
-    stack: ["Frontend Full Stack", "Database", "Backend Setup", "Project Planning"],
+    description:
+      "Expense-splitting application with collaborative planning and backend setup.",
+    role: [
+      "Collaborative planning",
+      "Frontend Development",
+      "Database organization",
+      "Backend setup",
+    ],
+    stack: [
+      "Frontend Full Stack",
+      "Database",
+      "Backend Setup",
+      "Project Planning",
+    ],
   },
   {
     id: "2d-games",
     name: "2D Games Collection",
     status: "Individual",
-    description: "Browser-based games created using HTML and CSS to explore interactive web experiences.",
+    description:
+      "Browser-based games created using HTML and CSS to explore interactive web experiences.",
     role: ["Game design", "Front-end build"],
     stack: ["HTML", "CSS"],
   },
@@ -71,10 +105,26 @@ export const hackathon = {
   name: "Enginow Hackathon",
   team: "WishCraft Warriors",
   rounds: [
-    { label: "Round 1 — Aptitude", result: "Top 3 Rank", note: "Certificate of Excellence" },
-    { label: "Round 2 — Submission", result: "Qualified", note: "Advanced to next round" },
-    { label: "Round 3 — Hackathon", result: "Qualified", note: "Advanced to next round" },
-    { label: "Round 4 — Hackathon", result: "Top 10", note: "Completed final round" },
+    {
+      label: "Round 1 — Aptitude",
+      result: "Top 3 Rank",
+      note: "Certificate of Excellence",
+    },
+    {
+      label: "Round 2 — Submission",
+      result: "Qualified",
+      note: "Advanced to next round",
+    },
+    {
+      label: "Round 3 — Hackathon",
+      result: "Qualified",
+      note: "Advanced to next round",
+    },
+    {
+      label: "Round 4 — Hackathon",
+      result: "Top 10",
+      note: "Completed final round",
+    },
   ],
   summary:
     "Demonstrated teamwork, problem-solving, and project execution skills in a competitive environment.",
@@ -83,7 +133,10 @@ export const hackathon = {
 export const skillGroups = [
   { label: "Web", skills: ["HTML", "CSS"] },
   { label: "Backend", skills: ["Database Setup", "Backend Configuration"] },
-  { label: "Tools", skills: ["GitHub", "Firebase", "Figma", "AI Development Tools"] },
+  {
+    label: "Tools",
+    skills: ["GitHub", "Firebase", "Figma", "AI Development Tools"],
+  },
   {
     label: "Other",
     skills: [
@@ -99,10 +152,10 @@ export const skillGroups = [
 export const experience = [
   {
     id: "client-backend",
-    title: "Backend & Database — Collabration Project",
+    title: "Backend & Database — Collaboration Project",
     period: "Ongoing",
     description:
-      "Developing and organizing the backend and database structure for a application, collaborating on requirements and implementation.",
+      "Developing and organizing the backend and database structure for an application, collaborating on requirements and implementation.",
   },
   {
     id: "hackathon",
@@ -116,7 +169,7 @@ export const experience = [
     title: "Independent & Collaborative Projects",
     period: "VersaCareer AI · Desi-Drip · SettleX · 2D Games",
     description:
-      "Contributed to forntend developing, backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
+      "Contributed to frontend development, backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
   },
 ];
 
