@@ -3,7 +3,7 @@
 
 export const profile = {
   name: "Sankeerth Devella",
-  tagline: "Student Builder — Backend & Database Setup, AI-Assisted Development",
+  tagline: "Student Builder — Frontend Developer Backend & Database Setup, AI-Assisted Development",
   location: "Hyderabad, Telangana, India",
   email: "sankeerthdevella@gmail.com",
   github: "https://github.com/Penguin-boss",
