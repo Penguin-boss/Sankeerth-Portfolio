@@ -3,7 +3,7 @@
 
 export const profile = {
   name: "Sankeerth Devella",
-  tagline: "Student Builder — Backend, Database Setup & Frontend Integration, AI-Assisted Development",
+  tagline: "Student Builder — Backend & Database Setup, AI-Assisted Development",
   location: "Hyderabad, Telangana, India",
   email: "sankeerthdevella@gmail.com",
   github: "https://github.com/Penguin-boss",
@@ -15,9 +15,8 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "Student builder focused on creating practical digital products through real-world projects, hackathons, and collaborative development — part of a small student team, WishCraft, that takes on real client web projects together.",
+    "Student builder focused on creating practical digital products through real-world projects, hackathons, and collaborative development.",
     "Experience spans web development with HTML and CSS, backend and database setup, UI/UX planning, and AI-assisted development workflows — taking ideas from concept to implementation across career-tech platforms, fashion applications, expense management tools, and browser-based games.",
-    "On one client project, stepped in to rebuild the backend from scratch after an initial attempt stalled, connecting it to the existing frontend and getting the product working end to end — including UI/UX refinements and testing.",
     "Currently developing and organizing the backend and database structure for an ongoing client-facing application, collaborating on requirements and implementation.",
   ],
 };
@@ -25,7 +24,7 @@ export const about = {
 export type Project = {
   id: string;
   name: string;
-  status: "Ongoing" | "Contributed";
+  status: "Ongoing" | "Contributed" | "Individual";
   description: string;
   role: string[];
   stack: string[];
@@ -38,49 +37,65 @@ export const projects: Project[] = [
     status: "Contributed",
     description:
       "Career guidance platform with resume analysis and personalized recommendations.",
-    role: ["Backend planning", "Database organization", "UI discussions", "AI-assisted workflows"],
-    stack: ["Backend Setup", "Database", "AI Dev Tools", "UI/UX Discussion"],
+    role: [
+      "Frontend Developer",
+      "Backend planning",
+      "Database organization",
+      "UI discussions",
+      "AI-assisted workflows",
+    ],
+    stack: [
+      "Frontend Full Stack",
+      "Backend Setup",
+      "Database",
+      "AI Dev Tools",
+      "UI/UX Discussion",
+    ],
   },
   {
     id: "desi-drip",
     name: "Desi-Drip",
-    status: "Contributed",
+    status: "Individual",
     description:
       "Fashion-focused application designed to help users explore styling ideas and recommendations.",
-    role: ["Project setup", "Backend configuration", "Testing"],
-    stack: ["Backend Configuration", "Project Setup", "Testing"],
+    role: [
+      "Project setup",
+      "Frontend Developer",
+      "Backend configuration",
+      "Testing",
+    ],
+    stack: [
+      "Frontend Full Stack",
+      "Backend Configuration",
+      "Project Setup",
+      "Testing",
+    ],
   },
   {
-    id: "settlex-v2",
-    name: "SettleX V2",
-    status: "Contributed",
-    description: "Expense-splitting application with collaborative planning and backend setup.",
-    role: ["Collaborative planning", "Database organization", "Backend setup"],
-    stack: ["Database", "Backend Setup", "Project Planning"],
-  },
-  {
-    id: "client-backend",
-    name: "Client Backend Project",
-    status: "Ongoing",
-    description:
-      "Developing and organizing the backend and database structure for a client-facing application while collaborating on requirements and implementation.",
-    role: ["Backend architecture", "Database organization", "Requirements collaboration"],
-    stack: ["Backend Setup", "Database", "Client Collaboration"],
-  },
-  {
-    id: "client-backend-rescue",
-    name: "Client Website — Backend Rebuild",
+    id: "settlex",
+    name: "SettleX",
     status: "Contributed",
     description:
-      "Rebuilt a client project's backend from scratch after an initial attempt stalled, then connected it to the existing frontend and got the product working end to end.",
-    role: ["Backend rebuild", "Frontend integration", "UI/UX refinement", "Testing"],
-    stack: ["Backend Setup", "Database", "Frontend Integration", "Testing"],
+      "Expense-splitting application with collaborative planning and backend setup.",
+    role: [
+      "Collaborative planning",
+      "Frontend Development",
+      "Database organization",
+      "Backend setup",
+    ],
+    stack: [
+      "Frontend Full Stack",
+      "Database",
+      "Backend Setup",
+      "Project Planning",
+    ],
   },
   {
     id: "2d-games",
     name: "2D Games Collection",
-    status: "Contributed",
-    description: "Browser-based games created using HTML and CSS to explore interactive web experiences.",
+    status: "Individual",
+    description:
+      "Browser-based games created using HTML and CSS to explore interactive web experiences.",
     role: ["Game design", "Front-end build"],
     stack: ["HTML", "CSS"],
   },
@@ -90,26 +105,42 @@ export const hackathon = {
   name: "Enginow Hackathon",
   team: "WishCraft Warriors",
   rounds: [
-    { label: "Round 1 — Aptitude", result: "Top 3 Rank", note: "Certificate of Excellence" },
-    { label: "Round 2 — Submission", result: "Qualified", note: "Advanced to next round" },
-    { label: "Round 3 — Hackathon", result: "Participated", note: "Completed final round" },
+    {
+      label: "Round 1 — Aptitude",
+      result: "Top 3 Rank",
+      note: "Certificate of Excellence",
+    },
+    {
+      label: "Round 2 — Submission",
+      result: "Qualified",
+      note: "Advanced to next round",
+    },
+    {
+      label: "Round 3 — Hackathon",
+      result: "Qualified",
+      note: "Advanced to next round",
+    },
+    {
+      label: "Round 4 — Hackathon",
+      result: "Top 10",
+      note: "Completed final round",
+    },
   ],
   summary:
     "Demonstrated teamwork, problem-solving, and project execution skills in a competitive environment.",
 };
 
 export const skillGroups = [
-  { label: "Web", skills: ["HTML", "CSS", "Frontend Integration"] },
-  { label: "Backend", skills: ["Database Setup", "Backend Configuration", "Backend Rebuild & Debugging"] },
-  { label: "Tools", skills: ["GitHub", "Firebase", "Figma", "AI Development Tools"] },
+  { label: "Web", skills: ["Next.js & React", "Tailwind CSS & Framer Motion", "Responsive UI Design"] },
+  { label: "Backend", skills: ["Node.js Architecture", "Database Orchestration", "Secure API Integration"] },
+  { label: "Tools", skills: ["GitHub & CI/CD Pipelines", "Vercel & Railway Deployment", "Firebase Ecosystems", "Figma & Wireframing"] },
   {
     label: "Other",
     skills: [
-      "Prompt Engineering",
-      "UI/UX Discussions",
-      "Project Planning",
-      "End-to-End Project Management",
-      "Team Collaboration",
+      "AI Workflow Automation",
+      "System Optimization",
+      "State Management",
+      "Full Product Lifecycle Delivery"
     ],
   },
 ];
@@ -117,38 +148,31 @@ export const skillGroups = [
 export const experience = [
   {
     id: "client-backend",
-    title: "Backend & Database — Client Project",
+    title: "Backend & Database — Collaboration Project",
     period: "Ongoing",
     description:
-      "Developing and organizing the backend and database structure for a client-facing application, collaborating on requirements and implementation.",
-  },
-  {
-    id: "client-backend-rescue",
-    title: "Backend Rebuild — Client Website",
-    period: "WishCraft team project",
-    description:
-      "Stepped in to rebuild a client project's backend after an initial attempt stalled, connected it to the existing frontend, and handled UI/UX refinements and testing to get the product working end to end.",
+      "Developing and organizing the backend and database structure for an application, collaborating on requirements and implementation.",
   },
   {
     id: "hackathon",
     title: "Enginow Hackathon — WishCraft Warriors",
-    period: "Rounds 1–3",
+    period: "Rounds 1–4",
     description:
       "Top 3 rank in the Aptitude round (Certificate of Excellence), qualified through the Submission round, and completed the Hackathon round as part of a team.",
   },
   {
     id: "projects",
     title: "Independent & Collaborative Projects",
-    period: "VersaCareer AI · Desi-Drip · SettleX V2 · 2D Games",
+    period: "VersaCareer AI · Desi-Drip · SettleX · 2D Games",
     description:
-      "Contributed to backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
+      "Contributed to frontend development, backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
   },
 ];
 
 export const education = {
-  school: "Physics Wallah Vidyapeeth, Hyderabad",
+  school: "WishCraft Studios",
   lines: [
-    "JEE Main & Advanced Preparation (2025–2027)",
-    "Telangana State Board (Intermediate)",
+    "Core Product Engineering Sprints (2025–Present)",
+    "Full-Stack Web Platforms & AI Workflow Delivery",
   ],
 };
