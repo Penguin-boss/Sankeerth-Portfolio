@@ -35,7 +35,7 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
         <a href="#top" className="font-mono text-sm text-ink tracking-tight flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-accent schema-dot" />
-          SD
+          sankeerth.devella
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
