@@ -6,10 +6,10 @@ import { profile } from "@/data/portfolio";
 
 const record: [string, string][] = [
   ["name", profile.name],
-  ["role", "student_builder"],
-  ["focus", "backend, database_setup, ai_assisted_dev"],
+  ["role", "Full-stack Engineer & Product developer"],
+  ["focus" : "frontend_systems, backend_infrastructure, system_optimization"],
   ["location", profile.location],
-  ["team", "wishcraft_warriors"],
+  ["team", "Wishcraft Studios"],
 ];
 
 export default function Hero() {
