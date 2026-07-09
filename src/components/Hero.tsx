@@ -7,7 +7,7 @@ import { profile } from "@/data/portfolio";
 const record: [string, string][] = [
   ["name", profile.name],
   ["role", "Full-stack Engineer & Product developer"],
-  ["focus" : "frontend_systems, backend_infrastructure, system_optimization"],
+  ["focus", "frontend_systems, backend_infrastructure, system_optimization"],
   ["location", profile.location],
   ["team", "Wishcraft Studios"],
 ];
