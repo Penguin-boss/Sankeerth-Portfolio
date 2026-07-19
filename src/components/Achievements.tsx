@@ -10,10 +10,10 @@ export default function Achievements() {
       <div className="max-w-6xl mx-auto">
         <SectionHeading eyebrow="03 — achievements" title="Hackathons" id="hackathons-heading" />
 
-        <div className="border border-hairline rounded-md bg-bg-panel/60 overflow-hidden max-w-3xl">
-          <div className="px-5 py-4 border-b border-hairline flex items-baseline justify-between flex-wrap gap-2">
-            <h3 className="font-display text-lg font-semibold text-ink">{hackathon.name}</h3>
-            <span className="font-mono text-[11px] text-ink-faint">team / {hackathon.team}</span>
+        <div className="border border-hairline rounded-2xl bg-bg-panel/60 overflow-hidden max-w-3xl">
+          <div className="px-6 py-5 border-b border-hairline flex items-baseline justify-between flex-wrap gap-2">
+            <h3 className="font-display text-xl font-medium text-ink">{hackathon.name}</h3>
+            <span className="text-xs text-ink-faint">team / {hackathon.team}</span>
           </div>
 
           <div>
@@ -24,23 +24,23 @@ export default function Achievements() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="flex items-center gap-4 px-5 py-4 border-b border-hairline/70 last:border-b-0"
+                className="flex items-center gap-4 px-6 py-5 border-b border-hairline/70 last:border-b-0"
               >
-                <span className="font-mono text-[11px] text-ink-faint w-8 shrink-0">
+                <span className="text-xs text-ink-faint w-8 shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-ink text-sm font-medium">{r.label}</p>
-                  <p className="text-ink-faint text-xs mt-0.5">{r.note}</p>
+                  <p className="text-ink text-base font-medium">{r.label}</p>
+                  <p className="text-ink-faint text-sm mt-0.5">{r.note}</p>
                 </div>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-accent border border-accent-dim rounded-sm px-2 py-1 shrink-0">
+                <span className="text-xs uppercase tracking-wider text-accent border border-accent-dim rounded-full px-3 py-1.5 shrink-0">
                   {r.result}
                 </span>
               </motion.div>
             ))}
           </div>
 
-          <div className="px-5 py-4 bg-bg-panel-hover/50">
+          <div className="px-6 py-5 bg-bg-panel-hover/50">
             <p className="text-ink-muted text-sm leading-relaxed">{hackathon.summary}</p>
           </div>
         </div>

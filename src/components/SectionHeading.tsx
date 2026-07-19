@@ -19,10 +19,10 @@ export default function SectionHeading({
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="mb-10 sm:mb-14"
     >
-      <p id={id} className="font-mono text-xs tracking-[0.2em] text-accent uppercase mb-3 scroll-mt-24">
+      <p id={id} className="text-xs tracking-[0.25em] text-accent uppercase mb-4 scroll-mt-24">
         {eyebrow}
       </p>
-      <h2 className="font-display text-3xl sm:text-4xl font-semibold text-ink tracking-tight">
+      <h2 className="font-display text-4xl sm:text-5xl font-medium text-ink tracking-tight">
         {title}
       </h2>
     </motion.div>

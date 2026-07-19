@@ -8,58 +8,51 @@ export default function Projects() {
   return (
     <section id="work" className="px-6 sm:px-8 py-20 sm:py-28 border-t border-hairline">
       <div className="max-w-6xl mx-auto">
-        <SectionHeading eyebrow="02 — work" title="Projects" id="work-heading" />
+        <SectionHeading eyebrow="Featured Work" title="Projects" id="work-heading" />
 
-        <div className="grid sm:grid-cols-2 gap-5">
+        <div className="flex flex-col">
           {projects.map((p, i) => (
             <motion.article
               key={p.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
-              whileHover={{ y: -3 }}
-              className="border border-hairline rounded-md bg-bg-panel/60 overflow-hidden hover:border-accent-dim transition-colors"
+              transition={{ duration: 0.55, delay: i * 0.05 }}
+              className="group grid sm:grid-cols-[auto_1fr_auto] items-baseline gap-x-8 gap-y-3 py-10 border-b border-hairline hover:pl-2 transition-[padding] duration-300"
             >
-              {/* table header row */}
-              <div className="flex items-center justify-between px-5 py-3.5 border-b border-hairline">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent schema-dot" />
-                  <h3 className="font-display text-base font-semibold text-ink">{p.name}</h3>
-                </div>
-                <span
-                  className={`font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-sm border ${
-                    p.status === "Ongoing"
-                      ? "text-sage border-sage/40 bg-sage/10"
-                      : "text-ink-faint border-hairline-strong"
-                  }`}
-                >
-                  {p.status}
-                </span>
-              </div>
+              <span className="text-xs tracking-[0.2em] text-ink-faint uppercase order-1 sm:order-none">
+                {String(i + 1).padStart(2, "0")}
+              </span>
 
-              <div className="px-5 py-4">
-                <p className="text-ink-muted text-sm leading-relaxed mb-4">{p.description}</p>
-
-                {/* schema rows */}
-                <div className="font-mono text-[11px] mb-4">
-                  <div className="flex gap-3 py-1 border-t border-hairline/70">
-                    <span className="text-ink-faint w-14 shrink-0 pt-0.5">role</span>
-                    <span className="text-ink-muted">{p.role.join(" · ")}</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5">
+              <div className="order-3 sm:order-none">
+                <h3 className="font-display text-3xl sm:text-4xl font-medium text-ink tracking-tight group-hover:text-accent-soft transition-colors">
+                  {p.name}
+                </h3>
+                <p className="text-ink-muted text-base leading-relaxed mt-3 max-w-2xl">
+                  {p.description}
+                </p>
+                <p className="text-sm text-ink-faint mt-3">{p.role.join(" · ")}</p>
+                <div className="flex flex-wrap gap-2 mt-4">
                   {p.stack.map((s) => (
                     <span
                       key={s}
-                      className="font-mono text-[10px] text-accent-soft border border-accent-dim rounded-sm px-2 py-0.5"
+                      className="text-xs text-accent-soft border border-accent-dim rounded-full px-3 py-1"
                     >
                       {s}
                     </span>
                   ))}
                 </div>
               </div>
+
+              <span
+                className={`order-2 sm:order-none justify-self-start sm:justify-self-end text-xs tracking-wider uppercase px-3 py-1 rounded-full border h-fit ${
+                  p.status === "Ongoing"
+                    ? "text-sage border-sage/40 bg-sage/10"
+                    : "text-ink-faint border-hairline-strong"
+                }`}
+              >
+                {p.status}
+              </span>
             </motion.article>
           ))}
         </div>

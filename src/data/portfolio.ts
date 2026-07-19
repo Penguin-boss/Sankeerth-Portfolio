@@ -3,7 +3,7 @@
 
 export const profile = {
   name: "Sankeerth Devella",
-  tagline: "Student Builder — Backend & Database Setup, AI-Assisted Development",
+  tagline: "Student Builder — Frontend-Full Stack,Backend, Database Setup & Frontend Integration, AI-Assisted Development",
   location: "Hyderabad, Telangana, India",
   email: "sankeerthdevella@gmail.com",
   github: "https://github.com/Penguin-boss",
@@ -15,8 +15,9 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "Student builder focused on creating practical digital products through real-world projects, hackathons, and collaborative development.",
+    "Student builder focused on creating practical digital products through real-world projects, hackathons, and collaborative development — part of a small student team, WishCraft, that takes on real client web projects together.",
     "Experience spans web development with HTML and CSS, backend and database setup, UI/UX planning, and AI-assisted development workflows — taking ideas from concept to implementation across career-tech platforms, fashion applications, expense management tools, and browser-based games.",
+    "On one client project, stepped in to rebuild the backend from scratch after an initial attempt stalled, connecting it to the existing frontend and getting the product working end to end — including UI/UX refinements and testing.",
     "Currently developing and organizing the backend and database structure for an ongoing client-facing application, collaborating on requirements and implementation.",
   ],
 };
@@ -37,20 +38,8 @@ export const projects: Project[] = [
     status: "Contributed",
     description:
       "Career guidance platform with resume analysis and personalized recommendations.",
-    role: [
-      "Frontend Developer",
-      "Backend planning",
-      "Database organization",
-      "UI discussions",
-      "AI-assisted workflows",
-    ],
-    stack: [
-      "Frontend Full Stack",
-      "Backend Setup",
-      "Database",
-      "AI Dev Tools",
-      "UI/UX Discussion",
-    ],
+    role: ["Frontend Developer", "Backend planning", "Database organization", "UI discussions", "AI-assisted workflows"],
+    stack: ["Frontend Full Stack", "Backend Setup", "Database", "AI Dev Tools", "UI/UX Discussion"],
   },
   {
     id: "desi-drip",
@@ -58,44 +47,22 @@ export const projects: Project[] = [
     status: "Individual",
     description:
       "Fashion-focused application designed to help users explore styling ideas and recommendations.",
-    role: [
-      "Project setup",
-      "Frontend Developer",
-      "Backend configuration",
-      "Testing",
-    ],
-    stack: [
-      "Frontend Full Stack",
-      "Backend Configuration",
-      "Project Setup",
-      "Testing",
-    ],
+    role: ["Project setup","Frontend Developer", "Backend configuration", "Testing"],
+    stack: [ "Frontend Full Stack", "Backend Configuration", "Project Setup", "Testing"],
   },
   {
     id: "settlex",
     name: "SettleX",
     status: "Contributed",
-    description:
-      "Expense-splitting application with collaborative planning and backend setup.",
-    role: [
-      "Collaborative planning",
-      "Frontend Development",
-      "Database organization",
-      "Backend setup",
-    ],
-    stack: [
-      "Frontend Full Stack",
-      "Database",
-      "Backend Setup",
-      "Project Planning",
-    ],
+    description: "Expense-splitting application with collaborative planning and backend setup.",
+    role: ["Collaborative planning","Frontend Development", "Database organization", "Backend setup"],
+    stack: ["Frontend Full Stack","Database", "Backend Setup", "Project Planning"],
   },
   {
     id: "2d-games",
     name: "2D Games Collection",
     status: "Individual",
-    description:
-      "Browser-based games created using HTML and CSS to explore interactive web experiences.",
+    description:  "Browser-based games created using HTML and CSS to explore interactive web experiences.",
     role: ["Game design", "Front-end build"],
     stack: ["HTML", "CSS"],
   },
@@ -105,42 +72,27 @@ export const hackathon = {
   name: "Enginow Hackathon",
   team: "WishCraft Warriors",
   rounds: [
-    {
-      label: "Round 1 — Aptitude",
-      result: "Top 3 Rank",
-      note: "Certificate of Excellence",
-    },
-    {
-      label: "Round 2 — Submission",
-      result: "Qualified",
-      note: "Advanced to next round",
-    },
-    {
-      label: "Round 3 — Hackathon",
-      result: "Qualified",
-      note: "Advanced to next round",
-    },
-    {
-      label: "Round 4 — Hackathon",
-      result: "Top 10",
-      note: "Completed final round",
-    },
+    { label: "Round 1 — Aptitude", result: "Top 3 Rank", note: "Certificate of Excellence" },
+    { label: "Round 2 — Submission", result: "Qualified", note: "Advanced to next round" },
+    { label: "Round 3 — Hackathon", result: "Qualified", note: "Advanced to next round" },
+    { label: "Round 4 — Inteview", result: "Top 10", note:  "Completed final round" },
   ],
   summary:
     "Demonstrated teamwork, problem-solving, and project execution skills in a competitive environment.",
 };
 
 export const skillGroups = [
-  { label: "Web", skills: ["Next.js & React", "Tailwind CSS & Framer Motion", "Responsive UI Design"] },
-  { label: "Backend", skills: ["Node.js Architecture", "Database Orchestration", "Secure API Integration"] },
-  { label: "Tools", skills: ["GitHub & CI/CD Pipelines", "Vercel & Railway Deployment", "Firebase Ecosystems", "Figma & Wireframing"] },
+  { label: "Web", skills: ["HTML", "CSS", "Frontend Integration"] },
+  { label: "Backend", skills: ["Database Setup", "Backend Configuration", "Backend Rebuild & Debugging"] },
+  { label: "Tools", skills: ["GitHub", "Firebase", "Figma", "AI Development Tools"] },
   {
     label: "Other",
     skills: [
-      "AI Workflow Automation",
-      "System Optimization",
-      "State Management",
-      "Full Product Lifecycle Delivery"
+      "Prompt Engineering",
+      "UI/UX Discussions",
+      "Project Planning",
+      "End-to-End Project Management",
+      "Team Collaboration",
     ],
   },
 ];
@@ -148,10 +100,10 @@ export const skillGroups = [
 export const experience = [
   {
     id: "client-backend",
-    title: "Backend & Database — Collaboration Project",
+    title: "Backend & Database",
     period: "Ongoing",
     description:
-      "Developing and organizing the backend and database structure for an application, collaborating on requirements and implementation.",
+      "Developing and organizing the backend and database structure for a application, collaborating on requirements and implementation.",
   },
   {
     id: "hackathon",
@@ -163,16 +115,16 @@ export const experience = [
   {
     id: "projects",
     title: "Independent & Collaborative Projects",
-    period: "VersaCareer AI · Desi-Drip · SettleX · 2D Games",
+    period: "VersaCareer AI · SettleX",
     description:
       "Contributed to frontend development, backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
   },
 ];
 
 export const education = {
-  school: "WishCraft Studios",
+  school: "Physics Wallah Vidyapeeth, Hyderabad",
   lines: [
-    "Core Product Engineering Sprints (2025–Present)",
-    "Full-Stack Web Platforms & AI Workflow Delivery",
+    "JEE Main & Advanced Preparation (2025–2027)",
+    "Telangana State Board (Intermediate)",
   ],
 };
