@@ -14,8 +14,8 @@ export const profile = {
 };
 export const about = {
   paragraphs: [
-    "I'm a student and Full-Stack Developer passionate about building practical digital products that solve real-world problems. I enjoy turning ideas into polished, user-focused applications by combining thoughtful design with modern web development.",
-    "As part of WishCraft, a student-led development team, I collaborate on real client projects, taking products from concept to deployment. My experience includes frontend development, backend architecture, database design, UI/UX planning, and AI-assisted development workflows across web platforms, productivity tools, and interactive applications.",
+    "I'm a student and Fontend Developer passionate about building practical digital products that solve real-world problems. I enjoy turning ideas into polished, user-focused applications by combining thoughtful design with modern web development.",
+    "As part of WishCraft Studios, a student-led development team, I collaborate on real client projects, taking products from concept to deployment. My experience includes frontend development, backend architecture, database design, UI/UX planning, and AI-assisted development workflows across web platforms, productivity tools, and interactive applications.",
     "One of my most valuable experiences involved rebuilding the backend of a client project from scratch after development had stalled, integrating it with the existing frontend, refining the user experience, and helping deliver a fully functional product.",
     "I'm currently focused on developing scalable web applications, improving my full-stack development skills, and building software that delivers meaningful value through clean design, reliable engineering, and continuous learning.",
   ],
