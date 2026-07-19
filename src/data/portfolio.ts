@@ -12,13 +12,12 @@ export const profile = {
   linkedinHandle: "linkedin.com/in/sankeerthdevella-730314416",
   resumeFile: "/resume.pdf",
 };
-
 export const about = {
   paragraphs: [
-    "Student builder focused on creating practical digital products through real-world projects, hackathons, and collaborative development — part of a small student team, WishCraft, that takes on real client web projects together.",
-    "Experience spans web development with HTML and CSS, backend and database setup, UI/UX planning, and AI-assisted development workflows — taking ideas from concept to implementation across career-tech platforms, fashion applications, expense management tools, and browser-based games.",
-    "On one client project, stepped in to rebuild the backend from scratch after an initial attempt stalled, connecting it to the existing frontend and getting the product working end to end — including UI/UX refinements and testing.",
-    "Currently developing and organizing the backend and database structure for an ongoing client-facing application, collaborating on requirements and implementation.",
+    "I'm a student and Full-Stack Developer passionate about building practical digital products that solve real-world problems. I enjoy turning ideas into polished, user-focused applications by combining thoughtful design with modern web development.",
+    "As part of WishCraft, a student-led development team, I collaborate on real client projects, taking products from concept to deployment. My experience includes frontend development, backend architecture, database design, UI/UX planning, and AI-assisted development workflows across web platforms, productivity tools, and interactive applications.",
+    "One of my most valuable experiences involved rebuilding the backend of a client project from scratch after development had stalled, integrating it with the existing frontend, refining the user experience, and helping deliver a fully functional product.",
+    "I'm currently focused on developing scalable web applications, improving my full-stack development skills, and building software that delivers meaningful value through clean design, reliable engineering, and continuous learning.",
   ],
 };
 
