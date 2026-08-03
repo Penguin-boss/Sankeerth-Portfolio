@@ -50,34 +50,34 @@ export default function Nav() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-bg/90 backdrop-blur-md border-b border-hairline" : "bg-transparent"
+        scrolled ? "bg-bg/95 backdrop-blur-md border-b border-hairline" : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
-        <a href="#top" className="font-display text-lg text-ink tracking-tight flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent schema-dot" />
+        <a href="#top" className="font-display text-xl text-ink tracking-tight flex items-center gap-2 uppercase">
+          <span className="w-2 h-2 bg-accent schema-dot" />
           Sankeerth
         </a>
 
-        <nav className="hidden md:flex items-center gap-1 rounded-full border border-hairline bg-panel/60 p-1">
+        <nav className="hidden md:flex items-center gap-6">
           {links.map((l) => {
             const isActive = active === l.href;
             return (
               <a
                 key={l.href}
                 href={l.href}
-                className={`relative px-4 py-2 rounded-full text-sm transition-colors duration-300 ${
-                  isActive ? "text-bg" : "text-ink-muted hover:text-ink"
+                className={`relative pb-1 font-mono text-xs uppercase tracking-wider transition-colors duration-300 ${
+                  isActive ? "text-accent" : "text-ink-muted hover:text-ink"
                 }`}
               >
+                {l.label}
                 {isActive && (
                   <motion.span
-                    layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-accent"
+                    layoutId="nav-underline"
+                    className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-accent"
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}
-                <span className="relative z-10">{l.label}</span>
               </a>
             );
           })}
@@ -105,7 +105,7 @@ export default function Nav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-medium text-sm text-ink-muted hover:text-ink transition-colors"
+                className="font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-ink transition-colors"
               >
                 {l.label}
               </a>

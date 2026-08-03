@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0e14;
-  --bg-panel: #10161f;
-  --bg-panel-hover: #141b26;
-  --hairline: #1f2836;
-  --hairline-strong: #2b3547;
-  --ink: #e8edf5;
-  --ink-muted: #8b96a8;
-  --ink-faint: #56606f;
-  --accent: #45e0b5;
-  --accent-soft: #7cecc9;
-  --accent-dim: #1c4a3d;
-  --sage: #7ab0d6;
+  --bg: #eef2f7;
+  --bg-panel: #e4eaf2;
+  --bg-panel-hover: #dae2ec;
+  --hairline: #c9d6e4;
+  --hairline-strong: #808e9e;
+  --ink: #142840;
+  --ink-muted: #46586f;
+  --ink-faint: #64758c;
+  --accent: #b43924;
+  --accent-soft: #8f2e1c;
+  --accent-dim: #c77862;
+  --sage: #2f6b52;
 }
 
 @theme inline {
@@ -31,9 +31,9 @@
 }
 
 :root {
-  --font-display-stack: "Sora", "Avenir Next", system-ui, -apple-system, sans-serif;
-  --font-body-stack: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  --font-mono-stack: "JetBrains Mono", "SF Mono", Consolas, ui-monospace, monospace;
+  --font-display-stack: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-body-stack: "IBM Plex Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono-stack: "IBM Plex Mono", "SF Mono", Consolas, ui-monospace, monospace;
 }
 
 * {
@@ -59,20 +59,21 @@ body {
   font-family: var(--font-body-stack);
   -webkit-font-smoothing: antialiased;
   background-image:
-    radial-gradient(ellipse 80% 60% at 15% -10%, rgba(69, 224, 181, 0.07), transparent),
-    radial-gradient(ellipse 60% 50% at 100% 20%, rgba(122, 176, 214, 0.06), transparent);
+    linear-gradient(rgba(20, 40, 64, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 40, 64, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
   background-attachment: fixed;
 }
 
 ::selection {
   background: var(--accent);
-  color: #0a0e14;
+  color: #fdfeff;
 }
 
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 .font-display {
@@ -89,12 +90,44 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.035;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .schema-dot {
-  box-shadow: 0 0 0 3px rgba(69, 224, 181, 0.15);
+  box-shadow: 0 0 0 3px rgba(180, 57, 36, 0.15);
+}
+
+/* Registration corner marks — the signature element, used once on the hero title block */
+.reg-corners {
+  position: relative;
+}
+.reg-corners::before,
+.reg-corners::after,
+.reg-corners > .reg-tl,
+.reg-corners > .reg-br {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--accent);
+  pointer-events: none;
+}
+.reg-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.reg-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.cut-line {
+  border-top: 1px dashed var(--hairline-strong);
 }
 
 ::-webkit-scrollbar {
@@ -105,8 +138,8 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--hairline-strong);
-  border-radius: 6px;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-dim);
+  background: var(--accent);
 }

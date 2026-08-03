@@ -22,7 +22,7 @@ export default function Experience() {
               className="relative pb-10 last:pb-0"
             >
               <span className="absolute -left-6 sm:-left-8 top-1.5 w-2 h-2 rounded-full bg-accent schema-dot" />
-              <p className="font-mono text-[11px] text-ink-faint uppercase tracking-wider mb-1.5">
+              <p className="font-mono text-xs text-ink-faint uppercase tracking-wider mb-1.5">
                 {e.period}
               </p>
               <h3 className="font-display text-lg font-semibold text-ink mb-2">{e.title}</h3>

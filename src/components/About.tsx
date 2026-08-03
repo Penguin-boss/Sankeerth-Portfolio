@@ -29,9 +29,9 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 border border-hairline rounded-md p-5 max-w-2xl bg-bg-panel/50"
+            className="mt-8 border border-hairline-strong p-5 max-w-2xl bg-bg-panel/50"
           >
-            <p className="font-mono text-[11px] tracking-[0.15em] text-ink-faint uppercase mb-3">
+            <p className="font-mono text-xs tracking-[0.15em] text-ink-faint uppercase mb-3">
               education
             </p>
             <p className="text-ink text-sm font-medium mb-1">{education.school}</p>

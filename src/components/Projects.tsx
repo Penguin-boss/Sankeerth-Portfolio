@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <section id="work" className="px-6 sm:px-8 py-20 sm:py-28 border-t border-hairline">
       <div className="max-w-6xl mx-auto">
-        <SectionHeading eyebrow="Featured Work" title="Projects" id="work-heading" />
+        <SectionHeading eyebrow="02 — work" title="Projects" id="work-heading" />
 
         <div className="flex flex-col">
           {projects.map((p, i) => (
@@ -20,12 +20,12 @@ export default function Projects() {
               transition={{ duration: 0.55, delay: i * 0.05 }}
               className="group grid sm:grid-cols-[auto_1fr_auto] items-baseline gap-x-8 gap-y-3 py-10 border-b border-hairline hover:pl-2 transition-[padding] duration-300"
             >
-              <span className="text-xs tracking-[0.2em] text-ink-faint uppercase order-1 sm:order-none">
+              <span className="font-mono text-xs tracking-[0.2em] text-ink-faint uppercase order-1 sm:order-none">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
               <div className="order-3 sm:order-none">
-                <h3 className="font-display text-3xl sm:text-4xl font-medium text-ink tracking-tight group-hover:text-accent-soft transition-colors">
+                <h3 className="font-display text-3xl sm:text-4xl font-semibold text-ink tracking-tight uppercase group-hover:text-accent transition-colors">
                   {p.name}
                 </h3>
                 <p className="text-ink-muted text-base leading-relaxed mt-3 max-w-2xl">
@@ -36,7 +36,7 @@ export default function Projects() {
                   {p.stack.map((s) => (
                     <span
                       key={s}
-                      className="text-xs text-accent-soft border border-accent-dim rounded-full px-3 py-1"
+                      className="font-mono text-xs text-accent-soft border border-accent-dim px-3 py-1"
                     >
                       {s}
                     </span>
@@ -45,7 +45,7 @@ export default function Projects() {
               </div>
 
               <span
-                className={`order-2 sm:order-none justify-self-start sm:justify-self-end text-xs tracking-wider uppercase px-3 py-1 rounded-full border h-fit ${
+                className={`order-2 sm:order-none justify-self-start sm:justify-self-end font-mono text-xs tracking-wider uppercase px-3 py-1 border h-fit ${
                   p.status === "Ongoing"
                     ? "text-sage border-sage/40 bg-sage/10"
                     : "text-ink-faint border-hairline-strong"

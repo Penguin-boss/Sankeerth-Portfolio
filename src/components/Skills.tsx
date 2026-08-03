@@ -18,15 +18,15 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="border border-hairline rounded-md p-5 bg-bg-panel/50"
+              className="border border-hairline-strong p-5 bg-bg-panel/50"
             >
-              <p className="font-mono text-[11px] tracking-[0.15em] text-accent uppercase mb-4">
+              <p className="font-mono text-xs tracking-[0.15em] text-accent uppercase mb-4">
                 {group.label}
               </p>
               <ul className="space-y-2.5">
                 {group.skills.map((s) => (
                   <li key={s} className="text-ink-muted text-sm flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-ink-faint shrink-0" />
+                    <span className="w-2 h-[2px] bg-accent-dim shrink-0" />
                     {s}
                   </li>
                 ))}

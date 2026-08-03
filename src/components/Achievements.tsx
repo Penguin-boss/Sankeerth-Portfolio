@@ -10,10 +10,10 @@ export default function Achievements() {
       <div className="max-w-6xl mx-auto">
         <SectionHeading eyebrow="03 — achievements" title="Hackathons" id="hackathons-heading" />
 
-        <div className="border border-hairline rounded-2xl bg-bg-panel/60 overflow-hidden max-w-3xl">
+        <div className="reg-corners border border-hairline-strong bg-bg-panel/60 overflow-hidden max-w-3xl">
           <div className="px-6 py-5 border-b border-hairline flex items-baseline justify-between flex-wrap gap-2">
-            <h3 className="font-display text-xl font-medium text-ink">{hackathon.name}</h3>
-            <span className="text-xs text-ink-faint">team / {hackathon.team}</span>
+            <h3 className="font-display text-2xl font-semibold text-ink uppercase">{hackathon.name}</h3>
+            <span className="font-mono text-xs text-ink-faint uppercase">team / {hackathon.team}</span>
           </div>
 
           <div>
@@ -26,14 +26,14 @@ export default function Achievements() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="flex items-center gap-4 px-6 py-5 border-b border-hairline/70 last:border-b-0"
               >
-                <span className="text-xs text-ink-faint w-8 shrink-0">
+                <span className="font-mono text-xs text-ink-faint w-8 shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="flex-1 min-w-0">
                   <p className="text-ink text-base font-medium">{r.label}</p>
                   <p className="text-ink-faint text-sm mt-0.5">{r.note}</p>
                 </div>
-                <span className="text-xs uppercase tracking-wider text-accent border border-accent-dim rounded-full px-3 py-1.5 shrink-0">
+                <span className="font-mono text-xs uppercase tracking-wider text-accent border border-accent-dim px-3 py-1.5 shrink-0">
                   {r.result}
                 </span>
               </motion.div>
