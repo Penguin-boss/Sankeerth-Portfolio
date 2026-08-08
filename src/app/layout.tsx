@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
 import AmbientParticles from "@/components/AmbientParticles";
 
 export const metadata: Metadata = {
@@ -16,9 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="grain grid-pattern antialiased font-body relative min-h-screen cursor-none">
+      <body className="grain grid-pattern antialiased font-body relative min-h-screen">
         <AmbientParticles />
-        <CustomCursor />
         {children}
       </body>
     </html>

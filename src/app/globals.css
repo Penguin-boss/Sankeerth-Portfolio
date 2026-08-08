@@ -235,30 +235,6 @@ body {
   animation: shimmer 2s infinite;
 }
 
-/* Cursor utilities */
-@media (prefers-reduced-motion: no-preference) {
-  .cursor-none * {
-    cursor: none !important;
-  }
-  
-  .cursor-none a,
-  .cursor-none button,
-  .cursor-none [role="button"],
-  .cursor-none input,
-  .cursor-none textarea,
-  .cursor-none select,
-  .cursor-none .group,
-  .cursor-none [href] {
-    cursor: none !important;
-  }
-  
-  .cursor-none input,
-  .cursor-none textarea,
-  .cursor-none select {
-    cursor: text !important;
-  }
-}
-
 /* Line clamp utilities */
 .line-clamp-2 {
   display: -webkit-box;
