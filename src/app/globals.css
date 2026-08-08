@@ -3085,3 +3085,237 @@ main {
    Only the Hero boundary is affected.
    Other sections retain their normal editorial spacing.
 */
+/* ============================================================
+   HERO MOTION SYSTEM
+   ============================================================ */
+
+.hero-title-mask {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+/* Keeps the headline reveal clean */
+.hero-title-mask .hero-section__title {
+  will-change: transform, opacity;
+  transform-origin: 50% 100%;
+}
+
+/* Profile scan line */
+.hero-artifact__scan {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 1px;
+  height: 32%;
+
+  background: var(--accent);
+
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+/* Subtle entrance for the hero grid */
+.hero-section__grid {
+  will-change: transform;
+}
+
+/* ============================================================
+   EDITORIAL SCROLL REVEALS
+   ============================================================ */
+
+[data-art-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+
+  transition:
+    opacity 700ms cubic-bezier(.16, 1, .3, 1),
+    transform 850ms cubic-bezier(.16, 1, .3, 1);
+}
+
+[data-art-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Image reveal */
+[data-art-reveal="image"] {
+  opacity: 1;
+
+  clip-path: inset(
+    0 14% 0 0
+  );
+
+  transform: translate3d(-14px, 0, 0);
+
+  transition:
+    clip-path 900ms cubic-bezier(.16, 1, .3, 1),
+    transform 900ms cubic-bezier(.16, 1, .3, 1);
+}
+
+[data-art-reveal="image"].is-visible {
+  clip-path: inset(0 0 0 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* ============================================================
+   PROJECT HOVER
+   ============================================================ */
+
+.project-visual {
+  transform: translateZ(0);
+
+  transition:
+    transform 700ms cubic-bezier(.16, 1, .3, 1),
+    border-color 500ms ease;
+}
+
+.project-article:hover .project-visual {
+  transform:
+    translateY(-6px)
+    scale(1.008);
+}
+
+.project-visual::before {
+  transition:
+    transform 900ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.project-article:hover
+.project-visual::before {
+  transform:
+    rotate(-1deg)
+    scale(1.035);
+}
+
+/* ============================================================
+   LINK UNDERLINE MOTION
+   ============================================================ */
+
+.text-link {
+  position: relative;
+
+  border-bottom: 0;
+}
+
+.text-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -5px;
+
+  width: 100%;
+  height: 1px;
+
+  background: var(--accent);
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition:
+    transform 450ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.text-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ============================================================
+   SECTION HEADING MOTION
+   ============================================================ */
+
+.section-heading__title {
+  transition:
+    letter-spacing 700ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.section-heading:hover
+.section-heading__title {
+  letter-spacing: -0.065em;
+}
+
+/* ============================================================
+   BUTTON MICRO MOTION
+   ============================================================ */
+
+.button--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.button--primary::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  transform:
+    translateX(-105%);
+
+  transition:
+    transform 500ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.button--primary:hover::before {
+  transform: translateX(0);
+}
+
+.button--primary > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   SOCIAL ICON MOTION
+   ============================================================ */
+
+.hero-section__socials a {
+  transition:
+    color 220ms ease,
+    border-color 220ms ease,
+    transform 350ms cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-title-mask {
+    overflow: visible;
+  }
+
+  .hero-title-mask .hero-section__title {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-artifact__scan {
+    transform: none !important;
+  }
+
+  [data-art-reveal],
+  [data-art-reveal="image"] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .project-article:hover .project-visual {
+    transform: none !important;
+  }
+
+  .project-article:hover
+  .project-visual::before {
+    transform: none !important;
+  }
+}
