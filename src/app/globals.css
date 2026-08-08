@@ -2443,3 +2443,267 @@ main > * + * {
 #about.section {
   margin-top: 0 !important;
 }
+/* ============================================================
+   FINAL HERO → ABOUT SPACING FIX
+   ============================================================ */
+
+/*
+   The Hero owns exactly one viewport.
+   Nothing before or after it should add another viewport.
+*/
+
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   HERO
+   ------------------------------------------------------------ */
+
+.hero-section {
+  position: relative;
+
+  width: 100%;
+  min-height: 100svh;
+  height: 100svh;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  z-index: 2;
+
+  border-bottom: 1px solid rgba(51, 65, 85, 0.55);
+}
+
+.hero-section__inner {
+  position: relative;
+
+  width: min(
+    calc(100% - 48px),
+    var(--container-width)
+  );
+
+  height: 100%;
+
+  margin: 0 auto !important;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-top: 72px;
+  padding-bottom: 24px;
+}
+
+/* ------------------------------------------------------------
+   HERO CONTENT
+   ------------------------------------------------------------ */
+
+.hero-section__eyebrow {
+  margin-top: 0 !important;
+  margin-bottom: clamp(2rem, 5vh, 4rem);
+}
+
+.hero-section__grid {
+  margin-top: 0 !important;
+}
+
+.hero-section__footer {
+  margin-top: auto;
+  margin-bottom: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   THE IMPORTANT FIX
+   ------------------------------------------------------------ */
+
+/*
+   The section immediately following the Hero should NOT
+   receive the normal large section padding at its top.
+
+   This removes the visual "second page" gap.
+*/
+
+.hero-section + .section {
+  margin-top: 0 !important;
+
+  padding-top: clamp(
+    2rem,
+    4vw,
+    4rem
+  ) !important;
+}
+
+/*
+   Specifically remove the excessive top breathing room
+   from About while preserving its internal layout.
+*/
+
+.hero-section + #about,
+.hero-section + section#about {
+  margin-top: 0 !important;
+
+  padding-top: clamp(
+    2rem,
+    4vw,
+    4rem
+  ) !important;
+}
+
+/*
+   If About is wrapped inside another element, don't allow
+   that wrapper to create another viewport-sized gap.
+*/
+
+.hero-section + div {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-section + div > #about,
+.hero-section + div > section#about {
+  margin-top: 0 !important;
+
+  padding-top: clamp(
+    2rem,
+    4vw,
+    4rem
+  ) !important;
+}
+
+/* ------------------------------------------------------------
+   ABOUT HEADING
+   ------------------------------------------------------------ */
+
+/*
+   Don't let the About heading itself get pushed down by
+   an additional margin.
+*/
+
+#about .section-heading {
+  margin-top: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   IMPORTANT:
+   KEEP NORMAL SPACING AFTER ABOUT
+   ------------------------------------------------------------ */
+
+/*
+   We deliberately do NOT globally remove section padding.
+
+   About → Projects
+   Projects → Hackathons
+   Hackathons → Certificates
+   Certificates → Skills
+   Skills → Experience
+   Experience → Contact
+
+   should retain their editorial breathing room.
+*/
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 760px) {
+
+  .hero-section {
+    min-height: 100svh;
+    height: 100svh;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .hero-section__inner {
+    width: min(
+      calc(100% - 32px),
+      var(--container-width)
+    );
+
+    min-height: 100svh;
+    height: 100%;
+
+    padding-top: 78px;
+    padding-bottom: 18px;
+
+    justify-content: center;
+  }
+
+  .hero-section__eyebrow {
+    margin-bottom: 2.2rem !important;
+  }
+
+  .hero-section__grid {
+    gap: 2.6rem;
+  }
+
+  .hero-section__footer {
+    margin-top: 2.5rem !important;
+  }
+
+  /*
+     On mobile the About section begins almost immediately
+     after the Hero.
+  */
+
+  .hero-section + .section,
+  .hero-section + #about,
+  .hero-section + section#about,
+  .hero-section + div > #about,
+  .hero-section + div > section#about {
+    margin-top: 0 !important;
+
+    padding-top: 1.5rem !important;
+  }
+
+  #about .section-heading {
+    margin-top: 0 !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   SAFETY OVERRIDES
+   ------------------------------------------------------------ */
+
+/*
+   Prevent common Tailwind utility combinations from
+   accidentally creating a second viewport.
+*/
+
+.hero-section + .h-screen,
+.hero-section + .min-h-screen,
+.hero-section + div.h-screen,
+.hero-section + div.min-h-screen {
+  height: auto !important;
+  min-height: auto !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/*
+   Remove accidental vertical spacing only between Hero
+   and its immediate next element.
+*/
+
+.hero-section + * {
+  margin-top: 0 !important;
+}
+
+/*
+   Do NOT use this on the whole page.
+   Only the Hero boundary gets this treatment.
+*/
