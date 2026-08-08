@@ -2390,3 +2390,56 @@ a {
     break-inside: avoid;
   }
   }
+/* ============================================================
+   HERO → ABOUT GAP FIX
+   ============================================================ */
+
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Never allow a wrapper around the hero to create another viewport */
+main > div:first-child,
+main > section:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Hero itself owns the first viewport */
+.hero-section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* The section immediately after the hero starts immediately */
+.hero-section + section {
+  margin-top: 0 !important;
+}
+
+/* About should not create a blank viewport before itself */
+#about {
+  margin-top: 0 !important;
+}
+
+/* Remove accidental viewport-sized wrappers */
+.hero-section + div {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Prevent Tailwind space-y utilities from creating a giant gap */
+main > * + * {
+  margin-top: 0 !important;
+}
+
+/* Keep About's internal breathing room, but not an external gap */
+#about.section {
+  margin-top: 0 !important;
+}
