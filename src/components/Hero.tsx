@@ -9,7 +9,7 @@ const fields: [string, string][] = [
   ["Role", "Student Builder"],
   ["Focus", "Backend & Database Setup"],
   ["Location", profile.location],
-  ["Team", "WishCraft Warriors"],
+  ["Team", "WishCraft Studios"],
   ["Rev.", "A — 2026"],
 ];
 
@@ -124,7 +124,7 @@ export default function Hero() {
             <div className="mt-6 pt-4 border-t border-border">
               <p className="font-mono text-[10px] text-fg-faint uppercase tracking-wider mb-3">Stack</p>
               <div className="flex flex-wrap gap-2">
-                {["Next.js", "TypeScript", "Tailwind", "PostgreSQL", "Prisma", "Framer Motion"].map((tech) => (
+                {["Next.js", "TypeScript", "Tailwind", "Prisma"].map((tech) => (
                   <span
                     key={tech}
                     className="font-mono text-xs text-accent border border-accent/30 bg-accent/5 px-3 py-1.5 rounded transition-all hover:bg-accent/10"

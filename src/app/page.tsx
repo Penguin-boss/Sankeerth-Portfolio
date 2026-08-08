@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Achievements from "@/components/Achievements";
+import Certificates from "@/components/Certificates";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
@@ -17,6 +18,7 @@ export default function Home() {
         <About />
         <Projects />
         <Achievements />
+        <Certificates />
         <Skills />
         <Experience />
         <Contact />

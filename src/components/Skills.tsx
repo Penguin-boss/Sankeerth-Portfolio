@@ -67,7 +67,7 @@ export default function Skills() {
         >
           <p className="font-mono text-xs tracking-[0.15em] text-fg-faint uppercase mb-4">Currently Exploring</p>
           <div className="flex flex-wrap gap-2">
-            {["Rust", "Go", "GraphQL", "Docker", "Kubernetes", "WebAssembly", "tRPC", "React Server Components"].map((tech) => (
+            {["Rust", "Go", "GraphQL", "Docker", "React Server Components"].map((tech) => (
               <span
                 key={tech}
                 className="font-mono text-xs text-fg-muted border border-border bg-bg/50 hover:bg-accent/5 hover:border-accent/30 hover:text-accent px-3 py-1.5 rounded transition-all"

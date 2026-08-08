@@ -108,8 +108,8 @@ export default function About() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-body text-sm font-semibold text-fg">Team Leadership</p>
-                    <p className="text-fg-muted text-sm mt-1">WishCraft Warriors - Top 10</p>
+                    <p className="font-body text-sm font-semibold text-fg">Team Collaboration</p>
+                    <p className="text-fg-muted text-sm mt-1">WishCraft Studios — Top 10 Finalist</p>
                   </div>
                 </div>
               </div>

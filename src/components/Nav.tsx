@@ -8,6 +8,7 @@ const links = [
   { href: "#about", label: "About" },
   { href: "#work", label: "Work" },
   { href: "#hackathons", label: "Hackathons" },
+  { href: "#certificates", label: "Certificates" },
   { href: "#skills", label: "Skills" },
   { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
@@ -77,12 +78,13 @@ export default function Nav() {
                 }`}
               >
                 {l.label}
-                <motion.span
-                  layoutId="nav-underline"
-                  className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-accent rounded-full"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  style={{ display: isActive ? "block" : "none" }}
-                />
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-accent rounded-full"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
               </a>
             );
           })}

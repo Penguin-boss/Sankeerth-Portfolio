@@ -30,11 +30,17 @@ export const siteContent: SiteContent = {
     },
     {
       index: "03",
-      name: "SettleX",
-      description: "Expense-splitting application.",
+      name: "Shiva Kanaka Portfolio",
+      description:
+        "Personal portfolio website built with dynamic responsive layout and modern aesthetics.",
     },
     {
       index: "04",
+      name: "SettleX",
+      description: "Expense-splitting mobile application.",
+    },
+    {
+      index: "05",
       name: "2D Games Collection",
       description: "Browser-based HTML/CSS games.",
     },
@@ -74,7 +80,7 @@ export const siteContent: SiteContent = {
       },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/in/sankeerth-devella-730314416",
+        href: "https://www.linkedin.com/in/sankeerthdevella-730314416",
         external: true,
       },
       {
