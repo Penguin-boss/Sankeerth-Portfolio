@@ -29,7 +29,7 @@ export default function Skills() {
               key={group.label}
               variants={{
                 hidden: { opacity: 0, y: 20, scale: 0.98 },
-                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "expo.out" } }
+                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } }
               }}
               whileHover={{ y: -4, transition: { duration: 0.3 } }}
               className="reg-corners border border-border bg-bg-elevated/50 p-6 backdrop-blur-sm hover:border-accent/50 transition-all duration-300"
@@ -47,7 +47,7 @@ export default function Skills() {
                       initial={{ width: 0 }}
                       whileInView={{ width: 8 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.2, ease: "expo.out" }}
+                      transition={{ duration: 0.4, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
                       className="w-8 h-[2px] bg-border group-hover:bg-accent group-hover:w-10 transition-all duration-300"
                     />
                     <span className="group-hover:text-fg transition-colors">{s}</span>
@@ -62,7 +62,7 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, delay: 0.6, ease: "expo.out" }}
+          transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="mt-16 reg-corners border border-border bg-bg-elevated/30 p-6 sm:p-8 backdrop-blur-sm"
         >
           <p className="font-mono text-xs tracking-[0.15em] text-fg-faint uppercase mb-4">Currently Exploring</p>

@@ -18,7 +18,7 @@ export default function Experience() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: "expo.out" }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           className="max-w-3xl relative"
         >
           <div className="absolute left-[7px] top-0 bottom-0 w-px bg-border/50" />
@@ -29,7 +29,7 @@ export default function Experience() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: "expo.out" }}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] }}
               className="relative pb-12 last:pb-0"
             >
               <span className="absolute -left-[13px] top-1 w-5 h-5 rounded-full bg-accent border-4 border-bg flex items-center justify-center" />

@@ -39,7 +39,7 @@ export default function Projects() {
               key={p.id}
               variants={{
                 hidden: { opacity: 0, y: 30, scale: 0.98 },
-                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: "expo.out" } }
+                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } }
               }}
               whileHover={{ y: -8, scale: 1.01, transition: { duration: 0.3, ease: "easeOut" } }}
               className="group reg-corners border border-border bg-bg-elevated/50 backdrop-blur-sm p-6 transition-all duration-500 hover:border-accent/50 hover:shadow-[0_20px_40px_-10px_rgba(34,197,94,0.15)]"

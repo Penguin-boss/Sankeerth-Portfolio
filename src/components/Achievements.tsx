@@ -21,7 +21,7 @@ export default function Achievements() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: "expo.out" }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           className="max-w-3xl"
         >
           <div className="reg-corners border border-border bg-bg-elevated/50 overflow-hidden backdrop-blur-sm">
@@ -39,7 +39,7 @@ export default function Achievements() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.5, delay: i * 0.1, ease: "expo.out" }}
+                    transition={{ duration: 0.5, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                     className="flex items-center gap-4 px-6 py-5 border-b border-border/50 last:border-b-0 hover:bg-bg-hover transition-colors"
                   >
                     <div className="w-12 h-12 flex items-center justify-center bg-accent/10 border border-accent/30 rounded-lg shrink-0">
@@ -66,7 +66,7 @@ export default function Achievements() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.6, ease: "expo.out" }}
+            transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="mt-8 reg-corners border border-border bg-bg-elevated/30 p-6 backdrop-blur-sm"
           >
             <p className="font-mono text-xs tracking-[0.15em] text-fg-faint uppercase mb-4">Other Recognition</p>

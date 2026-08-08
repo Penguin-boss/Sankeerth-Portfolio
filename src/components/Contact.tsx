@@ -22,7 +22,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: "expo.out" }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-center max-w-3xl mx-auto"
         >
           <p className="font-mono text-xs tracking-[0.3em] text-accent uppercase mb-4">
@@ -32,7 +32,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "expo.out" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
             className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-fg tracking-tight mb-6 leading-[1.1]"
             style={{ letterSpacing: "-0.02em" }}
           >
@@ -47,7 +47,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "expo.out" }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-fg-muted text-lg leading-relaxed max-w-xl mx-auto"
           >
             Whether you have a project in mind, need backend expertise, or just want to say hello — I'd love to hear from you.
@@ -57,7 +57,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, delay: 0.3, ease: "expo.out" }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a
@@ -100,7 +100,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: 0.5, ease: "expo.out" }}
+          transition={{ duration: 0.7, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
           className="mt-20 reg-corners border border-border bg-bg-elevated/30 p-6 sm:p-8 backdrop-blur-sm"
         >
           <p className="font-mono text-xs tracking-[0.15em] text-fg-faint uppercase mb-6 text-center">Availability</p>

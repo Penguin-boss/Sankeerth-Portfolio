@@ -25,7 +25,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "expo.out" }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-12"
         >
           <p className="font-mono text-xs tracking-[0.3em] text-accent uppercase flex items-center gap-3">
@@ -39,7 +39,7 @@ export default function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.15, ease: "expo.out" }}
+              transition={{ duration: 1, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
               className="font-display text-6xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-fg leading-[0.9]"
               style={{ letterSpacing: "-0.03em" }}
             >
@@ -50,7 +50,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "expo.out" }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               className="mt-8 text-lg sm:text-xl text-fg-muted max-w-2xl leading-relaxed font-light"
             >
               {profile.tagline}
@@ -59,7 +59,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.45, ease: "expo.out" }}
+              transition={{ duration: 0.8, delay: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
               className="mt-10 flex flex-wrap items-center gap-4"
             >
               <a
@@ -106,7 +106,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.98, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: "expo.out" }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="reg-corners border border-border bg-bg-elevated/50 p-6 backdrop-blur-sm"
           >
             <p className="font-mono text-[10px] tracking-[0.2em] text-fg-faint uppercase mb-4 pb-4 border-b border-dashed border-border">

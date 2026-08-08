@@ -20,7 +20,7 @@ export default function About() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: "expo.out" }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
               className="space-y-6"
             >
               {about.paragraphs.map((p, i) => (
@@ -29,7 +29,7 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: "expo.out" }}
+                  transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                   className="text-fg-muted text-base sm:text-lg leading-relaxed max-w-3xl"
                 >
                   {p}
@@ -40,7 +40,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: 0.5, ease: "expo.out" }}
+                transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                 className="reg-corners border border-border bg-bg-elevated/50 p-6 max-w-2xl backdrop-blur-sm"
               >
                 <p className="font-mono text-xs tracking-[0.15em] text-fg-faint uppercase mb-4">
@@ -60,7 +60,7 @@ export default function About() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "expo.out" }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="hidden lg:block"
           >
             <div className="reg-corners border border-border bg-bg-elevated/30 p-6 backdrop-blur-sm sticky top-28">
