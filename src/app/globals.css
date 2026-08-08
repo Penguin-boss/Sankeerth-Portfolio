@@ -2707,3 +2707,381 @@ main {
    Do NOT use this on the whole page.
    Only the Hero boundary gets this treatment.
 */
+/* ============================================================
+   FINAL HERO HEIGHT FIX
+   IMPORTANT:
+   This replaces the previous 100svh hero behavior.
+   ============================================================ */
+
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ============================================================
+   HERO — NATURAL HEIGHT
+   ============================================================ */
+
+.hero-section {
+  position: relative;
+
+  width: 100%;
+
+  /*
+    DO NOT use 100svh here.
+    The old full-screen hero was creating the
+    large dead area before About.
+  */
+  min-height: 0 !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: block;
+
+  overflow: hidden;
+
+  z-index: 2;
+
+  border-bottom: 1px solid rgba(51, 65, 85, 0.55);
+}
+
+.hero-section__inner {
+  position: relative;
+
+  width: min(
+    calc(100% - 48px),
+    var(--container-width)
+  );
+
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 auto !important;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  /*
+    Only enough space for the navigation
+    and hero composition.
+  */
+  padding-top: 118px !important;
+  padding-bottom: 26px !important;
+}
+
+/* ============================================================
+   HERO TOP
+   ============================================================ */
+
+.hero-section__eyebrow {
+  margin-top: 0 !important;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem) !important;
+}
+
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
+
+.hero-section__grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(250px, 0.55fr);
+
+  gap: clamp(3rem, 7vw, 7rem);
+
+  align-items: center;
+
+  margin: 0 !important;
+}
+
+/* ============================================================
+   HERO TITLE
+   ============================================================ */
+
+.hero-section__title {
+  margin: 0 !important;
+
+  font-size: clamp(
+    4.5rem,
+    9.5vw,
+    9.5rem
+  );
+
+  line-height: 0.82;
+}
+
+/* ============================================================
+   HERO DESCRIPTION
+   ============================================================ */
+
+.hero-section__lede {
+  margin-top: clamp(
+    2rem,
+    3vw,
+    3rem
+  ) !important;
+
+  margin-bottom: 0 !important;
+}
+
+/* ============================================================
+   HERO BUTTONS
+   ============================================================ */
+
+.hero-section__actions {
+  margin-top: clamp(
+    1.5rem,
+    2.5vw,
+    2.2rem
+  ) !important;
+
+  margin-bottom: 0 !important;
+}
+
+/* ============================================================
+   RIGHT PROFILE
+   ============================================================ */
+
+.hero-artifact {
+  min-height: clamp(
+    320px,
+    35vw,
+    460px
+  ) !important;
+
+  height: auto !important;
+
+  transform: none !important;
+
+  margin: 0 !important;
+}
+
+/* ============================================================
+   HERO FOOTER
+   ============================================================ */
+
+.hero-section__footer {
+  /*
+    Previously this used margin-top:auto,
+    which only makes sense inside a 100vh hero.
+
+    Now it sits naturally after the content.
+  */
+  margin-top: clamp(
+    3.5rem,
+    6vw,
+    6rem
+  ) !important;
+
+  margin-bottom: 0 !important;
+
+  padding-top: 15px !important;
+}
+
+/* ============================================================
+   ABOUT — IMMEDIATELY AFTER HERO
+   ============================================================ */
+
+.hero-section + .section {
+  margin-top: 0 !important;
+
+  /*
+    Small editorial transition,
+    not another screen of empty space.
+  */
+  padding-top: clamp(
+    3rem,
+    6vw,
+    5rem
+  ) !important;
+}
+
+.hero-section + section#about,
+.hero-section + #about {
+  margin-top: 0 !important;
+
+  padding-top: clamp(
+    3rem,
+    6vw,
+    5rem
+  ) !important;
+}
+
+/* ============================================================
+   IF ABOUT IS INSIDE A WRAPPER
+   ============================================================ */
+
+.hero-section + div {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-section + div > section {
+  margin-top: 0 !important;
+}
+
+.hero-section + div > #about,
+.hero-section + div > section#about {
+  margin-top: 0 !important;
+
+  padding-top: clamp(
+    3rem,
+    6vw,
+    5rem
+  ) !important;
+}
+
+/* ============================================================
+   MOBILE — MAIN FIX
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+  .hero-section {
+    min-height: 0 !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .hero-section__inner {
+    width: calc(100% - 32px);
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    padding-top: 88px !important;
+    padding-bottom: 18px !important;
+
+    justify-content: flex-start !important;
+  }
+
+  .hero-section__eyebrow {
+    margin-bottom: 2rem !important;
+  }
+
+  .hero-section__grid {
+    grid-template-columns: 1fr;
+
+    gap: 2.5rem;
+
+    align-items: start;
+  }
+
+  .hero-section__title {
+    font-size: clamp(
+      3.7rem,
+      16.5vw,
+      6.5rem
+    );
+
+    line-height: 0.84;
+  }
+
+  .hero-section__lede {
+    max-width: 100%;
+
+    margin-top: 1.7rem !important;
+
+    font-size: 0.9rem;
+
+    line-height: 1.55;
+  }
+
+  .hero-section__actions {
+    margin-top: 1.5rem !important;
+
+    gap: 16px;
+  }
+
+  .hero-artifact {
+    min-height: 225px !important;
+
+    height: 225px !important;
+
+    margin-top: 0 !important;
+  }
+
+  .hero-artifact__name {
+    font-size: clamp(
+      6rem,
+      26vw,
+      9rem
+    );
+  }
+
+  .hero-section__footer {
+    margin-top: 2.5rem !important;
+
+    padding-top: 12px !important;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  /*
+    About now follows the actual Hero content.
+    No viewport-sized gap.
+  */
+
+  .hero-section + .section,
+  .hero-section + section#about,
+  .hero-section + #about,
+  .hero-section + div > #about,
+  .hero-section + div > section#about {
+    margin-top: 0 !important;
+
+    padding-top: 2.5rem !important;
+  }
+
+  #about .section-heading {
+    margin-top: 0 !important;
+  }
+}
+
+/* ============================================================
+   REMOVE OLD FULLSCREEN HERO OVERRIDES
+   ============================================================ */
+
+.hero-section {
+  scroll-margin-top: 0 !important;
+}
+
+/*
+   These are intentionally overridden here in case an
+   earlier CSS rule still exists.
+*/
+
+.hero-section,
+.hero-section__inner,
+.hero-artifact {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   SAFETY — NO ARTIFICIAL GAP
+   ============================================================ */
+
+.hero-section + * {
+  margin-top: 0 !important;
+}
+
+/*
+   Only the Hero boundary is affected.
+   Other sections retain their normal editorial spacing.
+*/
