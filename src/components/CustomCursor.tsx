@@ -76,13 +76,13 @@ export default function CustomCursor() {
           transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
           width: isHovering ? 48 : 24,
           height: isHovering ? 48 : 24,
+          display: isVisible ? "block" : "none",
         }}
         animate={{
           scale: isClicking ? 0.8 : isHovering ? 1.2 : 1,
           borderRadius: isHovering ? "50%" : "50%",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        style={{ display: isVisible ? "block" : "none" }}
       >
         <div
           className="w-full h-full border-2 border-accent rounded-full"
@@ -105,13 +105,13 @@ export default function CustomCursor() {
           transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
           width: 8,
           height: 8,
+          display: isVisible ? "block" : "none",
         }}
         animate={{
           opacity: isHovering ? 0 : 1,
           scale: isHovering ? 0.5 : 1,
         }}
         transition={{ duration: 0.2 }}
-        style={{ display: isVisible ? "block" : "none" }}
       >
         <div className="w-full h-full bg-accent rounded-full" />
       </motion.div>
