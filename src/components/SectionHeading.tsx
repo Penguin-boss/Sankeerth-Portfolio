@@ -13,16 +13,19 @@ export default function SectionHeading({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="mb-10 sm:mb-14"
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.7, ease: "expo.out" }}
+      className="mb-12 sm:mb-16"
     >
-      <p id={id} className="font-mono text-xs tracking-[0.25em] text-accent uppercase mb-4 scroll-mt-24">
-        Sheet {eyebrow}
+      <p id={id} className="font-mono text-xs tracking-[0.3em] text-accent uppercase mb-5 flex items-center gap-3 scroll-mt-24">
+        <span className="w-10 h-px bg-accent" />
+        {eyebrow}
       </p>
-      <h2 className="font-display text-4xl sm:text-5xl font-semibold text-ink tracking-tight uppercase">
+      <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-fg tracking-tight uppercase leading-[1.1]"
+        style={{ letterSpacing: "-0.02em" }}
+      >
         {title}
       </h2>
     </motion.div>

@@ -28,6 +28,8 @@ export type Project = {
   description: string;
   role: string[];
   stack: string[];
+  github?: string;
+  live?: string;
 };
 
 export const projects: Project[] = [
@@ -39,6 +41,7 @@ export const projects: Project[] = [
       "Career guidance platform with resume analysis and personalized recommendations.",
     role: ["Frontend Developer", "Backend planning", "Database organization", "UI discussions", "AI-assisted workflows"],
     stack: ["Frontend Full Stack", "Backend Setup", "Database", "AI Dev Tools", "UI/UX Discussion"],
+    github: "https://github.com/Penguin-boss/VersaCareer-AI",
   },
   {
     id: "desi-drip",
@@ -48,6 +51,7 @@ export const projects: Project[] = [
       "Fashion-focused application designed to help users explore styling ideas and recommendations.",
     role: ["Project setup","Frontend Developer", "Backend configuration", "Testing"],
     stack: [ "Frontend Full Stack", "Backend Configuration", "Project Setup", "Testing"],
+    github: "https://github.com/Penguin-boss/Desi-Drip",
   },
   {
     id: "settlex",
@@ -56,6 +60,7 @@ export const projects: Project[] = [
     description: "Expense-splitting application with collaborative planning and backend setup.",
     role: ["Collaborative planning","Frontend Development", "Database organization", "Backend setup"],
     stack: ["Frontend Full Stack","Database", "Backend Setup", "Project Planning"],
+    github: "https://github.com/Penguin-boss/SettleX",
   },
   {
     id: "2d-games",
@@ -64,6 +69,7 @@ export const projects: Project[] = [
     description:  "Browser-based games created using HTML and CSS to explore interactive web experiences.",
     role: ["Game design", "Front-end build"],
     stack: ["HTML", "CSS"],
+    github: "https://github.com/Penguin-boss/2D-Games",
   },
 ];
 

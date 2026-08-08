@@ -46,38 +46,43 @@ export default function Nav() {
 
   return (
     <motion.header
-      initial={{ y: -40, opacity: 0 }}
+      initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-bg/95 backdrop-blur-md border-b border-hairline" : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-bg/95 backdrop-blur-lg border-b border-border"
+          : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
-        <a href="#top" className="font-display text-xl text-ink tracking-tight flex items-center gap-2 uppercase">
-          <span className="w-2 h-2 bg-accent schema-dot" />
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+        <a
+          href="#top"
+          className="font-display text-xl sm:text-2xl font-bold text-fg tracking-tight flex items-center gap-2 uppercase"
+          style={{ letterSpacing: "-0.02em" }}
+        >
+          <span className="w-2.5 h-2.5 bg-accent rounded-sm animate-pulse" />
           Sankeerth
         </a>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => {
             const isActive = active === l.href;
             return (
               <a
                 key={l.href}
                 href={l.href}
-                className={`relative pb-1 font-mono text-xs uppercase tracking-wider transition-colors duration-300 ${
-                  isActive ? "text-accent" : "text-ink-muted hover:text-ink"
+                className={`relative pb-2 font-body text-sm uppercase tracking-wider transition-all duration-300 ${
+                  isActive ? "text-accent" : "text-fg-muted hover:text-fg"
                 }`}
               >
                 {l.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-accent"
-                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                  />
-                )}
+                <motion.span
+                  layoutId="nav-underline"
+                  className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-accent rounded-full"
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  style={{ display: isActive ? "block" : "none" }}
+                />
               </a>
             );
           })}
@@ -86,9 +91,9 @@ export default function Nav() {
         <button
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden text-ink"
+          className="md:hidden text-fg p-2 rounded-lg hover:bg-bg-elevated transition-colors"
         >
-          {open ? <X size={20} /> : <Menu size={20} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -97,15 +102,19 @@ export default function Nav() {
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
-          className="md:hidden border-t border-hairline bg-bg/95 backdrop-blur-md"
+          className="md:hidden border-t border-border bg-bg/95 backdrop-blur-lg"
         >
-          <div className="flex flex-col px-6 py-4 gap-4">
+          <div className="flex flex-col px-6 py-6 gap-2">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-mono text-xs uppercase tracking-wider text-ink-muted hover:text-ink transition-colors"
+                className={`font-body text-sm uppercase tracking-wider py-3 px-4 rounded-lg transition-all ${
+                  active === l.href
+                    ? "bg-accent/10 text-accent"
+                    : "text-fg-muted hover:text-fg hover:bg-bg-hover"
+                }`}
               >
                 {l.label}
               </a>

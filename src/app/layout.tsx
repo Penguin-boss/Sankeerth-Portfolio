@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-import "@fontsource/big-shoulders-display/600";
-import "@fontsource/big-shoulders-display/700";
-import "@fontsource/big-shoulders-display/800";
-import "@fontsource/ibm-plex-sans/400.css";
-import "@fontsource/ibm-plex-sans/500.css";
-import "@fontsource/ibm-plex-sans/600.css";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
+import AmbientParticles from "@/components/AmbientParticles";
 
 export const metadata: Metadata = {
   title: "Sankeerth Devella — Student Builder",
@@ -22,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="grain antialiased">{children}</body>
+      <body className="grain grid-pattern antialiased font-body relative min-h-screen cursor-none">
+        <AmbientParticles />
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
