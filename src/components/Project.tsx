@@ -1,316 +1,168 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import {
-  ArrowUpRight,
-  Github,
-} from "lucide-react";
-import { useRef } from "react";
-import type { Project as ProjectData } from "@/data/portfolio";
+import type { Project } from "@/data/portfolio";
 
 type ProjectCardProps = {
-  project: ProjectData;
+  project: Project;
   index: number;
+  onOpen?: (project: Project) => void;
 };
+
+function GithubIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      aria-hidden="true"
+    >
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.2-.35 6.5-1.55 6.5-7A5.4 5.4 0 0 0 19 3.7 5 5 0 0 0 18.9 0S17.7-.4 15 1.3a13.4 13.4 0 0 0-7 0C5.3-.4 4.1 0 4.1 0A5 5 0 0 0 4 3.7a5.4 5.4 0 0 0-1.5 3.8c0 5.45 3.3 6.65 6.5 7A4.8 4.8 0 0 0 8 18v4" />
+      <path d="M8 18c-3 .9-3-1.4-4.2-1.7" />
+    </svg>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      aria-hidden="true"
+    >
+      <path d="M7 17 17 7" />
+      <path d="M7 7h10v10" />
+    </svg>
+  );
+}
 
 export default function ProjectCard({
   project,
   index,
+  onOpen,
 }: ProjectCardProps) {
-  const ref = useRef<HTMLElement | null>(null);
+  const number = String(index + 1).padStart(2, "0");
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
+  const initial = project.name.charAt(0).toUpperCase();
 
-  const imageY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-5%", "5%"]
-  );
-
-  const imageScale = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [1.08, 1, 1.05]
-  );
-
-  const contentY = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [35, 0, -20]
-  );
+  const projectType = project.isMobile ? "MOBILE" : "WEB";
 
   return (
-    <motion.article
-      ref={ref}
-      className={`project-card project-card--${index % 2 === 0 ? "left" : "right"}`}
-      initial={{
-        opacity: 0,
-        y: 70,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
-      transition={{
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+    <article
+      className="project-card-cinematic project-article"
+      data-art-reveal
     >
       {/* =====================================================
-          PROJECT VISUAL
+          VISUAL
           ===================================================== */}
 
-      <motion.div
-        className="project-card__visual"
-        initial={{
-          clipPath: "inset(0 100% 0 0)",
-        }}
-        whileInView={{
-          clipPath: "inset(0 0% 0 0)",
-        }}
-        viewport={{
-          once: true,
-          amount: 0.2,
-        }}
-        transition={{
-          duration: 1,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-      >
-        <motion.div
-          className="project-card__image"
-          style={{
-            y: imageY,
-            scale: imageScale,
-          }}
-        >
-          {project.image ? (
-            <img
-              src={project.image}
-              alt={`${project.name} project preview`}
-              loading="lazy"
-            />
-          ) : (
-            <div className="project-card__letter">
-              <span>
-                {String(index + 1).padStart(2, "0")}
-              </span>
+      <div className="project-visual project-visual--cinematic">
+        <div className="project-visual__placeholder">
+          <div className="project-visual__placeholder-grid" />
 
-              <strong>
-                {project.name.charAt(0)}
-              </strong>
-            </div>
-          )}
-        </motion.div>
-
-        <div className="project-card__grid" />
-
-        <div className="project-card__frame" />
-
-        <div className="project-card__top">
-          <span>
-            {String(index + 1).padStart(2, "0")}
-          </span>
-
-          <span>
-            {project.isMobile
-              ? "MOBILE"
-              : "WEB"}
-          </span>
+          <strong aria-hidden="true">{initial}</strong>
         </div>
 
-        <div className="project-card__bottom">
-          <span>
-            {project.status}
-          </span>
-        </div>
+        <div className="project-corner project-corner--tl" />
+        <div className="project-corner project-corner--br" />
 
-        <motion.div
-          className="project-card__scan"
-          initial={{
-            scaleX: 0,
-          }}
-          whileInView={{
-            scaleX: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 1,
-            delay: 0.35,
-          }}
-        />
-      </motion.div>
+        <div className="project-scan-line" />
+
+        <span className="project-visual__index">
+          {number}
+        </span>
+
+        <span className="project-visual__type">
+          {projectType}
+        </span>
+      </div>
 
       {/* =====================================================
-          PROJECT INFORMATION
+          CONTENT
           ===================================================== */}
 
-      <motion.div
-        className="project-card__content"
-        style={{
-          y: contentY,
-        }}
-      >
-        <div className="project-card__meta">
-          <span>
+      <div className="project-content project-content--cinematic">
+        <div className="project-content__top">
+          <span className="project-status">
             {project.status}
           </span>
 
-          <span>
-            {String(index + 1).padStart(2, "0")}
+          <span className="project-content__number">
+            {number}
           </span>
         </div>
 
-        <motion.h3
-          initial={{
-            opacity: 0,
-            y: 35,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.7,
-            delay: 0.15,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-        >
-          {project.name}
-        </motion.h3>
-
-        <motion.div
-          className="project-card__line"
-          initial={{
-            scaleX: 0,
-          }}
-          whileInView={{
-            scaleX: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.7,
-            delay: 0.25,
-          }}
-        />
-
-        <motion.p
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.6,
-            delay: 0.3,
-          }}
-        >
-          {project.description}
-        </motion.p>
-
-        <div className="project-card__details">
-          <div>
-            <span>
-              MY CONTRIBUTION
-            </span>
-
-            <p>
-              {project.role.join(" · ")}
-            </p>
-          </div>
-
-          <div>
-            <span>
-              STACK
-            </span>
-
-            <div className="project-card__stack">
-              {project.stack.map(
-                (item) => (
-                  <span key={item}>
-                    {item}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
+        <div className="project-title-wrap">
+          <h3>{project.name}</h3>
         </div>
 
-        <div className="project-card__actions">
-          <motion.a
-            href={
-              project.live ||
-              project.github ||
-              "#"
-            }
-            target="_blank"
-            rel="noreferrer"
-            whileHover={{
-              x: 5,
-            }}
-          >
-            <span>
-              Read the breakdown
+        <div className="project-accent-line" />
+
+        <p>{project.description}</p>
+
+        {/* Contribution */}
+
+        <div className="project-contribution">
+          <span>My Contribution</span>
+
+          <strong>
+            {project.role.join(" · ")}
+          </strong>
+        </div>
+
+        {/* Stack */}
+
+        <div className="project-stack">
+          {project.stack.map((technology) => (
+            <span key={technology}>
+              {technology}
             </span>
+          ))}
+        </div>
 
-            <ArrowUpRight size={16} />
-          </motion.a>
+        {/* Actions */}
 
-          <div className="project-card__icons">
+        <div className="project-actions">
+          <button
+            type="button"
+            className="text-link"
+            onClick={() => onOpen?.(project)}
+          >
+            Read the breakdown
+            <ArrowIcon />
+          </button>
+
+          <div className="project-actions__links">
             {project.github && (
-              <motion.a
+              <a
                 href={project.github}
                 target="_blank"
-                rel="noreferrer"
-                aria-label={`GitHub repository for ${project.name}`}
-                whileHover={{
-                  y: -3,
-                }}
+                rel="noopener noreferrer"
+                aria-label={`${project.name} GitHub`}
               >
-                <Github size={16} />
-              </motion.a>
+                <GithubIcon />
+              </a>
             )}
 
             {project.live && (
-              <motion.a
+              <a
                 href={project.live}
                 target="_blank"
-                rel="noreferrer"
-                aria-label={`Live ${project.name} project`}
-                whileHover={{
-                  y: -3,
-                }}
+                rel="noopener noreferrer"
+                aria-label={`${project.name} live website`}
               >
-                <ArrowUpRight size={16} />
-              </motion.a>
+                <ArrowIcon />
+              </a>
             )}
           </div>
         </div>
-      </motion.div>
-    </motion.article>
+      </div>
+    </article>
   );
 }
