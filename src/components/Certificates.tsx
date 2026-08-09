@@ -1,11 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { certificates, type Certificate } from "@/data/portfolio";
 
 export default function Certificates() {
   const [selectedCertificate, setSelectedCertificate] =
     useState<Certificate | null>(null);
+
+  useEffect(() => {
+    if (!selectedCertificate) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedCertificate(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedCertificate]);
 
   return (
     <section
@@ -15,8 +31,8 @@ export default function Certificates() {
       <div className="site-container">
 
         {/* ==================================================
-            HEADER
-        ================================================== */}
+            SECTION HEADER
+           ================================================== */}
 
         <div className="section-heading">
           <p className="section-heading__eyebrow">
@@ -31,7 +47,7 @@ export default function Certificates() {
 
         {/* ==================================================
             INTRO
-        ================================================== */}
+           ================================================== */}
 
         <div className="certificate-intro">
           <p>
@@ -42,7 +58,7 @@ export default function Certificates() {
 
         {/* ==================================================
             CERTIFICATE LIST
-        ================================================== */}
+           ================================================== */}
 
         <div className="certificate-list">
           {certificates.map((certificate, index) => (
@@ -58,7 +74,7 @@ export default function Certificates() {
                 </span>
               </div>
 
-              {/* Main information */}
+              {/* Certificate information */}
 
               <div className="certificate-row__main">
                 <span>
@@ -80,23 +96,25 @@ export default function Certificates() {
                 {certificate.issuer}
               </div>
 
-              {/* PREVIEW BUTTON */}
+              {/* Preview */}
 
               <button
                 type="button"
                 className="certificate-row__link"
                 aria-label={`Preview ${certificate.title}`}
-                onClick={() =>
-                  setSelectedCertificate(certificate)
-                }
+                onClick={() => {
+                  setSelectedCertificate(certificate);
+                }}
               >
                 <svg
-                  width="16"
-                  height="16"
+                  width="17"
+                  height="17"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   aria-hidden="true"
                 >
                   <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
@@ -109,8 +127,8 @@ export default function Certificates() {
       </div>
 
       {/* ====================================================
-          CERTIFICATE PREVIEW
-      ==================================================== */}
+          CERTIFICATE PREVIEW MODAL
+         ==================================================== */}
 
       {selectedCertificate && (
         <div
@@ -119,19 +137,18 @@ export default function Certificates() {
           aria-modal="true"
           aria-label={`Preview ${selectedCertificate.title}`}
         >
-
           {/* Backdrop */}
 
           <button
             type="button"
             className="certificate-preview__backdrop"
             aria-label="Close certificate preview"
-            onClick={() =>
-              setSelectedCertificate(null)
-            }
+            onClick={() => {
+              setSelectedCertificate(null);
+            }}
           />
 
-          {/* Preview panel */}
+          {/* Panel */}
 
           <div className="certificate-preview__panel">
 
@@ -139,7 +156,7 @@ export default function Certificates() {
 
             <div className="certificate-preview__header">
               <div>
-                <span className="certificate-preview__eyebrow">
+                <span>
                   Certificate Preview
                 </span>
 
@@ -151,23 +168,36 @@ export default function Certificates() {
               <button
                 type="button"
                 className="certificate-preview__close"
-                aria-label="Close preview"
-                onClick={() =>
-                  setSelectedCertificate(null)
-                }
+                aria-label="Close certificate preview"
+                onClick={() => {
+                  setSelectedCertificate(null);
+                }}
               >
                 ×
               </button>
             </div>
 
-            {/* PDF */}
+            {/* Certificate image */}
 
             <div className="certificate-preview__document">
-              <iframe
-                src={`${selectedCertificate.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                title={selectedCertificate.title}
-                className="certificate-preview__iframe"
-              />
+              {selectedCertificate.previewImage ? (
+                <img
+                  src={selectedCertificate.previewImage}
+                  alt={selectedCertificate.title}
+                  className="certificate-preview__image"
+                />
+              ) : (
+                <div className="certificate-preview__missing">
+                  <span>
+                    PREVIEW UNAVAILABLE
+                  </span>
+
+                  <p>
+                    Add the certificate preview image
+                    to the public folder.
+                  </p>
+                </div>
+              )}
             </div>
 
           </div>
