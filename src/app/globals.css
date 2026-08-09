@@ -4028,5 +4028,19 @@ a {
 /* ============================================================
    END OF GLOBAL.CSS
    ============================================================ */
+/* ============================================================
+   PROJECT VISIBILITY SAFETY
+   ============================================================ */
 
+.project-article {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none;
+}
+
+.project-content,
+.project-visual {
+  opacity: 1;
+  visibility: visible;
+}
  
