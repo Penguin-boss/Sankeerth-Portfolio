@@ -1,32 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  Award,
-  Eye,
-} from "lucide-react";
-import SectionHeading from "./SectionHeading";
-import {
-  Certificate,
-  certificates,
-} from "@/data/portfolio";
-
-type CategoryFilter =
-  | "All"
-  | "Professional"
-  | "Hackathon";
+import { certificates, type Certificate } from "@/data/portfolio";
 
 export default function Certificates() {
-  const [active, setActive] =
-    useState<CategoryFilter>("All");
-
-  const filtered = certificates.filter(
-    (certificate) =>
-      active === "All" ||
-      certificate.category === active
-  );
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<Certificate | null>(null);
 
   return (
     <section
@@ -34,110 +13,166 @@ export default function Certificates() {
       className="section section--certificates"
     >
       <div className="site-container">
-        <SectionHeading
-          eyebrow="04 — verification"
-          title="Certificates"
-          id="certificates-heading"
-        />
+
+        {/* ==================================================
+            HEADER
+        ================================================== */}
+
+        <div className="section-heading">
+          <p className="section-heading__eyebrow">
+            <span />
+            Credentials
+          </p>
+
+          <h2 className="section-heading__title">
+            Certificates.
+          </h2>
+        </div>
+
+        {/* ==================================================
+            INTRO
+        ================================================== */}
 
         <div className="certificate-intro">
           <p>
-            Credentials are kept simple here: what it is,
-            who issued it, and where to verify it.
+            Selected certifications and achievements from
+            professional development and competitive events.
           </p>
-
-          <div
-            className="project-filters"
-            role="tablist"
-            aria-label="Certificate filters"
-          >
-            {(
-              [
-                "All",
-                "Professional",
-                "Hackathon",
-              ] as CategoryFilter[]
-            ).map((category) => (
-              <button
-                key={category}
-                type="button"
-                role="tab"
-                aria-selected={active === category}
-                onClick={() => setActive(category)}
-                className={`project-filter ${
-                  active === category ? "is-active" : ""
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
         </div>
 
-        <motion.div layout className="certificate-list">
-          {filtered.map(
-            (
-              certificate: Certificate,
-              index
-            ) => (
-              <motion.article
-                layout
-                key={certificate.id}
-                initial={{
-                  opacity: 0,
-                  y: 16,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  margin: "-60px",
-                }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.04,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="certificate-row"
+        {/* ==================================================
+            CERTIFICATE LIST
+        ================================================== */}
+
+        <div className="certificate-list">
+          {certificates.map((certificate, index) => (
+            <article
+              key={certificate.id}
+              className="certificate-row"
+            >
+              {/* Number */}
+
+              <div className="certificate-row__icon">
+                <span>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Main information */}
+
+              <div className="certificate-row__main">
+                <span>
+                  {certificate.category} · {certificate.date}
+                </span>
+
+                <h3>
+                  {certificate.title}
+                </h3>
+
+                <p>
+                  {certificate.description}
+                </p>
+              </div>
+
+              {/* Issuer */}
+
+              <div className="certificate-row__issuer">
+                {certificate.issuer}
+              </div>
+
+              {/* PREVIEW BUTTON */}
+
+              <button
+                type="button"
+                className="certificate-row__link"
+                aria-label={`Preview ${certificate.title}`}
+                onClick={() =>
+                  setSelectedCertificate(certificate)
+                }
               >
-                <div className="certificate-row__icon">
-                  <Award size={17} />
-                </div>
-
-                <div className="certificate-row__main">
-                  <span>
-                    {certificate.category} ·{" "}
-                    {certificate.date}
-                  </span>
-
-                  <h3>{certificate.title}</h3>
-
-                  <p>
-                    {certificate.description}
-                  </p>
-                </div>
-
-                <div className="certificate-row__issuer">
-                  {certificate.issuer}
-                </div>
-
-                <a
-                  href={certificate.file}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="certificate-row__link"
-                  aria-label={`View ${certificate.title}`}
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  aria-hidden="true"
                 >
-                  <Eye size={16} />
-                  <ArrowUpRight size={14} />
-                </a>
-              </motion.article>
-            )
-          )}
-        </motion.div>
+                  <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                  <circle cx="12" cy="12" r="2.5" />
+                </svg>
+              </button>
+            </article>
+          ))}
+        </div>
       </div>
+
+      {/* ====================================================
+          CERTIFICATE PREVIEW
+      ==================================================== */}
+
+      {selectedCertificate && (
+        <div
+          className="certificate-preview"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Preview ${selectedCertificate.title}`}
+        >
+
+          {/* Backdrop */}
+
+          <button
+            type="button"
+            className="certificate-preview__backdrop"
+            aria-label="Close certificate preview"
+            onClick={() =>
+              setSelectedCertificate(null)
+            }
+          />
+
+          {/* Preview panel */}
+
+          <div className="certificate-preview__panel">
+
+            {/* Header */}
+
+            <div className="certificate-preview__header">
+              <div>
+                <span className="certificate-preview__eyebrow">
+                  Certificate Preview
+                </span>
+
+                <h3>
+                  {selectedCertificate.title}
+                </h3>
+              </div>
+
+              <button
+                type="button"
+                className="certificate-preview__close"
+                aria-label="Close preview"
+                onClick={() =>
+                  setSelectedCertificate(null)
+                }
+              >
+                ×
+              </button>
+            </div>
+
+            {/* PDF */}
+
+            <div className="certificate-preview__document">
+              <iframe
+                src={`${selectedCertificate.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                title={selectedCertificate.title}
+                className="certificate-preview__iframe"
+              />
+            </div>
+
+          </div>
+        </div>
+      )}
     </section>
   );
 }
