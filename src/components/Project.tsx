@@ -2,10 +2,8 @@
 
 import {
   motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
   useScroll,
+  useTransform,
 } from "framer-motion";
 import {
   ArrowUpRight,
@@ -25,116 +23,56 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const ref = useRef<HTMLElement | null>(null);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const smoothX = useSpring(mouseX, {
-    stiffness: 150,
-    damping: 20,
-    mass: 0.5,
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
   });
-
-  const smoothY = useSpring(mouseY, {
-    stiffness: 150,
-    damping: 20,
-    mass: 0.5,
-  });
-
-  const rotateX = useTransform(
-    smoothY,
-    [-0.5, 0.5],
-    [2.5, -2.5]
-  );
-
-  const rotateY = useTransform(
-    smoothX,
-    [-0.5, 0.5],
-    [-2.5, 2.5]
-  );
-
-  const imageX = useTransform(
-    smoothX,
-    [-0.5, 0.5],
-    [-8, 8]
-  );
 
   const imageY = useTransform(
-    smoothY,
-    [-0.5, 0.5],
-    [-8, 8]
-  );
-
-  const {
     scrollYProgress,
-  } = useScroll({
-    target: ref,
-    offset: [
-      "start end",
-      "end start",
-    ],
-  });
+    [0, 1],
+    ["-5%", "5%"]
+  );
 
   const imageScale = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.65, 1],
-    [1.12, 1, 1, 1.05]
+    [0, 0.5, 1],
+    [1.08, 1, 1.05]
   );
 
   const contentY = useTransform(
     scrollYProgress,
-    [0, 0.35, 0.7, 1],
-    [45, 0, -10, -25]
-  );
-
-  const handleMouseMove = (
-    event: React.MouseEvent<HTMLElement>
-  ) => {
-    const rect =
-      event.currentTarget.getBoundingClientRect();
-
-    mouseX.set(
-      (event.clientX - rect.left) /
-        rect.width -
-        0.5
-    );
-
-    mouseY.set(
-      (event.clientY - rect.top) /
-        rect.height -
-        0.5
-    );
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-  const glowLeft = useTransform(
-    smoothX,
-    [-0.5, 0.5],
-    ["35%", "65%"]
-  );
-
-  const glowTop = useTransform(
-    smoothY,
-    [-0.5, 0.5],
-    ["35%", "65%"]
+    [0, 0.5, 1],
+    [35, 0, -20]
   );
 
   return (
     <motion.article
       ref={ref}
-      className={`project-article project-card-cinematic project-article--${index % 3}`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
+      className={`project-card project-card--${index % 2 === 0 ? "left" : "right"}`}
+      initial={{
+        opacity: 0,
+        y: 70,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      transition={{
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
+      {/* =====================================================
+          PROJECT VISUAL
+          ===================================================== */}
+
       <motion.div
-        className="project-visual project-visual--cinematic"
+        className="project-card__visual"
         initial={{
           clipPath: "inset(0 100% 0 0)",
         }}
@@ -143,72 +81,103 @@ export default function ProjectCard({
         }}
         viewport={{
           once: true,
-          amount: 0.18,
+          amount: 0.2,
         }}
         transition={{
-          duration: 1.1,
+          duration: 1,
           ease: [0.16, 1, 0.3, 1],
         }}
       >
         <motion.div
-          className="project-visual__image"
+          className="project-card__image"
           style={{
-            scale: imageScale,
-            x: imageX,
             y: imageY,
+            scale: imageScale,
           }}
         >
-          <div
-            className={`project-visual__placeholder project-visual__placeholder--${index}`}
-          >
-            <span className="project-visual__placeholder-number">
-              {String(index + 1).padStart(2, "0")}
-            </span>
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={`${project.name} project preview`}
+              loading="lazy"
+            />
+          ) : (
+            <div className="project-card__letter">
+              <span>
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
-            <strong>
-              {project.name.charAt(0)}
-            </strong>
-
-            <div className="project-visual__placeholder-grid" />
-          </div>
+              <strong>
+                {project.name.charAt(0)}
+              </strong>
+            </div>
+          )}
         </motion.div>
 
-        <div
-          className="project-corner project-corner--tl"
-          aria-hidden="true"
-        />
+        <div className="project-card__grid" />
 
-        <div
-          className="project-corner project-corner--br"
-          aria-hidden="true"
-        />
+        <div className="project-card__frame" />
+
+        <div className="project-card__top">
+          <span>
+            {String(index + 1).padStart(2, "0")}
+          </span>
+
+          <span>
+            {project.isMobile
+              ? "MOBILE"
+              : "WEB"}
+          </span>
+        </div>
+
+        <div className="project-card__bottom">
+          <span>
+            {project.status}
+          </span>
+        </div>
 
         <motion.div
-          className="project-visual__index"
+          className="project-card__scan"
           initial={{
-            opacity: 0,
-            x: -20,
+            scaleX: 0,
           }}
           whileInView={{
-            opacity: 1,
-            x: 0,
+            scaleX: 1,
           }}
           viewport={{
             once: true,
           }}
           transition={{
-            delay: 0.45,
-            duration: 0.55,
+            duration: 1,
+            delay: 0.35,
           }}
-        >
-          / {String(index + 1).padStart(2, "0")}
-        </motion.div>
+        />
+      </motion.div>
 
-        <motion.div
-          className="project-visual__type"
+      {/* =====================================================
+          PROJECT INFORMATION
+          ===================================================== */}
+
+      <motion.div
+        className="project-card__content"
+        style={{
+          y: contentY,
+        }}
+      >
+        <div className="project-card__meta">
+          <span>
+            {project.status}
+          </span>
+
+          <span>
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+
+        <motion.h3
           initial={{
             opacity: 0,
-            y: 15,
+            y: 35,
           }}
           whileInView={{
             opacity: 1,
@@ -218,15 +187,16 @@ export default function ProjectCard({
             once: true,
           }}
           transition={{
-            delay: 0.65,
-            duration: 0.5,
+            duration: 0.7,
+            delay: 0.15,
+            ease: [0.16, 1, 0.3, 1],
           }}
         >
-          {project.status}
-        </motion.div>
+          {project.name}
+        </motion.h3>
 
         <motion.div
-          className="project-scan-line"
+          className="project-card__line"
           initial={{
             scaleX: 0,
           }}
@@ -237,92 +207,8 @@ export default function ProjectCard({
             once: true,
           }}
           transition={{
-            duration: 1.2,
-            delay: 0.35,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-        />
-
-        <motion.div
-          className="project-cursor-glow"
-          style={{
-            left: glowLeft,
-            top: glowTop,
-          }}
-        />
-      </motion.div>
-
-      <motion.div
-        className="project-content project-content--cinematic"
-        style={{
-          y: contentY,
-        }}
-      >
-        <div className="project-content__top">
-          <motion.span
-            className="project-status"
-            initial={{
-              opacity: 0,
-              x: -15,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.25,
-            }}
-          >
-            {project.status}
-          </motion.span>
-
-          <span className="project-content__number">
-            {project.isMobile ? "MOBILE" : "WEB"}
-          </span>
-        </div>
-
-        <div className="project-title-wrap">
-          <motion.h3
-            initial={{
-              opacity: 0,
-              y: 55,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.35,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.15,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            {project.name}
-          </motion.h3>
-        </div>
-
-        <motion.div
-          className="project-accent-line"
-          initial={{
-            scaleX: 0,
-          }}
-          whileInView={{
-            scaleX: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.35,
-            ease: [0.16, 1, 0.3, 1],
+            duration: 0.7,
+            delay: 0.25,
           }}
         />
 
@@ -339,88 +225,71 @@ export default function ProjectCard({
             once: true,
           }}
           transition={{
-            duration: 0.65,
+            duration: 0.6,
             delay: 0.3,
           }}
         >
           {project.description}
         </motion.p>
 
-        <motion.div
-          className="project-contribution"
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.45,
-          }}
-        >
-          <span>Contribution</span>
-
-          <strong>
-            {project.role.join(" · ")}
-          </strong>
-        </motion.div>
-
-        <motion.div
-          className="project-stack"
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.5,
-          }}
-        >
-          {project.stack.map((technology) => (
-            <span key={technology}>
-              {technology}
+        <div className="project-card__details">
+          <div>
+            <span>
+              MY CONTRIBUTION
             </span>
-          ))}
-        </motion.div>
 
-        <div className="project-actions">
-          <motion.div
-            className="project-actions__links"
-            initial={{
-              opacity: 0,
-              y: 12,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.55,
+            <p>
+              {project.role.join(" · ")}
+            </p>
+          </div>
+
+          <div>
+            <span>
+              STACK
+            </span>
+
+            <div className="project-card__stack">
+              {project.stack.map(
+                (item) => (
+                  <span key={item}>
+                    {item}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="project-card__actions">
+          <motion.a
+            href={
+              project.live ||
+              project.github ||
+              "#"
+            }
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{
+              x: 5,
             }}
           >
+            <span>
+              Read the breakdown
+            </span>
+
+            <ArrowUpRight size={16} />
+          </motion.a>
+
+          <div className="project-card__icons">
             {project.github && (
               <motion.a
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={`GitHub repository for ${project.name}`}
                 whileHover={{
-                  y: -4,
-                  rotate: -2,
+                  y: -3,
                 }}
-                whileTap={{
-                  scale: 0.95,
-                }}
-                aria-label={`View ${project.name} source`}
               >
                 <Github size={16} />
               </motion.a>
@@ -431,19 +300,15 @@ export default function ProjectCard({
                 href={project.live}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={`Live ${project.name} project`}
                 whileHover={{
-                  y: -4,
-                  rotate: 2,
+                  y: -3,
                 }}
-                whileTap={{
-                  scale: 0.95,
-                }}
-                aria-label={`View ${project.name}`}
               >
-                <ArrowUpRight size={17} />
+                <ArrowUpRight size={16} />
               </motion.a>
             )}
-          </motion.div>
+          </div>
         </div>
       </motion.div>
     </motion.article>
