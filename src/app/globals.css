@@ -2565,4 +2565,313 @@ a {
     translateY(-2px);
 }
 
-.cont
+.contact-bottom {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 2rem;
+
+  margin-top: 8rem;
+
+  padding-top: 16px;
+
+  border-top:
+    1px solid
+    var(--border);
+
+  color: var(--foreground-faint);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.61rem;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.site-footer {
+  position: relative;
+
+  z-index: 2;
+
+  border-top:
+    1px solid
+    var(--border);
+
+  background:
+    var(--background);
+}
+
+.site-footer__inner {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  gap: 2rem;
+
+  align-items: center;
+
+  padding-block: 24px;
+
+  color: var(--foreground-faint);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.6rem;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+.site-footer__inner > div:first-child {
+  display: grid;
+
+  gap: 4px;
+}
+
+.site-footer__inner strong {
+  color: var(--foreground-muted);
+
+  font-family: var(--font-body);
+
+  font-size: 0.78rem;
+
+  font-weight: 500;
+
+  letter-spacing: normal;
+
+  text-transform: none;
+}
+
+.site-footer__links {
+  display: flex;
+
+  gap: 8px;
+}
+
+.site-footer__links a {
+  display: grid;
+
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  border: 1px solid transparent;
+
+  color: var(--foreground-faint);
+
+  transition:
+    color var(--art-motion-fast),
+    border-color var(--art-motion-fast);
+}
+
+.site-footer__links a:hover {
+  color: var(--accent);
+
+  border-color:
+    var(--border);
+}
+
+.site-footer__inner > span:last-child {
+  justify-self: end;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.site-nav {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 90;
+
+  border-bottom:
+    1px solid transparent;
+
+  background:
+    rgba(
+      15,
+      23,
+      42,
+      0.35
+    );
+
+  transition:
+    background-color var(--art-motion-medium),
+    border-color var(--art-motion-medium);
+}
+
+.site-nav--scrolled {
+  background:
+    rgba(
+      15,
+      23,
+      42,
+      0.86
+    );
+
+  border-color:
+    var(--border);
+
+  backdrop-filter:
+    blur(14px);
+}
+
+.site-nav__inner {
+  min-height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 2rem;
+}
+
+.site-nav__brand {
+  font-family: var(--font-display);
+
+  font-size: 1.35rem;
+
+  font-weight: 600;
+
+  letter-spacing: -0.06em;
+}
+
+.site-nav__brand span {
+  color: var(--accent);
+}
+
+.site-nav__links {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      12px,
+      2vw,
+      26px
+    );
+}
+
+.site-nav__links a {
+  position: relative;
+
+  color: var(--foreground-faint);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.59rem;
+
+  letter-spacing: 0.05em;
+
+  text-transform: uppercase;
+
+  transition:
+    color var(--art-motion-fast);
+}
+
+.site-nav__links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -8px;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    var(--accent);
+
+  transform:
+    scaleX(0);
+
+  transform-origin: left;
+
+  transition:
+    transform var(--art-motion-fast);
+}
+
+.site-nav__links a:hover,
+.site-nav__links a.is-active {
+  color: var(--foreground);
+}
+
+.site-nav__links a.is-active::after {
+  transform:
+    scaleX(1);
+}
+
+.site-nav__menu {
+  display: none;
+
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border:
+    1px solid
+    var(--border);
+
+  background: transparent;
+
+  color: var(--foreground);
+}
+
+.site-nav__mobile {
+  overflow: hidden;
+
+  border-top:
+    1px solid
+    var(--border);
+
+  background:
+    rgba(
+      15,
+      23,
+      42,
+      0.97
+    );
+}
+
+.site-nav__mobile .site-container {
+  display: grid;
+}
+
+.site-nav__mobile a {
+  padding: 18px 0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  color: var(--foreground-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
