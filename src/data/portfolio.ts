@@ -269,116 +269,78 @@ export type Certificate = {
 export const certificates: Certificate[] = [
   {
     id: "frontend-dev",
-
     title: "Front-End Developer Certificate",
-
     issuer: "Devella Sankeerth",
-
     category: "Professional",
-
     date: "2026",
-
-    file:
-      "/Devella_Sankeerth_Front-End_Certificate.pdf",
-
+    file: "/Devella_Sankeerth_Front-End_Certificate.pdf",
+    previewImage:
+      "/certificates/frontend-developer.jpg",
     description:
       "Certification in Front-End Web Development, responsive layout, and web integration.",
   },
 
   {
     id: "web-dev",
-
     title: "Web Developer Certificate",
-
     issuer: "Devella Sankeerth",
-
     category: "Professional",
-
     date: "2026",
-
-    file:
-      "/Devella_Sankeerth_Web-developer_Certificate.pdf",
-
+    file: "/Devella_Sankeerth_Web-developer_Certificate.pdf",
+    previewImage:
+      "/certificates/web-developer.jpg",
     description:
       "Certification in web application development, HTML/CSS/JS, and full software workflows.",
   },
 
   {
     id: "hackathon-r1",
-
-    title:
-      "Enginow Hackathon — Round 1 (Top 3 Rank)",
-
-    issuer:
-      "Enginow / WishCraft Studios",
-
+    title: "Enginow Hackathon — Round 1 (Top 3 Rank)",
+    issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
-
     date: "2026",
-
-    file:
-      "/hackathon_round-1.pdf",
-
+    file: "/hackathon_round-1.pdf",
+    previewImage:
+      "/certificates/hackathon-round-1.jpg",
     description:
       "Certificate of Excellence for scoring in the Top 3 in Aptitude & Core Concepts.",
   },
 
   {
     id: "hackathon-r2",
-
-    title:
-      "Enginow Hackathon — Round 2 Qualification",
-
-    issuer:
-      "Enginow / WishCraft Studios",
-
+    title: "Enginow Hackathon — Round 2 Qualification",
+    issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
-
     date: "2026",
-
-    file:
-      "/hackathon_round-2.pdf",
-
+    file: "/hackathon_round-2.pdf",
+    previewImage:
+      "/certificates/hackathon-round-2.jpg",
     description:
       "Qualification certificate for advancing through the project submission phase.",
   },
 
   {
     id: "hackathon-r3",
-
-    title:
-      "Enginow Hackathon — Round 3 Qualification",
-
-    issuer:
-      "Enginow / WishCraft Studios",
-
+    title: "Enginow Hackathon — Round 3 Qualification",
+    issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
-
     date: "2026",
-
-    file:
-      "/hackathon_round-3.pdf",
-
+    file: "/hackathon_round-3.pdf",
+    previewImage:
+      "/certificates/hackathon-round-3.jpg",
     description:
       "Certificate for successfully completing the live hackathon building phase.",
   },
 
   {
     id: "hackathon-r4",
-
-    title:
-      "Enginow Hackathon — Round 4 (Top 10 Finalist)",
-
-    issuer:
-      "Enginow / WishCraft Studios",
-
+    title: "Enginow Hackathon — Round 4 (Top 10 Finalist)",
+    issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
-
     date: "2026",
-
-    file:
-      "/hackathon_round-4.pdf",
-
+    file: "/hackathon_round-4.pdf",
+    previewImage:
+      "/certificates/hackathon-round-4.jpg",
     description:
       "Finalist certificate for finishing in the Top 10 overall in the final round.",
   },
