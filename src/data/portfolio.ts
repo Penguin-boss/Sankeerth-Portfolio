@@ -257,17 +257,12 @@ export const hackathon = {
 
 export type Certificate = {
   id: string;
-
   title: string;
-
   issuer: string;
-
   category: "Professional" | "Hackathon";
-
   date: string;
-
   file: string;
-
+  previewImage: string;
   description: string;
 };
 
