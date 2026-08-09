@@ -2114,6 +2114,306 @@ a {
 }
 
 /* ============================================================
+   CERTIFICATE PREVIEW
+   ============================================================ */
+
+.certificate-preview {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 200;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 24px;
+}
+
+/* ============================================================
+   BACKDROP
+   ============================================================ */
+
+.certificate-preview__backdrop {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+
+  background:
+    rgba(2, 6, 23, 0.88);
+
+  backdrop-filter: blur(12px);
+
+  cursor: default;
+}
+
+/* ============================================================
+   PANEL
+   ============================================================ */
+
+.certificate-preview__panel {
+  position: relative;
+
+  z-index: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  width: min(
+    1000px,
+    100%
+  );
+
+  height: min(
+    90svh,
+    900px
+  );
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(--border-strong);
+
+  background:
+    var(--background-elevated);
+
+  box-shadow:
+    0 30px 100px
+    rgba(0, 0, 0, 0.45);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.certificate-preview__header {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 2rem;
+
+  flex-shrink: 0;
+
+  padding:
+    18px 22px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  background:
+    rgba(15, 23, 42, 0.96);
+}
+
+.certificate-preview__eyebrow {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color:
+    var(--accent);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    0.58rem;
+
+  letter-spacing:
+    0.1em;
+
+  text-transform:
+    uppercase;
+}
+
+.certificate-preview__header h3 {
+  margin: 0;
+
+  color:
+    var(--foreground);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(
+      1rem,
+      2vw,
+      1.35rem
+    );
+
+  font-weight:
+    500;
+
+  line-height:
+    1.2;
+}
+
+/* ============================================================
+   CLOSE BUTTON
+   ============================================================ */
+
+.certificate-preview__close {
+  display: grid;
+
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+
+  border:
+    1px solid
+    var(--border);
+
+  background:
+    transparent;
+
+  color:
+    var(--foreground-muted);
+
+  font-size:
+    1.5rem;
+
+  line-height:
+    1;
+
+  cursor: pointer;
+
+  transition:
+    color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.certificate-preview__close:hover {
+  color:
+    var(--accent);
+
+  border-color:
+    var(--accent-dim);
+
+  transform:
+    rotate(4deg);
+}
+
+/* ============================================================
+   DOCUMENT AREA
+   ============================================================ */
+
+.certificate-preview__document {
+  position: relative;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow: hidden;
+
+  background:
+    #0b1120;
+}
+
+/* ============================================================
+   PDF
+   ============================================================ */
+
+.certificate-preview__iframe {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+
+  background:
+    white;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+  .certificate-preview {
+    padding: 10px;
+  }
+
+  .certificate-preview__panel {
+    width: 100%;
+
+    height:
+      calc(100svh - 20px);
+
+    max-height:
+      calc(100svh - 20px);
+  }
+
+  .certificate-preview__header {
+    padding:
+      14px 15px;
+
+    gap:
+      1rem;
+  }
+
+  .certificate-preview__header h3 {
+    max-width:
+      250px;
+
+    font-size:
+      0.9rem;
+  }
+
+  .certificate-preview__close {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 390px) {
+
+  .certificate-preview {
+    padding: 6px;
+  }
+
+  .certificate-preview__panel {
+    height:
+      calc(100svh - 12px);
+
+    max-height:
+      calc(100svh - 12px);
+  }
+
+  .certificate-preview__header {
+    padding:
+      12px;
+    }
+}
+
+/* ============================================================
    SKILLS
    ============================================================ */
 
