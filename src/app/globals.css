@@ -3481,6 +3481,552 @@ a {
      ABOUT
      ---------------------------------------------------------- */
 
-  
+  .hero-section + .section,
+  .hero-section + #about,
+  .hero-section + section#about,
+  .hero-section + div > #about,
+  .hero-section + div > section#about {
+    margin-top:
+      0 !important;
+
+    padding-top:
+      2.5rem !important;
+  }
+
+  .section-heading {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      1.5rem;
+
+    margin-bottom:
+      3.5rem;
+  }
+
+  .section-heading__title {
+    font-size:
+      clamp(
+        3.3rem,
+        17vw,
+        6rem
+      );
+  }
+
+  .about-layout,
+  .achievement-layout,
+  .skills-layout,
+  .contact-layout {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      4rem;
+  }
+
+  .about-note {
+    max-width:
+      500px;
+
+    margin-left:
+      auto;
+  }
+
+  /* ----------------------------------------------------------
+     PROJECT CONTROLS
+     ---------------------------------------------------------- */
+
+  .project-controls {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+  .project-controls__hint {
+    text-align:
+      left;
+  }
+
+  /* ----------------------------------------------------------
+     PROJECTS
+     ---------------------------------------------------------- */
+
+  .projects-list {
+    gap:
+      5rem;
+
+    margin-top:
+      3rem;
+  }
+
+  .project-article,
+  .project-article:nth-child(even) {
+    display:
+      flex !important;
+
+    flex-direction:
+      column !important;
+
+    width:
+      100% !important;
+
+    min-height:
+      0 !important;
+
+    height:
+      auto !important;
+
+    gap:
+      0 !important;
+
+    margin:
+      0 !important;
+
+    padding:
+      0 !important;
+
+    transform:
+      none !important;
+
+    perspective:
+      none;
+  }
+
+  .project-article .project-visual,
+  .project-article:nth-child(even) .project-visual {
+    order:
+      1 !important;
+
+    width:
+      100% !important;
+
+    height:
+      280px !important;
+
+    min-height:
+      280px !important;
+
+    max-height:
+      280px !important;
+
+    margin:
+      0 0 2rem 0 !important;
+  }
+
+  .project-article .project-content,
+  .project-article:nth-child(even) .project-content {
+    order:
+      2 !important;
+
+    width:
+      100% !important;
+
+    max-width:
+      none !important;
+
+    margin:
+      0 !important;
+
+    padding:
+      0 !important;
+
+    transform:
+      none !important;
+  }
+
+  .project-content--cinematic {
+    will-change:
+      auto;
+
+    transform:
+      none !important;
+  }
+
+  .project-visual__placeholder {
+    padding:
+      1.5rem;
+  }
+
+  .project-visual__placeholder strong {
+    font-size:
+      clamp(
+        8rem,
+        34vw,
+        12rem
+      );
+
+    line-height:
+      0.65;
+  }
+
+  .project-visual__placeholder-grid {
+    background-size:
+      36px 36px;
+  }
+
+  .project-content__top {
+    margin-bottom:
+      1rem;
+  }
+
+  .project-content--cinematic h3 {
+    font-size:
+      clamp(
+        2.6rem,
+        12vw,
+        4rem
+      );
+
+    line-height:
+      0.92;
+  }
+
+  .project-accent-line {
+    margin-top:
+      1.2rem;
+
+    margin-bottom:
+      1.2rem;
+  }
+
+  .project-content--cinematic > p {
+    font-size:
+      0.88rem;
+
+    line-height:
+      1.65;
+
+    margin-bottom:
+      1.5rem !important;
+  }
+
+  .project-contribution {
+    margin-top:
+      1.2rem;
+
+    padding-top:
+      1rem;
+  }
+
+  .project-stack {
+    margin-top:
+      0.85rem;
+  }
+
+  .project-actions {
+    margin-top:
+      1.2rem;
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+  .project-visual--cinematic::before {
+    inset:
+      1rem;
+  }
+
+  .project-corner,
+  .project-cursor-glow {
+    display:
+      none;
+  }
+
+  /* ----------------------------------------------------------
+     CERTIFICATES
+     ---------------------------------------------------------- */
+
+  .certificate-intro {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      2rem;
+  }
+
+  .certificate-row {
+    grid-template-columns:
+      34px
+      minmax(0, 1fr)
+      38px;
+
+    gap:
+      14px;
+  }
+
+  .certificate-row__issuer {
+    display:
+      none;
+  }
+
+  /* ----------------------------------------------------------
+     SKILLS
+     ---------------------------------------------------------- */
+
+  .skills-statement {
+    position:
+      static;
+  }
+
+  .skill-group {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      1rem;
+  }
+
+  .skills-exploring {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      1rem;
+  }
+
+  /* ----------------------------------------------------------
+     EXPERIENCE
+     ---------------------------------------------------------- */
+
+  .experience-list {
+    padding-left:
+      2rem;
+  }
+
+  .experience-item {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      0.7rem;
+
+    padding-bottom:
+      3.5rem;
+  }
+
+  .experience-item__index::before {
+    left:
+      calc(
+        -2rem - 4px
+      );
+  }
+
+  /* ----------------------------------------------------------
+     CONTACT
+     ---------------------------------------------------------- */
+
+  .contact-layout h2 {
+    font-size:
+      clamp(
+        4rem,
+        18vw,
+        7rem
+      );
+  }
+
+  .contact-bottom {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      8px;
+
+    margin-top:
+      5rem;
+  }
+
+  /* ----------------------------------------------------------
+     FOOTER
+     ---------------------------------------------------------- */
+
+  .site-footer__inner {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      18px;
+  }
+
+  .site-footer__inner > span:last-child {
+    justify-self:
+      start;
+  }
+
+  /* ----------------------------------------------------------
+     MODAL
+     ---------------------------------------------------------- */
+
+  .project-modal {
+    padding:
+      12px;
+  }
+
+  .project-modal__panel {
+    max-height:
+      calc(
+        100svh - 24px
+      );
+
+    padding:
+      2rem
+      1.4rem;
+  }
+}
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 390px) {
+  .projects-list {
+    gap:
+      4rem;
+  }
+
+  .project-article .project-visual,
+  .project-article:nth-child(even) .project-visual {
+    height:
+      240px !important;
+
+    min-height:
+      240px !important;
+
+    max-height:
+      240px !important;
+  }
+
+  .project-content--cinematic h3 {
+    font-size:
+      2.45rem;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior:
+      auto !important;
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+
+  .hero-title-mask {
+    overflow:
+      visible;
+  }
+
+  .hero-title-mask .hero-section__title {
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+  }
+
+  .hero-artifact__scan {
+    transform:
+      none !important;
+  }
+
+  [data-art-reveal],
+  [data-art-reveal="image"] {
+    opacity:
+      1 !important;
+
+    transform:
+      none !important;
+
+    clip-path:
+      none !important;
+  }
+
+  [data-art-offset="small"],
+  [data-art-offset="medium"] {
+    transform:
+      none !important;
+  }
+
+  .project-article:hover .project-visual,
+  .project-card-cinematic:hover .project-visual {
+    transform:
+      none !important;
+  }
+
+  .project-article:hover
+  .project-visual__placeholder strong {
+    transform:
+      none !important;
+  }
+
+  .project-card-cinematic:hover
+  .project-visual--cinematic::before {
+    inset:
+      1.5rem;
+  }
+
+  .project-article:hover
+  .project-scan-line {
+    width:
+      36%;
+  }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print {
+  .grain::before,
+  .grid-pattern,
+  .site-nav,
+  .site-nav__mobile,
+  .project-modal {
+    display:
+      none !important;
+  }
+
+  body {
+    background:
+      white !important;
+
+    color:
+      black !important;
+  }
+
+  .section {
+    padding-block:
+      2rem;
+
+    break-inside:
+      avoid;
+  }
+}
+
+/* ============================================================
+   END OF GLOBAL.CSS
+   ============================================================ */
 
  
