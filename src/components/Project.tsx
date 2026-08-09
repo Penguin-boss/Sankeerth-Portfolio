@@ -54,10 +54,7 @@ export default function ProjectCard({
   const projectType = project.isMobile ? "MOBILE" : "WEB";
 
   return (
-    <article
-      className="project-card-cinematic project-article"
-      data-art-reveal
-    >
+    <article className="project-card-cinematic project-article">
       {/* =====================================================
           VISUAL
           ===================================================== */}
