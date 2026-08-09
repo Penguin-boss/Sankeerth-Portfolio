@@ -4746,3 +4746,57 @@ a {
     animation: none;
   }
 }
+/* ============================================================
+   CERTIFICATE — VIEW LINK
+   ============================================================ */
+
+.certificate-row__view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+
+  width: fit-content;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--foreground-muted);
+
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 250ms ease,
+    transform 350ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.certificate-row__view span {
+  color: var(--foreground-faint);
+
+  font-size: 0.9rem;
+
+  transition:
+    color 250ms ease,
+    transform 350ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.certificate-row__view:hover {
+  color: var(--accent);
+
+  transform: translateX(3px);
+}
+
+.certificate-row__view:hover span {
+  color: var(--accent);
+
+  transform: translate(2px, -2px);
+}
