@@ -4800,3 +4800,40 @@ a {
 
   transform: translate(2px, -2px);
 }
+/* ============================================================
+   HERO TITLE — DESCENDER CLIPPING FIX
+   ============================================================ */
+
+.hero-title-mask {
+  overflow: hidden !important;
+  padding-bottom: 0.18em !important;
+  margin-bottom: -0.18em !important;
+}
+
+.hero-section__title {
+  line-height: 1.08 !important;
+  margin: 0 !important;
+  padding: 0 0 0.08em !important;
+}
+
+.hero-section__title em {
+  display: inline-block !important;
+  padding-bottom: 0.08em !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-title-mask {
+    padding-bottom: 0.22em !important;
+    margin-bottom: -0.22em !important;
+  }
+
+  .hero-section__title {
+    line-height: 1.1 !important;
+    padding-bottom: 0.1em !important;
+  }
+
+  .hero-section__title em {
+    padding-bottom: 0.1em !important;
+  }
+}
