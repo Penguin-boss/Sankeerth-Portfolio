@@ -296,7 +296,7 @@ export const certificates: Certificate[] = [
   {
     id: "web-dev",
     title: "Web Developer Certificate",
-    issuer: "Devella Sankeerth",
+    issuer: "HR Calcy",
     category: "Professional",
     date: "2026",
     file: "/Devella_Sankeerth_Web-developer_Certificate.pdf",
