@@ -270,7 +270,7 @@ export const certificates: Certificate[] = [
   {
     id: "frontend-dev",
     title: "Front-End Developer Certificate",
-    issuer: "Devella Sankeerth",
+    issuer: "TestDome",
     category: "Professional",
     date: "2026",
     file: "/Devella_Sankeerth_Front-End_Certificate.pdf",
