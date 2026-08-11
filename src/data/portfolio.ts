@@ -275,11 +275,24 @@ export const certificates: Certificate[] = [
     date: "2026",
     file: "/Devella_Sankeerth_Front-End_Certificate.pdf",
     previewImage:
-      "/certificates/frontend-developer.jpg",
+      "/certificates/HTML.png",
     description:
       "Certification in Front-End Web Development, responsive layout, and web integration.",
   },
 
+    {
+    id: "javascript",
+    title: "JavaScript Certificate",
+    issuer: "HackerRank",
+    category: "Professional",
+    date: "2026",
+    file: "/Devella_Sankeerth_JavaScript_Certificate.pdf",
+    previewImage:
+      "/certificates/javascript.png",
+    description:
+      "Certification in JavaScript, It covers topics like Design Patterns, Memory management, concurrency model, and event loops, among others.",
+  },
+  
   {
     id: "web-dev",
     title: "Web Developer Certificate",
