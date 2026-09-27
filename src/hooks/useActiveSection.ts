@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { sectionIds } from "@/lib/site";
 
 /**
  * Tracks which section is currently in view so the navigation bar can mark it
@@ -11,7 +12,7 @@ import { useEffect, useState } from "react";
  * matches what a reader would call "the section I'm in" even when two sections
  * are partly visible. Returns null rather than guessing when nothing qualifies.
  */
-export function useActiveSection(ids: readonly string[]): string | null {
+export function useActiveSection(ids: readonly string[] = sectionIds): string | null {
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {

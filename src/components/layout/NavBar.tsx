@@ -20,7 +20,7 @@ import { LiquidButton, GlassFilter } from "@/components/ui/liquid-button";
  * trigger carries the visible word "Menu" alongside its icon, and the sheet
  * itself rises from the bottom where a thumb can reach it, with 48px rows.
  */
-export default function NavBar() {
+export function NavBar() {
   const [elevated, setElevated] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const activeSection = useActiveSection(sectionIds);
@@ -213,3 +213,5 @@ export default function NavBar() {
     </>
   );
 }
+
+export default NavBar;
