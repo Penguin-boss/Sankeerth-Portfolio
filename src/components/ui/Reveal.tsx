@@ -8,6 +8,8 @@ type RevealProps = {
   children: React.ReactNode;
   /** Stagger index — 0-based. Each step adds 60ms, capped at 240ms. */
   order?: number;
+  /** Transition delay in seconds (e.g. 0.15), milliseconds, or CSS time string */
+  delay?: number | string;
   as?: "div" | "li" | "section" | "article";
   className?: string;
 };
@@ -22,7 +24,7 @@ type RevealProps = {
  *     never re-hides on scroll-back. Content that has been read stays read.
  *   - CSS-first approach means content is NEVER permanently hidden if JS fails.
  */
-export function Reveal({ children, order = 0, as = "div", className }: RevealProps) {
+export function Reveal({ children, order = 0, delay, as = "div", className }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
   const [state, setState] = useState<"pending" | "shown" | undefined>(undefined);
 
@@ -53,8 +55,8 @@ export function Reveal({ children, order = 0, as = "div", className }: RevealPro
       setState("shown");
     } else {
       setState("pending");
-      observer.observe(node);
     }
+    observer.observe(node);
 
     return () => {
       observer.disconnect();
@@ -63,6 +65,17 @@ export function Reveal({ children, order = 0, as = "div", className }: RevealPro
 
   const Tag = as;
 
+  const transitionDelay =
+    state === "shown"
+      ? delay !== undefined
+        ? typeof delay === "number"
+          ? delay < 10
+            ? `${delay}s`
+            : `${delay}ms`
+          : delay
+        : `${Math.min(order * 60, 240)}ms`
+      : undefined;
+
   return (
     <Tag
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -70,7 +83,7 @@ export function Reveal({ children, order = 0, as = "div", className }: RevealPro
       className={className}
       data-reveal={state}
       style={{
-        transitionDelay: state === "shown" ? `${Math.min(order * 60, 240)}ms` : undefined,
+        transitionDelay,
       }}
     >
       {children}
