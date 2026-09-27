@@ -1,41 +1,81 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-interface RevealProps {
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+type RevealProps = {
   children: React.ReactNode;
+  /** Stagger index — 0-based. Each step adds 60ms, capped at 240ms. */
+  order?: number;
+  as?: "div" | "li" | "section" | "article";
   className?: string;
-  delay?: number;
-}
+};
 
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px 0px" });
-  const prefersReduced = useReducedMotion();
+/**
+ * Entrance animation for content blocks.
+ *
+ * Two guarantees:
+ *   - When the reader has Reduce Motion on, the element renders at its resting
+ *     state with no transition at all (via CSS media query).
+ *   - The animation only touches opacity and transform, and `once` means content
+ *     never re-hides on scroll-back. Content that has been read stays read.
+ *   - CSS-first approach means content is NEVER permanently hidden if JS fails.
+ */
+export function Reveal({ children, order = 0, as = "div", className }: RevealProps) {
+  const ref = useRef<HTMLElement>(null);
+  const [state, setState] = useState<"pending" | "shown" | undefined>(undefined);
 
-  if (prefersReduced) {
-    return (
-      <div ref={ref} className={className}>
-        {children}
-      </div>
+  useIsomorphicLayoutEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    // Set up observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setState("shown");
+            observer.unobserve(node);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -50px 0px" }
     );
-  }
+
+    // If it's already far above the bottom of the viewport, just show it immediately
+    const rect = node.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 50) {
+      setState("shown");
+    } else {
+      setState("pending");
+      observer.observe(node);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const Tag = as;
 
   return (
-    <motion.div
-      ref={ref}
+    <Tag
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={ref as any}
       className={className}
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
-        delay,
+      data-reveal={state}
+      style={{
+        transitionDelay: state === "shown" ? `${Math.min(order * 60, 240)}ms` : undefined,
       }}
     >
       {children}
-    </motion.div>
+    </Tag>
   );
 }
+
+export default Reveal;

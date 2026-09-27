@@ -1,0 +1,288 @@
+/* =============================================================================
+   BASE
+   -----------------------------------------------------------------------------
+   Reset, document defaults, typography ramp, focus handling, and the shared
+   accessibility primitives (skip link, visually-hidden, reduced motion).
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Scroll offset so anchored headings clear the fixed navigation bar.
+     HIG — Layout: keep content clear of persistent chrome. */
+  scroll-padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Smooth scrolling is a motion effect — only for readers who allow motion.
+   HIG — Accessibility: "Respect the Reduce Motion setting." */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  min-height: 100svh;
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(circle at 15% 0%, var(--tint-wash) 0%, transparent 40%),
+    radial-gradient(circle at 85% 100%, var(--tint-wash) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, var(--fill-quiet) 0%, transparent 60%);
+  color: var(--label);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  mix-blend-mode: overlay;
+}
+
+/* =============================================================================
+   TYPOGRAPHY RAMP
+   Headings inherit the display face; body copy uses the platform system font
+   (HIG — Typography: the system font is tuned for UI legibility at every size).
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+  color: var(--label);
+}
+
+p,
+li,
+dd,
+dt,
+figcaption {
+  text-wrap: pretty;
+}
+
+p {
+  max-width: 68ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+:where(strong, b) {
+  font-weight: 600;
+}
+
+::selection {
+  background: var(--tint);
+  color: var(--tint-contrast);
+}
+
+/* =============================================================================
+   FOCUS
+   A single, always-visible focus indicator with its own offset so it never
+   collides with a control's own border. Keyboard users must always be able to
+   see where they are.
+   HIG — Accessibility: "Make sure the focus indicator is clearly visible."
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: var(--radius-s);
+}
+
+/* Suppress the ring for pointer interaction only — never remove it outright. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =============================================================================
+   ACCESSIBILITY PRIMITIVES
+   ========================================================================== */
+
+/* Reachable by screen readers, invisible on screen. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link — first tab stop on the page, visible on focus.
+   HIG — Accessibility: give keyboard users a direct route past repeated
+   navigation to the main content. */
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--tint);
+  color: var(--tint-contrast);
+  font-size: var(--text-footnote);
+  font-weight: 600;
+  box-shadow: var(--shadow-2);
+  transform: translateY(calc(-100% - var(--space-5)));
+  transition: transform var(--dur-2) var(--ease-standard);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* =============================================================================
+   LAYOUT PRIMITIVES
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.section--sunken {
+  background: var(--bg-sunken);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   Animation is removed, not merely shortened, and every element that animates
+   into place is pinned to its final state so nothing can stay invisible.
+   HIG — Accessibility: "Avoid unnecessary motion … honour Reduce Motion."
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Anything that reveals on scroll must already be in its resting state. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
+
+/* =============================================================================
+   PRINT
+   ========================================================================== */
+
+@media print {
+  .site-nav,
+  .skip-link,
+  .site-backdrop,
+  .appearance-toggle {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .section {
+    padding-block: 1.5rem;
+    break-inside: avoid;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  a[href^="#"]::after,
+  a[href^="mailto"]::after {
+    content: "";
+  }
+}

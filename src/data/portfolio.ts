@@ -33,18 +33,6 @@ export type Project = {
   name: string;
   status: "Ongoing" | "Contributed" | "Individual";
 
-  /*
-   * Project preview image.
-   *
-   * Put the actual screenshots inside:
-   *
-   * public/projects/
-   *
-   * The Project component will automatically use
-   * the image when it exists.
-   */
-  image: string;
-
   isMobile?: boolean;
 
   description: string;
@@ -62,11 +50,10 @@ export const projects: Project[] = [
   {
     id: "versacareer-ai",
 
-    name: "VersaCareer AI",
+    name: "VersaCareer",
 
     status: "Ongoing",
 
-    image: "/projects/versacareer-ai.jpg",
 
     description:
       "Career guidance platform with AI resume analysis, skill mapping, and personalized career recommendations.",
@@ -88,10 +75,10 @@ export const projects: Project[] = [
     ],
 
     github:
-      "https://github.com/Cha129/VersaCareerAI",
+      "https://github.com/penguin-boss/VersaCareer",
 
     live:
-      "https://versacareer.netlify.app",
+      "https://versacareer.vercel.app",
   },
 
   {
@@ -101,7 +88,6 @@ export const projects: Project[] = [
 
     status: "Ongoing",
 
-    image: "/projects/desi-drip.jpg",
 
     description:
       "Fashion-focused web application designed to help users explore ethnic styling ideas and recommendations.",
@@ -129,35 +115,36 @@ export const projects: Project[] = [
   },
 
   {
-    id: "shiva-kanaka",
+    id: "wishcraft-studios",
 
-    name: "Shiva Kanaka Portfolio",
+    name: "Wishcraft Studios",
 
-    status: "Individual",
+    status: "Ongoing",
 
-    image: "/projects/shiva-kanaka.jpg",
 
     description:
-      "Personal portfolio website built for Shiva Kanaka featuring responsive layout, smooth interactions, and modern design.",
+      "Student-led development studio taking real client products from concept to deployment — web platforms, productivity tools, and interactive applications.",
 
     role: [
       "Frontend Developer",
-      "UI/UX Design",
-      "Deployment",
+      "Backend architecture",
+      "Database design",
+      "UI/UX planning",
+      "AI-assisted development workflows",
     ],
 
     stack: [
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
-      "Vercel",
+      "Firebase",
+      "AI Dev Tools",
     ],
-
-    github:
-      "https://github.com/Penguin-boss/Shiva-kanaka",
+        github:
+      "https://github.com/Penguin-boss/wishcraft-studios",
 
     live:
-      "https://kanakashiva.vercel.app",
+      "https://wishcraftstudios.vercel.app",
   },
 
   {
@@ -167,7 +154,6 @@ export const projects: Project[] = [
 
     status: "Contributed",
 
-    image: "/projects/settlex.jpg",
 
     isMobile: true,
 
@@ -190,33 +176,6 @@ export const projects: Project[] = [
 
     github:
       "https://github.com/Penguin-boss/SettleX",
-  },
-
-  {
-    id: "2d-games",
-
-    name: "2D Games Collection",
-
-    status: "Individual",
-
-    image: "/projects/2d-games.jpg",
-
-    description:
-      "Browser-based interactive games created using HTML and CSS to explore web animation and game logic.",
-
-    role: [
-      "Game design",
-      "Frontend build",
-    ],
-
-    stack: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-    ],
-
-    github:
-      "https://github.com/Penguin-boss/2D-Games",
   },
 ];
 
@@ -261,36 +220,47 @@ export type Certificate = {
   issuer: string;
   category: "Professional" | "Hackathon";
   date: string;
-  file: string;
   previewImage: string;
   description: string;
 };
 
 export const certificates: Certificate[] = [
+      
   {
-    id: "frontend-dev",
-    title: "Front-End Developer Certificate",
-    issuer: "TestDome",
+    id: "Agentic Ai",
+    title: "Agentic AI Foundations Associate",
+    issuer: "Oracle",
     category: "Professional",
     date: "2026",
-    file: "/Devella_Sankeerth_Front-End_Certificate.pdf",
     previewImage:
-      "/certificates/HTML.png",
+      "/certificates/AI.png",
     description:
-      "Certification in Front-End Web Development, responsive layout, and web integration.",
+      "Certification in AI Agent Development, LangChain, OpenAI Agent Stack, Model Context Protocol (MCP), OCI Enterprise AI Platform, and Oracle AI Database for agentic AI.",
   },
-
-    {
+  
+  
+  {
     id: "javascript",
     title: "JavaScript Certificate",
     issuer: "HackerRank",
     category: "Professional",
     date: "2026",
-    file: "/Devella_Sankeerth_JavaScript_Certificate.pdf",
     previewImage:
       "/certificates/javascript.png",
     description:
       "Certification in JavaScript, It covers topics like Design Patterns, Memory management, concurrency model, and event loops, among others.",
+  },
+
+{
+    id: "frontend-dev",
+    title: "Front-End Developer Certificate",
+    issuer: "TestDome",
+    category: "Professional",
+    date: "2026",
+    previewImage:
+      "/certificates/HTML.png",
+    description:
+      "Certification in Front-End Web Development, responsive layout, and web integration.",
   },
   
   {
@@ -299,7 +269,6 @@ export const certificates: Certificate[] = [
     issuer: "HR Calcy",
     category: "Professional",
     date: "2026",
-    file: "/Devella_Sankeerth_Web-developer_Certificate.pdf",
     previewImage:
       "/certificates/web-developer.jpg",
     description:
@@ -312,7 +281,6 @@ export const certificates: Certificate[] = [
     issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
     date: "2026",
-    file: "/hackathon_round-1.pdf",
     previewImage:
       "/certificates/hackathon-round-1.jpg",
     description:
@@ -325,7 +293,6 @@ export const certificates: Certificate[] = [
     issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
     date: "2026",
-    file: "/hackathon_round-2.pdf",
     previewImage:
       "/certificates/hackathon-round-2.jpg",
     description:
@@ -338,7 +305,6 @@ export const certificates: Certificate[] = [
     issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
     date: "2026",
-    file: "/hackathon_round-3.pdf",
     previewImage:
       "/certificates/hackathon-round-3.jpg",
     description:
@@ -351,7 +317,6 @@ export const certificates: Certificate[] = [
     issuer: "Enginow / WishCraft Studios",
     category: "Hackathon",
     date: "2026",
-    file: "/hackathon_round-4.pdf",
     previewImage:
       "/certificates/hackathon-round-4.jpg",
     description:
@@ -435,7 +400,7 @@ export const experience = [
       "Independent & Collaborative Projects",
 
     period:
-      "VersaCareer AI · Desi-Drip · SettleX · Shiva Kanaka",
+      "VersaCareer AI · Desi-Drip · SettleX · Wishcraft Studios",
 
     description:
       "Contributed to frontend development, backend planning, database organization, UI/UX discussions, testing, and AI-assisted development workflows across multiple project builds.",
