@@ -1,82 +1,93 @@
 import type { Metadata, Viewport } from "next";
-
-/* Self-hosted so there is no third-party font request on first paint.
-   Inter was previously loaded and never used — dropped. Space Grotesk is the
-   display face, IBM Plex Mono carries the metadata; body copy uses the reader's
-   own system font (HIG — Typography: the system font is tuned for UI
-   legibility at every size and already matches the reader's settings). */
-import "@fontsource/space-grotesk/400.css";
-import "@fontsource/space-grotesk/500.css";
-import "@fontsource/space-grotesk/600.css";
-import "@fontsource/space-grotesk/700.css";
-import "@fontsource/ibm-plex-mono/400.css";
-import "@fontsource/ibm-plex-mono/500.css";
-
+import { fraunces, inter } from "@/lib/fonts";
+import {
+  identity,
+  keywords,
+  siteDescription,
+  siteTitle,
+  siteUrl,
+} from "@/data/site";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
-import { siteUrl } from "@/lib/site";
+
+/**
+ * Root layout.
+ *
+ * One metadata block, one title, one role description — the same strings the
+ * hero shows and the structured data carries. `metadataBase` makes every
+ * relative URL below resolve against the real domain, and the canonical that
+ * used to point at sankeerth-portfolio.vercel.app is gone.
+ */
+
+const title = siteTitle;
+const description = siteDescription;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Sankeerth Devella — Student Builder",
-    template: "%s — Sankeerth Devella",
+    default: title,
+    template: `%s — ${identity.name}`,
   },
-  description:
-    "Student builder at WishCraft Studios. Frontend, backend, database setup and frontend integration, with AI-assisted development workflows.",
-  keywords: [
-    "Sankeerth Devella",
-    "student developer",
-    "frontend developer",
-    "WishCraft Studios",
-    "Next.js",
-    "Hyderabad",
-  ],
-  authors: [{ name: "Sankeerth Devella" }],
-  creator: "Sankeerth Devella",
+  description,
+  keywords: [...keywords],
+  authors: [{ name: identity.name, url: siteUrl }],
+  creator: identity.name,
+  publisher: identity.name,
+  applicationName: `${identity.name} — portfolio`,
+  category: "technology",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: siteUrl,
-    siteName: "Sankeerth Devella",
-    title: "Sankeerth Devella — Student Builder",
-    description:
-      "Frontend, backend, database setup and frontend integration, with AI-assisted development workflows.",
+    url: "/",
+    siteName: identity.name,
+    title,
+    description,
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sankeerth Devella — Student Builder",
-    description:
-      "Frontend, backend, database setup and frontend integration, with AI-assisted development workflows.",
+    title,
+    description,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: { telephone: false, address: false, email: false },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  /* No maximumScale / userScalable lock: pinch-zoom is an accessibility
-     feature, and disabling it is the single most common way a site becomes
-     unusable for low-vision readers. */
   viewportFit: "cover",
-  themeColor: "#07090D",
+  /* No maximumScale: pinch-zoom is an accessibility feature. */
+  colorScheme: "dark",
+  themeColor: "#0A192F",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark" style={{ colorScheme: 'dark' }}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
-        {/* First tab stop on the page — HIG (Accessibility): give keyboard
-            users a direct route past repeated navigation. */}
-        <a href="#main" className="skip-link">
+        <a className="skip-link" href="#main">
           Skip to content
         </a>
 
-        <div className="site-backdrop" aria-hidden="true" />
+        <SiteHeader />
 
         {children}
+
+        <SiteFooter />
       </body>
     </html>
   );

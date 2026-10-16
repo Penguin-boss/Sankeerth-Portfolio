@@ -1,97 +1,111 @@
 /* =============================================================================
    BASE
    -----------------------------------------------------------------------------
-   Reset, document defaults, typography ramp, focus handling, and the shared
-   accessibility primitives (skip link, visually-hidden, reduced motion).
+   Reset, document defaults, the typography ramp, focus handling, and the shared
+   accessibility primitives.
    ========================================================================== */
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-* {
   margin: 0;
   padding: 0;
 }
 
 html {
-  /* Scroll offset so anchored headings clear the fixed navigation bar.
-     HIG — Layout: keep content clear of persistent chrome. */
-  scroll-padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  /* Anchored headings must clear the sticky header. */
+  scroll-padding-top: calc(var(--header-h) + 1.5rem);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
-/* Smooth scrolling is a motion effect — only for readers who allow motion.
-   HIG — Accessibility: "Respect the Reduce Motion setting." */
+/* Smooth anchor scrolling for readers who allow motion; instant for those who
+   do not (the rule is restated in the reduced-motion block below). */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
 }
 
+/* Gentle cross-fade between the home page and project pages on browsers that
+   support the View Transitions API (cross-document navigations). Where it is
+   unsupported the navigation is simply instant, and the prefers-reduced-motion
+   block below removes the fade for readers who ask for less motion. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 body {
   min-height: 100svh;
-  background-color: var(--bg);
-  background-image: 
-    radial-gradient(circle at 15% 0%, var(--tint-wash) 0%, transparent 40%),
-    radial-gradient(circle at 85% 100%, var(--tint-wash) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, var(--fill-quiet) 0%, transparent 60%);
-  color: var(--label);
+  background-color: var(--surface);
+  color: var(--text);
   font-family: var(--font-body);
-  font-size: var(--text-body);
-  line-height: var(--leading-relaxed);
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  font-synthesis-weight: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  font-kerning: normal;
   text-rendering: optimizeLegibility;
-  position: relative;
+  overflow-x: clip;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  mix-blend-mode: overlay;
-}
-
-/* =============================================================================
-   TYPOGRAPHY RAMP
-   Headings inherit the display face; body copy uses the platform system font
-   (HIG — Typography: the system font is tuned for UI legibility at every size).
-   ========================================================================== */
+/* -----------------------------------------------------------------------------
+   Typography
+   Headings are display type: one serif, tight tracking, balanced wrapping.
+   Small headings stay in the body face so the serif is reserved for display
+   sizes, where it earns its keep.
+   -------------------------------------------------------------------------- */
 
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-display);
+h4 {
   font-weight: 600;
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-body);
   text-wrap: balance;
-  color: var(--label);
 }
 
-p,
-li,
-dd,
-dt,
-figcaption {
-  text-wrap: pretty;
+h1,
+h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: var(--size-h2);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+}
+
+h1 {
+  font-size: var(--size-h1);
+}
+
+h3 {
+  font-size: var(--size-h3);
 }
 
 p {
-  max-width: 68ch;
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 a {
@@ -101,8 +115,7 @@ a {
 
 img,
 svg,
-video,
-canvas {
+video {
   display: block;
   max-width: 100%;
 }
@@ -116,54 +129,34 @@ input,
 select,
 textarea {
   font: inherit;
-  color: inherit;
   letter-spacing: inherit;
-}
-
-button {
-  background: none;
-  border: 0;
-  cursor: pointer;
-}
-
-ul,
-ol {
-  list-style: none;
-}
-
-:where(strong, b) {
-  font-weight: 600;
+  color: inherit;
 }
 
 ::selection {
-  background: var(--tint);
-  color: var(--tint-contrast);
+  background: var(--white);
+  color: var(--black);
 }
 
-/* =============================================================================
-   FOCUS
-   A single, always-visible focus indicator with its own offset so it never
-   collides with a control's own border. Keyboard users must always be able to
-   see where they are.
-   HIG — Accessibility: "Make sure the focus indicator is clearly visible."
-   ========================================================================== */
+/* -----------------------------------------------------------------------------
+   Focus — one visible indicator, never removed, always offset from the control
+   so it cannot be mistaken for a border.
+   -------------------------------------------------------------------------- */
 
 :focus-visible {
-  outline: 2px solid var(--focus-ring);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
   border-radius: var(--radius-s);
 }
 
-/* Suppress the ring for pointer interaction only — never remove it outright. */
 :focus:not(:focus-visible) {
   outline: none;
 }
 
-/* =============================================================================
-   ACCESSIBILITY PRIMITIVES
-   ========================================================================== */
+/* -----------------------------------------------------------------------------
+   Shared primitives
+   -------------------------------------------------------------------------- */
 
-/* Reachable by screen readers, invisible on screen. */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -176,63 +169,33 @@ ol {
   border: 0;
 }
 
-/* Skip link — first tab stop on the page, visible on focus.
-   HIG — Accessibility: give keyboard users a direct route past repeated
-   navigation to the main content. */
 .skip-link {
   position: fixed;
-  top: var(--space-3);
-  left: var(--space-3);
-  z-index: 999;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 60;
   display: inline-flex;
   align-items: center;
-  min-height: var(--target-min);
-  padding: 0 var(--space-5);
-  border-radius: var(--radius-pill);
-  background: var(--tint);
-  color: var(--tint-contrast);
-  font-size: var(--text-footnote);
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  background: var(--action-bg);
+  color: var(--action-fg);
+  font-size: var(--size-small);
   font-weight: 600;
-  box-shadow: var(--shadow-2);
-  transform: translateY(calc(-100% - var(--space-5)));
-  transition: transform var(--dur-2) var(--ease-standard);
+  transform: translateY(calc(-100% - 1.5rem));
+  transition: transform var(--dur) var(--ease);
 }
 
 .skip-link:focus-visible {
   transform: translateY(0);
 }
 
-/* =============================================================================
-   LAYOUT PRIMITIVES
-   ========================================================================== */
-
-.container {
-  width: 100%;
-  max-width: var(--container);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-
-.section {
-  position: relative;
-  padding-block: var(--section-y);
-}
-
-.section--sunken {
-  background: var(--bg-sunken);
-}
-
-.stack {
-  display: flex;
-  flex-direction: column;
-}
-
-/* =============================================================================
-   REDUCED MOTION
-   Animation is removed, not merely shortened, and every element that animates
-   into place is pinned to its final state so nothing can stay invisible.
-   HIG — Accessibility: "Avoid unnecessary motion … honour Reduce Motion."
-   ========================================================================== */
+/* -----------------------------------------------------------------------------
+   Reduced motion — motion is removed rather than shortened, and anything that
+   animates into place is pinned to its resting state so it can never be left
+   invisible.
+   -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -244,23 +207,19 @@ ol {
     scroll-behavior: auto !important;
   }
 
-  /* Anything that reveals on scroll must already be in its resting state. */
   [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
-    clip-path: none !important;
   }
 }
 
-/* =============================================================================
-   PRINT
-   ========================================================================== */
+/* -----------------------------------------------------------------------------
+   Print
+   -------------------------------------------------------------------------- */
 
 @media print {
-  .site-nav,
-  .skip-link,
-  .site-backdrop,
-  .appearance-toggle {
+  .site-header,
+  .skip-link {
     display: none !important;
   }
 
@@ -270,15 +229,10 @@ ol {
     font-size: 11pt;
   }
 
-  .section {
-    padding-block: 1.5rem;
-    break-inside: avoid;
-  }
-
   a::after {
     content: " (" attr(href) ")";
     font-size: 0.85em;
-    word-break: break-all;
+    word-break: break-word;
   }
 
   a[href^="#"]::after,

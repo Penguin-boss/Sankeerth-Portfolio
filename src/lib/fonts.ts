@@ -1,22 +1,27 @@
-import { Space_Grotesk, Inter, Space_Mono } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 
-export const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
+/**
+ * Two fonts, no more.
+ *
+ *   Inter     — body copy, labels, navigation. Neutral and highly legible at
+ *               small sizes, which is where most of the site lives.
+ *   Fraunces  — display only (the name, section headings, project titles). A
+ *               real serif gives the large type some character without adding
+ *               a second colour or any decoration.
+ *
+ * Both are variable fonts served as woff2 from our own origin, preloaded by
+ * next/font, so there is no third-party request and no font swap shift.
+ */
 export const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-inter",
   display: "swap",
-  weight: ["400", "500"],
+  fallback: ["system-ui", "sans-serif"],
 });
 
-export const spaceMono = Space_Mono({
+export const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-fraunces",
   display: "swap",
-  weight: ["400", "700"],
+  fallback: ["Georgia", "serif"],
 });
