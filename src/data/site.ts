@@ -47,25 +47,26 @@ export const siteUrl = "https://devellasankeerth.vercel.app";
  * description, Open Graph, structured data. Kept here so they cannot drift.
  */
 export const identity = {
-  name: "Sankeerth Devella",
-  /** Used as the job title in structured data and the hero label. */
-  role: "Student developer & designer",
-  /** Accurate one-line description of the work, from the resume. */
-  focus:
-    "Frontend, backend, database setup and frontend integration, with AI-assisted development workflows.",
-  location: {
-    city: "Hyderabad",
-    region: "Telangana",
-    country: "India",
-    /** ISO 3166-1 alpha-2, for structured data. */
-    countryCode: "IN",
-    /** Display form. */
-    formatted: "Hyderabad, India",
-  },
-  email: "sankeerthdevella@gmail.com",
-  github: "https://github.com/Penguin-boss",
-  linkedin: "https://www.linkedin.com/in/sankeerthdevella-730314416",
-  resume: "/resume.pdf",
+ name: "Sankeerth Devella",
+ /** Used as the job title in structured data and the hero label. */
+ role: "Student developer & designer",
+ /** Accurate one-line description of the work, from the resume. */
+ focus:
+   "Frontend, backend, database setup and frontend integration, with AI-assisted development workflows.",
+ location: {
+   city: "Hyderabad",
+   region: "Telangana",
+   country: "India",
+   /** ISO 3166-1 alpha-2, for structured data. */
+   countryCode: "IN",
+   /** Display form. */
+   formatted: "Hyderabad, India",
+ },
+ email: "sankeerthdevella@gmail.com",
+ github: "https://github.com/Penguin-boss",
+ linkedin: "https://www.linkedin.com/in/sankeerthdevella-730314416",
+ // Updated resume filename
+ resume: "/Sankeerth_Devella_Resume.pdf",
 } as const;
 
 /**
@@ -116,7 +117,7 @@ export const navItems: readonly NavItem[] = [
 export const hero = {
   /* Two short sentences. Nothing here is a claim the resume does not make. */
   intro:
-    "I'm a student developer and designer in Hyderabad. I build practical web products, and at WishCraft Studios — a student-led development team — I take client work from the frontend through backend architecture and database setup.",
+    "I'm a student developer and designer in Hyderabad. I build practical web products, and at WishCraft Studios — a student-led development team — I take client work from the frontend throug[...]",
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -127,12 +128,12 @@ export const profile = {
   /* The four-paragraph biography condensed to the three that say something new.
      The old closing paragraph restated the first one, so it is gone. */
   paragraphs: [
-    "I'm a student and frontend developer who likes building practical products that solve real problems. Most of what I enjoy is the part where an idea becomes something people can actually open and use.",
-    "As part of WishCraft Studios, a student-led development team, I work on client projects from concept to deployment — frontend development, backend architecture, database design, UI/UX planning and AI-assisted development workflows across web platforms, productivity tools and interactive applications.",
+    "I'm a student and frontend developer who likes building practical products that solve real problems. Most of what I enjoy is the part where an idea becomes something people can actually open[...]",
+    "As part of WishCraft Studios, a student-led development team, I work on client projects from concept to deployment — frontend development, backend architecture, database design, UI/UX plan[...]",
   ],
   /** One experience worth stating plainly, kept separate from the rest. */
   highlight: {
-    text: "One of the more useful things I've done was rebuilding a client project's backend from scratch after development had stalled, then integrating it with the existing frontend and helping take the product to a working release.",
+    text: "One of the more useful things I've done was rebuilding a client project's backend from scratch after development had stalled, then integrating it with the existing frontend and helping[...]",
   },
 } as const;
 
