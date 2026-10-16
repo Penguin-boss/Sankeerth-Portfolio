@@ -37,7 +37,10 @@ export default function Background() {
               {experience.map((item) => (
                 <li className="entry" key={item.title}>
                   <h4 className="entry__title">{item.title}</h4>
-                  <p className="entry__meta">{item.period}</p>
+                  {/* The role leads the detail line, as it does on the resume. */}
+                  <p className="entry__meta">
+                    {item.honour ? `${item.honour} · ${item.period}` : item.period}
+                  </p>
                   <p className="entry__body">{item.description}</p>
                 </li>
               ))}

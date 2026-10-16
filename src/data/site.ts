@@ -7,12 +7,14 @@
  * hackathon, certifications, skills) and the closing block.
  *
  * Sources, in order of authority:
- *   1. Sankeerth_Devella_Resume.pdf — the current resume, which is what the
- *      résumé download serves and what the identity block is taken from.
- *   2. The earlier content file (src/data/portfolio.ts, from the previous
- *      resume and LinkedIn export), kept for anything the current resume does
- *      not mention — education, the hackathon round certificates and the
- *      certificate images.
+ *   1. public/Sankeerth_Devella_Resume.pdf — the owner's current resume, which
+ *      is the file the résumé download serves and where every fact below is
+ *      taken from. Replace that file when the resume changes; nothing here is
+ *      copied from it automatically.
+ *   2. The earlier verified material (the previous resume and the LinkedIn
+ *      export), kept only for what the current resume does not mention —
+ *      education, the hackathon round certificates and the certificate images.
+ *      Anything kept on that basis is marked as such where it is declared.
  *
  * Rules this file follows:
  *   - No invented facts. Links, stacks and dates are only listed when they were
@@ -65,7 +67,8 @@ export const identity = {
   email: "sankeerthdevella@gmail.com",
   github: "https://github.com/Penguin-boss",
   linkedin: "https://www.linkedin.com/in/sankeerthdevella-730314416",
-  resume: "/resume.pdf",
+  /** The owner's own PDF, served straight from /public. */
+  resume: "/Sankeerth_Devella_Resume.pdf",
 } as const;
 
 /**
@@ -177,7 +180,9 @@ export const projects: readonly Project[] = [
     summary:
       "Complete mobile app prototype built from concept through functional UI, extending the VersaCareer AI product line.",
     role: ["Concept", "UI design", "Mobile app prototype"],
-    /* No stack or repository URL was given for this one. */
+    /* The resume lists a GitHub repository for this one but gives no URL. The
+       only candidate on GitHub is Penguin-boss/VersaCareer-AI (Kotlin), so the
+       link is left off rather than attached on a guess. */
     stack: [],
     category: "MobileApplication",
   },

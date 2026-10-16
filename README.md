@@ -80,11 +80,15 @@ handover notes list what is still missing.
 
 ## Résumé
 
-`public/resume.pdf` is the file the site links to. Its editable source is
-`resume/resume.html` — a self-contained page (both Inter weights are inlined),
-so opening it in a browser and printing to PDF at A4 with background graphics
-on reproduces the committed PDF. Update that file and the site's content together
-when the résumé changes.
+`public/Sankeerth_Devella_Resume.pdf` is the owner's own PDF export and the file
+the site links to (`identity.resume` in `src/data/site.ts`). To update it, drop a
+new export at the same path. The prose in `src/data/site.ts` is written by hand
+and never reads the PDF, so the two have to be changed together.
+
+`resume/resume.html` is an optional, self-contained print layout of the same
+content (both Inter weights are inlined), kept for a web-typeset résumé rather
+than the owner's export. Nothing links to it and nothing keeps it in sync: open
+it in a browser and print to PDF at A4 with background graphics on to use it.
 
 ---
 
@@ -136,6 +140,6 @@ src/
   lib/og.tsx           the 1200×630 social card renderer
   styles/              tokens.css, base.css, components.css
   assets/fonts/        Inter woff, used only to render the social images
-public/resume.pdf      the résumé the site links to
-resume/resume.html     its editable source
+public/Sankeerth_Devella_Resume.pdf   the résumé the site links to (owner's export)
+resume/resume.html                    optional web-typeset print version, not linked
 ```
