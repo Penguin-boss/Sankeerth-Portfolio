@@ -117,7 +117,7 @@ export const navItems: readonly NavItem[] = [
 export const hero = {
   /* Two short sentences. Nothing here is a claim the resume does not make. */
   intro:
-    "I'm a student developer and designer in Hyderabad. I build practical web products, and at WishCraft Studios — a student-led development team — I take client work from the frontend throug[...]",
+    "I'm a student developer and designer in Hyderabad, building practical web products. At WishCraft Studios, I take client work from the frontend through backend integration and launch, so ideas ship as working products, not just mockups.",
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -128,12 +128,12 @@ export const profile = {
   /* The four-paragraph biography condensed to the three that say something new.
      The old closing paragraph restated the first one, so it is gone. */
   paragraphs: [
-    "I'm a student and frontend developer who likes building practical products that solve real problems. Most of what I enjoy is the part where an idea becomes something people can actually open[...]",
-    "As part of WishCraft Studios, a student-led development team, I work on client projects from concept to deployment — frontend development, backend architecture, database design, UI/UX plan[...]",
+    "I'm a student and frontend developer who likes building practical products that solve real problems. My favorite part is when an idea becomes something people can actually open, use, and rely on.",
+    "As part of WishCraft Studios, a student-led development team, I work on client projects from concept to deployment: frontend development, backend architecture, database design, and UI/UX planning. Because I handle both design and code, what I design is something I can also build.",
   ],
   /** One experience worth stating plainly, kept separate from the rest. */
   highlight: {
-    text: "One of the more useful things I've done was rebuilding a client project's backend from scratch after development had stalled, then integrating it with the existing frontend and helping[...]",
+    text: "One of the more useful things I've done was rebuilding a client project's backend from scratch after development had stalled. I set up authentication, the database, and the API layer, then integrated them with the existing frontend and helped the team get the product to launch.",
   },
 } as const;
 
