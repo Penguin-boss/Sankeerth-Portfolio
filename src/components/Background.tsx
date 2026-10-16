@@ -101,15 +101,17 @@ export default function Background() {
                     </p>
                   </div>
                   <p className="certificate__body">{certificate.description}</p>
-                  <a
-                    className="certificate__link"
-                    href={certificate.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View the ${certificate.title} certificate (opens in a new tab)`}
-                  >
-                    View certificate
-                  </a>
+                  {certificate.image ? (
+                    <a
+                      className="certificate__link"
+                      href={certificate.image}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View the ${certificate.title} certificate (opens in a new tab)`}
+                    >
+                      View certificate
+                    </a>
+                  ) : null}
                 </li>
               ))}
             </ul>

@@ -149,14 +149,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </ul>
               </section>
 
-              <section className="project-page__block" aria-labelledby="stack-title">
-                <h2 id="stack-title">Stack</h2>
-                <ul className="project-page__list">
-                  {project.stack.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </section>
+              {project.stack.length > 0 ? (
+                <section
+                  className="project-page__block"
+                  aria-labelledby="stack-title"
+                >
+                  <h2 id="stack-title">Stack</h2>
+                  <ul className="project-page__list">
+                    {project.stack.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
             </div>
 
             <nav className="more" aria-label="More work">

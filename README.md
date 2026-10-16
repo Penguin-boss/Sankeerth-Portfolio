@@ -1,7 +1,8 @@
 # Sankeerth Devella — portfolio
 
-> A quiet, typographic portfolio for Sankeerth Devella, a student developer and
-> designer in Hyderabad. Next.js App Router, TypeScript and hand-written CSS.
+> A quiet, typographic portfolio for Sankeerth Devella, co-founder and full-stack
+> engineer at WishCraft Studios in Hyderabad. Next.js App Router, TypeScript and
+> hand-written CSS.
 
 **Live:** https://devellasankeerth.vercel.app
 
@@ -49,7 +50,8 @@ Five blocks on the home page, in reading order:
 
 1. **Hero** — name, role, one short introduction, four links, and the portrait in
    a navy plate that sits on the same grid as the text.
-2. **Selected work** — four projects as full panels, each linking to its own page.
+2. **Selected work** — seven projects as full panels, the studio's own platform
+   leading at full width, each linking to its own page.
 3. **Profile** — a short introduction in prose.
 4. **Background** — experience, education, the Enginow Hackathon (each round with
    its certificate), certifications and skills, as a label column beside a
@@ -74,8 +76,15 @@ Open Graph image all pick it up.
 
 Nothing in the file is invented: where a fact was not in the source material
 (project dates, outcome metrics, project imagery) it is simply absent, and the
-handover notes list what is still missing. The résumé at `public/resume.pdf` is
-a 4 KB three-page file with no extractable text — replace it before shipping.
+handover notes list what is still missing.
+
+## Résumé
+
+`public/resume.pdf` is the file the site links to. Its editable source is
+`resume/resume.html` — a self-contained page (both Inter weights are inlined),
+so opening it in a browser and printing to PDF at A4 with background graphics
+on reproduces the committed PDF. Update that file and the site's content together
+when the résumé changes.
 
 ---
 
@@ -127,4 +136,6 @@ src/
   lib/og.tsx           the 1200×630 social card renderer
   styles/              tokens.css, base.css, components.css
   assets/fonts/        Inter woff, used only to render the social images
+public/resume.pdf      the résumé the site links to
+resume/resume.html     its editable source
 ```

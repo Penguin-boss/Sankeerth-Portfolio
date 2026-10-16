@@ -259,6 +259,10 @@
 
 .project {
   display: grid;
+  /* `start` matters: the cards in a row stretch to equal height, and without
+     it the extra space is distributed between the rows, pushing the summary
+     away from the title. The copy stays together; the slack sits at the end. */
+  align-content: start;
   gap: 1rem;
   height: 100%;
   padding: clamp(1.5rem, 4vw, 2.25rem);
@@ -305,6 +309,7 @@
 }
 
 .project__summary {
+  max-width: 58ch;
   color: var(--text-muted);
   font-size: 1.0625rem;
   line-height: 1.6;
@@ -355,6 +360,12 @@
   .work {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
+  }
+
+  /* The studio's own platform leads the section at full width; the remaining
+     cards then fill an even number of rows instead of leaving an orphan. */
+  .work__item--featured {
+    grid-column: 1 / -1;
   }
 }
 

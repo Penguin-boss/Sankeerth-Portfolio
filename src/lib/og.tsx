@@ -160,6 +160,10 @@ export function projectCard(project: Project): OgCardProps {
     eyebrow: project.status,
     title: project.name,
     subtitle: project.summary,
-    footer: project.stack.join(" · "),
+    /* Falls back to the location when a project has no stack on record. */
+    footer:
+      project.stack.length > 0
+        ? project.stack.join(" · ")
+        : identity.location.formatted,
   };
 }

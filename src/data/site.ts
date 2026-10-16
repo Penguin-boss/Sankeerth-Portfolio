@@ -6,19 +6,19 @@
  * per-project metadata), the background material (experience, education,
  * hackathon, certifications, skills) and the closing block.
  *
+ * Sources, in order of authority:
+ *   1. Sankeerth_Devella_Resume.pdf — the current resume, which is what the
+ *      résumé download serves and what the identity block is taken from.
+ *   2. The earlier content file (src/data/portfolio.ts, from the previous
+ *      resume and LinkedIn export), kept for anything the current resume does
+ *      not mention — education, the hackathon round certificates and the
+ *      certificate images.
+ *
  * Rules this file follows:
- *   - No invented facts. Every value below is either taken from the previous
- *     content file (src/data/portfolio.ts, itself sourced from the uploaded
- *     resume and LinkedIn export) or from the site owner's own brief.
- *   - Where a fact was not available (project dates, outcome metrics, project
- *     imagery) it is left out rather than guessed at, and the handover notes
- *     list what is still missing.
+ *   - No invented facts. Links, stacks and dates are only listed when they were
+ *     given; where one is missing it is left out and listed in the handover
+ *     notes rather than guessed at.
  */
-
-export type ProjectLink = {
-  readonly label: string;
-  readonly href: string;
-};
 
 export type Project = {
   /** URL segment: /work/<slug> */
@@ -27,11 +27,14 @@ export type Project = {
   readonly status: "Ongoing" | "Contributed" | "Individual";
   /** Sentence for the work list and the project page lede. */
   readonly summary: string;
-  /** What he actually did, in his own terms from the resume. */
+  /** What he actually did, in the resume's own terms. */
   readonly role: readonly string[];
+  /** Empty when the tooling for a project is not stated anywhere. */
   readonly stack: readonly string[];
   /** `applicationCategory` for the project's structured data. */
   readonly category: "WebApplication" | "MobileApplication";
+  /** Sits full width above the grid, as the studio the rest belongs to. */
+  readonly featured?: boolean;
   readonly live?: string;
   readonly github?: string;
 };
@@ -42,17 +45,14 @@ export type Project = {
 
 export const siteUrl = "https://devellasankeerth.vercel.app";
 
-/**
- * One title and one role description, used everywhere — hero, <title>, meta
- * description, Open Graph, structured data. Kept here so they cannot drift.
- */
 export const identity = {
   name: "Sankeerth Devella",
-  /** Used as the job title in structured data and the hero label. */
-  role: "Student developer & designer",
-  /** Accurate one-line description of the work, from the resume. */
+  /** Exactly as the resume states it. */
+  role: "Co-Founder & Full-Stack Engineer",
+  company: "WishCraft Studios",
+  /** The resume's professional summary, condensed to one line. */
   focus:
-    "Frontend, backend, database setup and frontend integration, with AI-assisted development workflows.",
+    "Building production-ready web and mobile products end to end — architecture and backend systems through frontend UI, SEO and security — with AI-assisted development workflows.",
   location: {
     city: "Hyderabad",
     region: "Telangana",
@@ -75,19 +75,20 @@ export const identity = {
  */
 export const siteTitle = `${identity.name} — ${identity.role}`;
 
-export const siteDescription = `${identity.name} is a ${identity.role.toLowerCase()} in ${identity.location.formatted}. ${identity.focus}`;
+export const siteDescription = `${identity.name} is co-founder and full-stack engineer at ${identity.company}, based in ${identity.location.formatted}. ${identity.focus}`;
 
 /** Keywords kept to what a reader would actually type. */
 export const keywords = [
   "Sankeerth Devella",
-  "student developer",
-  "student designer",
-  "Hyderabad developer",
+  "Co-Founder WishCraft Studios",
+  "full-stack engineer Hyderabad",
+  "React developer",
+  "TypeScript",
   "VersaCareer",
-  "Desi-Drip",
+  "Desi Drip",
   "SettleX",
+  "Collivio",
   "WishCraft Studios",
-  "Next.js developer",
 ] as const;
 
 /* -------------------------------------------------------------------------- */
@@ -114,9 +115,9 @@ export const navItems: readonly NavItem[] = [
 /* -------------------------------------------------------------------------- */
 
 export const hero = {
-  /* Two short sentences. Nothing here is a claim the resume does not make. */
+  /* Two sentences, both of them things the resume says. */
   intro:
-    "I'm a student developer and designer in Hyderabad. I build practical web products, and at WishCraft Studios — a student-led development team — I take client work from the frontend through backend architecture and database setup.",
+    "I co-founded WishCraft Studios, where I build production-ready web and mobile products end to end — architecture and backend systems through frontend UI, SEO and application security — working in React, TypeScript and Tailwind CSS with AI-assisted development workflows.",
 } as const;
 
 /* -------------------------------------------------------------------------- */
@@ -124,91 +125,107 @@ export const hero = {
 /* -------------------------------------------------------------------------- */
 
 export const profile = {
-  /* The four-paragraph biography condensed to the three that say something new.
-     The old closing paragraph restated the first one, so it is gone. */
   paragraphs: [
-    "I'm a student and frontend developer who likes building practical products that solve real problems. Most of what I enjoy is the part where an idea becomes something people can actually open and use.",
-    "As part of WishCraft Studios, a student-led development team, I work on client projects from concept to deployment — frontend development, backend architecture, database design, UI/UX planning and AI-assisted development workflows across web platforms, productivity tools and interactive applications.",
+    "I'm a co-founder and full-stack engineer. Most of my work is taking a product from architecture and backend systems all the way to the frontend people actually use — and then keeping it honest: SEO, security, and code that holds up after launch.",
+    "I lead cross-functional collaboration on client and internal products at WishCraft Studios, owning project management and system architecture alongside implementation, and I use AI-assisted workflows to hold delivery speed without dropping code quality.",
   ],
-  /** One experience worth stating plainly, kept separate from the rest. */
+  /** One piece of work stated plainly, taken from the resume. */
   highlight: {
-    text: "One of the more useful things I've done was rebuilding a client project's backend from scratch after development had stalled, then integrating it with the existing frontend and helping take the product to a working release.",
+    text: "On VersaCareer I rebuilt the backend and redesigned the frontend, then implemented the SEO improvements and hardened the application's security.",
   },
 } as const;
 
 /* -------------------------------------------------------------------------- */
-/* Projects                                                                    */
+/* Projects — every one of these is listed on the resume                       */
 /* -------------------------------------------------------------------------- */
 
 export const projects: readonly Project[] = [
+  {
+    slug: "wishcraft-studios",
+    name: "WishCraft Studios",
+    status: "Ongoing",
+    featured: true,
+    summary:
+      "The studio's own web platform — architecture, frontend and backend — plus the client and internal products built on top of it.",
+    role: ["System architecture", "Frontend development", "Backend development"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
+    category: "WebApplication",
+    github: "https://github.com/Penguin-boss/wishcraft-studios",
+    live: "https://wishcraftstudios.vercel.app",
+  },
   {
     slug: "versacareer",
     name: "VersaCareer",
     status: "Ongoing",
     summary:
-      "Career guidance platform with AI resume analysis, skill mapping and personalised career recommendations.",
+      "AI-driven career guidance platform with resume analysis and personalised recommendations.",
     role: [
-      "Frontend developer",
-      "Backend planning",
-      "Database organisation",
-      "UI discussions",
-      "AI-assisted workflows",
+      "Backend rebuild",
+      "Frontend redesign",
+      "SEO improvements",
+      "Application security",
     ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "AI dev tools", "Database setup"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Database setup", "AI dev tools"],
     category: "WebApplication",
     github: "https://github.com/penguin-boss/VersaCareer",
     live: "https://versacareer.vercel.app",
   },
   {
-    slug: "desi-drip",
-    name: "Desi-Drip",
+    slug: "versacareer-ai-mobile",
+    name: "VersaCareer AI — Mobile App",
     status: "Ongoing",
     summary:
-      "Fashion-focused web application for exploring ethnic styling ideas and recommendations.",
-    role: [
-      "Project setup",
-      "Frontend developer",
-      "Backend configuration",
-      "Testing",
-    ],
+      "Complete mobile app prototype built from concept through functional UI, extending the VersaCareer AI product line.",
+    role: ["Concept", "UI design", "Mobile app prototype"],
+    /* No stack or repository URL was given for this one. */
+    stack: [],
+    category: "MobileApplication",
+  },
+  {
+    slug: "desi-drip",
+    name: "Desi Drip",
+    status: "Ongoing",
+    summary:
+      "Fashion-focused application for styling ideas and outfit recommendations.",
+    role: ["Project setup", "Frontend development", "Backend configuration", "Testing"],
     stack: ["React", "TypeScript", "Tailwind CSS", "Backend configuration", "Testing"],
     category: "WebApplication",
     github: "https://github.com/Penguin-boss/Desi-Drip",
     live: "https://desi-drip.vercel.app",
   },
   {
-    slug: "wishcraft-studios",
-    name: "Wishcraft Studios",
-    status: "Ongoing",
-    summary:
-      "Student-led development studio taking client products from concept to deployment — web platforms, productivity tools and interactive applications.",
-    role: [
-      "Frontend developer",
-      "Backend architecture",
-      "Database design",
-      "UI/UX planning",
-      "AI-assisted development workflows",
-    ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase", "AI dev tools"],
-    category: "WebApplication",
-    github: "https://github.com/Penguin-boss/wishcraft-studios",
-    live: "https://wishcraftstudios.vercel.app",
-  },
-  {
     slug: "settlex",
     name: "SettleX",
     status: "Contributed",
     summary:
-      "Expense-splitting mobile app with collaborative planning, bill tracking and backend setup.",
-    role: [
-      "Collaborative planning",
-      "Frontend development",
-      "Database organisation",
-      "Backend setup",
-    ],
-    stack: ["React Native", "Mobile app", "Database setup", "Backend setup"],
+      "Expense-splitting mobile app; built the frontend and contributed to product planning and database organisation.",
+    role: ["Frontend development", "Product planning", "Database organisation"],
+    stack: ["React Native", "Mobile app", "Database setup"],
     category: "MobileApplication",
     github: "https://github.com/Penguin-boss/SettleX",
+  },
+  {
+    slug: "collivio",
+    name: "Collivio",
+    status: "Contributed",
+    summary:
+      "A client website where I built the working backend as part of a delivery team.",
+    role: ["Backend development"],
+    /* No stack or repository URL was given for this one. */
+    stack: [],
+    category: "WebApplication",
+  },
+  {
+    slug: "sankeerth-portfolio",
+    name: "Sankeerth Portfolio",
+    status: "Individual",
+    summary:
+      "This site — designed and built to show the projects, skills and experience above.",
+    role: ["Design", "Frontend development", "SEO", "Content"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    category: "WebApplication",
+    github: "https://github.com/Penguin-boss/Sankeerth-Portfolio",
+    live: siteUrl,
   },
 ];
 
@@ -218,32 +235,33 @@ export const projects: readonly Project[] = [
 
 export type Experience = {
   readonly title: string;
-  /** Kept inline and quiet: there are no invented dates here. */
+  readonly honour?: string;
   readonly period: string;
   readonly description: string;
 };
 
+/** Straight from the resume's EXPERIENCE section, in its order. */
 export const experience: readonly Experience[] = [
   {
     title: "WishCraft Studios",
-    period: "Ongoing",
+    honour: "Co-Founder",
+    period: "June 2026 – Present · Hyderabad",
     description:
-      "Frontend development, backend architecture, database design, UI/UX planning and AI-assisted workflows on client products, from concept through deployment.",
+      "Co-founded WishCraft Studios to engineer production-ready web platforms and software ecosystems for global brands. Own end-to-end project management, system architecture and implementation across client and internal products, and lead prompt engineering and AI-assisted development workflows.",
   },
   {
-    title: "Backend & database work",
-    period: "Ongoing",
+    title: "Prajñā Foundation",
+    honour: "Managing Partner",
+    period: "July 2026 – Present · Telangana",
     description:
-      "Building and organising the backend and database structure for applications, collaborating on requirements and implementation.",
-  },
-  {
-    title: "Independent & collaborative projects",
-    period: "VersaCareer · Desi-Drip · SettleX · Wishcraft Studios",
-    description:
-      "Frontend development, backend planning, database organisation, UI/UX discussions, testing and AI-assisted development workflows across several project builds.",
+      "Manage business partner relationships and strategic partner coordination for the foundation's initiatives.",
   },
 ];
 
+/**
+ * The resume does not have an education section. This is kept from the earlier
+ * verified content rather than dropped, and is flagged in the handover notes.
+ */
 export const education = {
   school: "Physics Wallah Vidyapeeth, Hyderabad",
   lines: [
@@ -253,9 +271,8 @@ export const education = {
 } as const;
 
 /**
- * The four hackathon rounds, stated once. The Round 1 / Round 2 entry from the
- * old Certificates list was the same fact in a second place, so the certificates
- * now hang off the round they belong to instead of being listed twice.
+ * The four hackathon rounds, stated once. The certificates hang off the round
+ * they belong to instead of being listed a second time.
  */
 export const hackathon = {
   name: "Enginow Hackathon",
@@ -295,15 +312,17 @@ export type Certificate = {
   readonly title: string;
   readonly issuer: string;
   readonly date: string;
-  readonly image: string;
+  /** Omitted where the certificate image is not available. */
+  readonly image?: string;
   readonly description: string;
 };
 
+/** The resume's CERTIFICATIONS list, in its order. */
 export const certificates: readonly Certificate[] = [
   {
     id: "agentic-ai",
-    title: "Agentic AI Foundations Associate",
-    issuer: "Oracle",
+    title: "Oracle Certified Foundations Associate (Agentic AI)",
+    issuer: "Oracle University",
     date: "2026",
     image: "/certificates/AI.png",
     description:
@@ -311,7 +330,7 @@ export const certificates: readonly Certificate[] = [
   },
   {
     id: "javascript",
-    title: "JavaScript Certificate",
+    title: "JavaScript (Intermediate) Certificate",
     issuer: "HackerRank",
     date: "2026",
     image: "/certificates/javascript.png",
@@ -320,38 +339,43 @@ export const certificates: readonly Certificate[] = [
   },
   {
     id: "frontend-developer",
-    title: "Front-End Developer Certificate",
+    title: "Frontend Developer Certificate",
     issuer: "TestDome",
     date: "2026",
     image: "/certificates/HTML.png",
     description: "Front-end web development, responsive layout and web integration.",
   },
   {
-    id: "web-developer",
-    title: "Web Developer Certificate",
-    issuer: "HR Calcy",
+    id: "enginow-participation",
+    title: "Enginow Hackathon — Participation Certificate",
+    issuer: "Enginow",
     date: "2026",
-    image: "/certificates/web-developer.jpg",
     description:
-      "Web application development, HTML/CSS/JS and full software workflows.",
+      "Participation across the Enginow Hackathon rounds; advanced to the Top 10 finalist stage.",
   },
 ];
 
+/** The resume's TECHNICAL SKILLS section, in its own groupings. */
 export const skillGroups = [
-  { label: "Web", skills: ["HTML", "CSS", "Frontend integration"] },
+  { label: "Languages", skills: ["HTML", "CSS", "JavaScript"] },
   {
-    label: "Backend",
-    skills: ["Database setup", "Backend configuration", "Backend rebuild & debugging"],
+    label: "Frameworks & styling",
+    skills: ["React", "Vite", "TypeScript", "Tailwind CSS", "AI-assisted development"],
   },
-  { label: "Tools", skills: ["GitHub", "Firebase", "Figma", "AI development tools"] },
   {
-    label: "Working style",
+    label: "Tools & platforms",
+    skills: ["GitHub", "Firebase", "Figma", "AI development tools"],
+  },
+  {
+    label: "Other",
     skills: [
       "Prompt engineering",
       "UI/UX discussions",
       "Project planning",
       "End-to-end project management",
       "Team collaboration",
+      "Business partner support",
+      "Strategic partner relationship management",
     ],
   },
 ] as const;
@@ -395,5 +419,5 @@ export function otherProjects(slug: string): readonly Project[] {
 
 /** Canonical metadata description for a project page. */
 export function projectDescription(project: Project): string {
-  return `${project.summary} A project by Sankeerth Devella, ${identity.role.toLowerCase()} in ${identity.location.formatted}.`;
+  return `${project.summary} A project by ${identity.name}, ${identity.role.toLowerCase()} in ${identity.location.formatted}.`;
 }

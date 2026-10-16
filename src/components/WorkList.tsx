@@ -18,14 +18,20 @@ export default function WorkList() {
         <div className="section__head">
           <h2 id="work-title">Selected work</h2>
           <p className="lede">
-            Two web products, the studio I build with, and a mobile app. Each one
-            has a page with the role, the stack and the links behind it.
+            Client platforms, product prototypes and this site itself — {" "}
+            {projects.length} projects in all, each with a page for the role, the
+            stack and the links behind it.
           </p>
         </div>
 
         <ul className="work">
           {projects.map((project, index) => (
-            <Reveal as="li" key={project.slug} order={index}>
+            <Reveal
+              as="li"
+              key={project.slug}
+              order={index}
+              className={project.featured ? "work__item--featured" : undefined}
+            >
               <article className="project">
                 <h3 className="project__title">
                   <Link className="project__link" href={projectPath(project.slug)}>
@@ -40,10 +46,12 @@ export default function WorkList() {
                     <dt>Role</dt>
                     <dd>{project.role.join(", ")}</dd>
                   </div>
-                  <div className="project__fact">
-                    <dt>Stack</dt>
-                    <dd>{project.stack.join(", ")}</dd>
-                  </div>
+                  {project.stack.length > 0 ? (
+                    <div className="project__fact">
+                      <dt>Stack</dt>
+                      <dd>{project.stack.join(", ")}</dd>
+                    </div>
+                  ) : null}
                 </dl>
 
                 {project.live || project.github ? (
