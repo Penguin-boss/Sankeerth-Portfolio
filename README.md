@@ -1,252 +1,130 @@
-# Sankeerth Devella — Portfolio
+# Sankeerth Devella — portfolio
 
-> A premium, modern developer portfolio built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+> A quiet, typographic portfolio for Sankeerth Devella, a student developer and
+> designer in Hyderabad. Next.js App Router, TypeScript and hand-written CSS.
 
-<div align="center">
-
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-devellasankeerth.vercel.app-000000?style=for-the-badge&logo=vercel)](https://devellasankeerth.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-Penguin--boss-000000?style=for-the-badge&logo=github)](https://github.com/Penguin-boss)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-sankeerthdevella-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sankeerthdevella-730314416)
-
-**TypeScript** • **Next.js** • **React** • **Tailwind CSS** • **Framer Motion**
-
-</div>
+**Live:** https://devellasankeerth.vercel.app
 
 ---
 
-## 🎯 Overview
+## Stack
 
-This portfolio is designed to showcase Sankeerth Devella as a student builder and frontend-focused developer with practical experience in:
+| Layer | Choice |
+| --- | --- |
+| Framework | Next.js 16 (App Router, static output) |
+| UI | React 19, TypeScript |
+| Styling | Tailwind CSS 4 (preflight only) plus hand-written CSS in `src/styles` |
+| Type | `next/font` — Inter (body) and Fraunces (display) |
+| Social images | `next/og` — designed 1200×630 cards generated at build time |
+| Hosting | Vercel |
 
-- Frontend development
-- Backend planning and integration
-- Database setup
-- AI-assisted development workflows
-- Product thinking and UI/UX collaboration
-- End-to-end project execution
-
-The project presents a sleek, dark-themed experience with polished sections for an introduction, about, projects, achievements, certifications, skills, experience, and contact.
-
----
-
-## ✨ Key Features
-
-- 🎨 Premium dark visual design
-- ⚡ Smooth motion effects and transitions
-- 📱 Fully responsive layout
-- 🔄 Centralized portfolio content management
-- 🚀 Production-ready Next.js app
-- 📄 Resume download support
-- 🧩 Clean, modular component structure
+No animation library and no icon library: motion is CSS (opacity and transform
+only) and the three icons are inline SVG, so the client bundle stays small.
 
 ---
 
-## 🛠 Tech Stack
+## Design system
 
-| Layer | Technologies |
-|-------|--------------|
-| **Frontend** | React 19, Next.js 16, TypeScript 5 |
-| **Styling** | Tailwind CSS 4 |
-| **Animation** | Framer Motion |
-| **Icons** | Lucide React |
-| **Tooling** | ESLint |
-| **Deployment** | Vercel |
+Three colours, declared once in `src/styles/tokens.css` and never hard-coded
+anywhere else:
+
+| Token | Value | Used for |
+| --- | --- | --- |
+| `--black` | `#000000` | page surface |
+| `--white` | `#FFFFFF` | text, rules, the one high-contrast action |
+| `--navy` | `#0A192F` | raised surfaces (project panels, the portrait plate) |
+
+Text hierarchy comes from white at three opacities (100% / 74% / 58%), all of
+which clear WCAG AA on both black and navy. There is no fourth hue.
+
+The type scale is fluid (`clamp()`), body copy is 17–18px and never smaller than
+15px, and headings are display type: one serif, tight tracking, balanced
+wrapping.
 
 ---
 
-## 📂 Project Structure
+## Information architecture
+
+Five blocks on the home page, in reading order:
+
+1. **Hero** — name, role, one short introduction, four links, and the portrait in
+   a navy plate that sits on the same grid as the text.
+2. **Selected work** — four projects as full panels, each linking to its own page.
+3. **Profile** — a short introduction in prose.
+4. **Background** — experience, education, the Enginow Hackathon (each round with
+   its certificate), certifications and skills, as a label column beside a
+   content column.
+5. **Closing** — one line, the email as the single emphasised link, three links.
+
+Plus a 404 page. Every project has a readable detail page at `/work/<slug>`.
+
+---
+
+## Content
+
+All content lives in one file: **`src/data/site.ts`**.
+
+The page, the project pages, `sitemap.xml`, and every page's title, description,
+canonical and social image are generated from it — so there is no second place
+where a project name or link can drift.
+
+To add a project, append an entry to `projects`. That is the whole change: the
+work list, the project page, the footer count, the sitemap and the per-project
+Open Graph image all pick it up.
+
+Nothing in the file is invented: where a fact was not in the source material
+(project dates, outcome metrics, project imagery) it is simply absent, and the
+handover notes list what is still missing. The résumé at `public/resume.pdf` is
+a 4 KB three-page file with no extractable text — replace it before shipping.
+
+---
+
+## SEO
+
+- Per-page `<title>`, meta description, canonical URL and Open Graph / Twitter
+  tags, all built on `metadataBase` = `https://devellasankeerth.vercel.app`.
+- `sitemap.xml` and `robots.txt` generated from the content file
+  (`src/app/sitemap.ts`, `src/app/robots.ts`).
+- JSON-LD: `Person` on the home page, `SoftwareApplication` on each project page.
+- Designed social cards: `src/app/opengraph-image.tsx` and
+  `src/app/work/[slug]/opengraph-image.tsx` (Twitter reuses them).
+- Icons and manifest: `favicon.ico`, `icon.png`, `apple-icon.png` and
+  `manifest.webmanifest`, with `theme-color` set to the navy.
+- One `h1` per page, ordered headings, `header`/`nav`/`main`/`footer` landmarks,
+  descriptive link text and alt text.
+
+---
+
+## Motion
+
+Smooth anchor scrolling, 150–300ms transitions on hover and focus, a short page
+entry fade, and scroll reveals that play once. Only `opacity` and `transform`
+animate, so nothing shifts layout. `prefers-reduced-motion: reduce` removes all
+of it and pins every revealed block to its resting state.
+
+---
+
+## Scripts
 
 ```bash
-Sankeerth-Portfolio/
-├── public/
-│   ├── certificates/
-│   ├── projects/
-│   ├── resume.pdf
-│   └── ...
-├── src/
-│   ├── app/
-│   │   ├── globals.css
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   ├── components/
-│   │   ├── Nav.tsx
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Achievements.tsx
-│   │   ├── Certificates.tsx
-│   │   ├── Skills.tsx
-│   │   ├── Experience.tsx
-│   │   ├── Contact.tsx
-│   │   └── Footer.tsx
-│   ├── data/
-│   │   └── portfolio.ts
-│   ├── hooks/
-│   ├── lib/
-│   └── ...
-├── next.config.ts
-├── package.json
-├── eslint.config.mjs
-├── tsconfig.json
-├── README.md
-└── ...
+npm run dev     # development server
+npm run build   # production build
+npm run start   # serve the production build
+npm run lint    # eslint
 ```
 
 ---
 
-## 🚀 Getting Started
+## Structure
 
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Install dependencies
-
-```bash
-npm install
 ```
-
-### Run in development mode
-
-```bash
-npm run dev
+src/
+  app/                 routes, metadata, sitemap, robots, manifest, social images
+    work/[slug]/       one page per project
+  components/          Hero, WorkList, Profile, Background, Closing, header/footer, Reveal
+  data/site.ts         all content
+  lib/fonts.ts         Inter + Fraunces
+  lib/og.tsx           the 1200×630 social card renderer
+  styles/              tokens.css, base.css, components.css
+  assets/fonts/        Inter woff, used only to render the social images
 ```
-
-Then open:
-
-```bash
-http://localhost:3000
-```
-
-### Build for production
-
-```bash
-npm run build
-npm run start
-```
-
----
-
-## 📝 Content Management
-
-All portfolio data is centralized in:
-
-```bash
-src/data/portfolio.ts
-```
-
-This file controls:
-
-- personal details
-- contact links
-- about section content
-- projects
-- skills
-- experience
-- certificates
-- education
-
-This makes the portfolio easy to update without changing multiple components.
-
----
-
-## 📋 Available Scripts
-
-```bash
-npm run dev       # Start development server
-npm run build     # Production build
-npm run start     # Start production server
-npm run lint      # Run ESLint
-```
-
----
-
-## 🎨 Design Highlights
-
-- Dark, premium UI with warm accent tones
-- Clean, structured portfolio sections
-- Modern type hierarchy
-- Motion-enhanced storytelling
-- Professional presentation for recruiters and clients
-
----
-
-## 🚀 Deployment
-
-This project is optimized for deployment on Vercel.
-
-### Deploy to Vercel
-
-1. Push your repository to GitHub
-2. Connect it to Vercel
-3. Deploy from the repository
-
-Live site:
-
-```bash
-https://devellasankeerth.vercel.app
-```
-
----
-
-## 📁 Repository
-
-View the complete source code:
-
-**[GitHub Repository](https://github.com/Penguin-boss/Sankeerth-Portfolio/tree/main)**
-
----
-
-## 🔗 Links
-
-- Website: https://devellasankeerth.vercel.app
-- GitHub: https://github.com/Penguin-boss
-- LinkedIn: https://www.linkedin.com/in/sankeerthdevella-730314416
-- Resume: /resume.pdf
-
----
-
-## 👤 About Sankeerth Devella
-
-A student builder and frontend developer focused on building clean, practical digital products. The portfolio highlights work across frontend development, backend setup, database structuring, AI-assisted workflow integration, and collaborative product development.
-
----
-
-## 🏆 Highlights
-
-- Student-led development experience
-- Frontend + backend collaboration
-- AI-assisted workflow integration
-- Hackathon participation and achievements
-- Real-world project execution
-
----
-
-## 📄 License
-
-This repository is a personal portfolio and is not currently licensed for public reuse or redistribution.
-
----
-
-## 🙏 Acknowledgements
-
-Built with care to present real-world work, technical growth, and polished product design.
-
-Frameworks used:
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Lucide React
-
----
-
-<div align="center">
-
-**Crafted with ❤️ by Sankeerth Devella**
-
-[Visit Live Site](https://devellasankeerth.vercel.app) • [View on GitHub](https://github.com/Penguin-boss/Sankeerth-Portfolio/tree/main)
-
-</div>

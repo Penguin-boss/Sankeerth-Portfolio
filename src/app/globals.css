@@ -1,56 +1,24 @@
 /* =============================================================================
    GLOBAL STYLESHEET — entry point
    -----------------------------------------------------------------------------
-   This file only wires things together. Everything else lives in src/styles:
-
-     tokens.css    appearance-aware design tokens (the only place colour,
-                   type scale, spacing and motion values are declared)
-     base.css      reset, document defaults, focus, accessibility primitives
-     layout.css    page shell, backdrop, section headings, row lists
-     controls.css  buttons, links, chips, segmented control, dialog, nav, footer
-     sections.css  per-section composition
-
-   Import order is significant: Tailwind first so its preflight sits underneath
-   ours, then tokens before anything that consumes them.
+   Tailwind's preflight sits underneath our own reset, then the token layer,
+   then base, then components. Nothing else imports CSS.
    ========================================================================== */
 
 @import "tailwindcss";
 
 @import "../styles/tokens.css";
 @import "../styles/base.css";
-@import "../styles/layout.css";
-@import "../styles/controls.css";
-@import "../styles/sections.css";
+@import "../styles/components.css";
 
-/* =============================================================================
-   TAILWIND THEME BRIDGE
-   Exposes the semantic tokens to Tailwind's utility generator so utilities and
-   hand-written component classes can never drift apart. `inline` makes the
-   generated utilities reference the custom properties directly, which is what
-   lets appearance switching work without regenerating any classes.
-   ========================================================================== */
-
+/* Expose the design tokens to Tailwind's generator so any utility written later
+   can never drift from the hand-written classes. */
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg-elevated: var(--bg-elevated);
-  --color-bg-raised: var(--bg-raised);
-  --color-bg-sunken: var(--bg-sunken);
-
-  --color-label: var(--label);
-  --color-label-secondary: var(--label-secondary);
-  --color-label-tertiary: var(--label-tertiary);
-
-  --color-tint: var(--tint);
-  --color-tint-contrast: var(--tint-contrast);
-
-  --color-separator: var(--separator);
-  --color-border-control: var(--border-control);
-
-  --font-display: var(--font-display);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-label: var(--text);
+  --color-label-muted: var(--text-muted);
+  --color-label-quiet: var(--text-quiet);
   --font-sans: var(--font-body);
-  --font-mono: var(--font-mono);
-
-  --ease-standard: var(--ease-standard);
-  --ease-emphasized: var(--ease-emphasized);
+  --font-display: var(--display);
 }
-

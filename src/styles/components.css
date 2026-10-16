@@ -1,0 +1,812 @@
+/* =============================================================================
+   COMPONENTS
+   -----------------------------------------------------------------------------
+   Page shell, header, hero, work list, profile, background, closing, project
+   pages, footer. Mobile-first: every rule is written for the small screen and
+   then widened, so nothing is ever "fixed" by a query that hides it.
+   ========================================================================== */
+
+/* -----------------------------------------------------------------------------
+   Shell
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block-start: var(--section-gap);
+}
+
+.section__head {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: var(--block-gap);
+}
+
+.section__head h2 {
+  max-width: 30ch;
+}
+
+.lede {
+  max-width: 56ch;
+  color: var(--text-muted);
+  font-size: var(--size-lead);
+  line-height: 1.55;
+}
+
+.prose {
+  display: grid;
+  gap: 1.15em;
+  max-width: var(--measure);
+  color: var(--text-muted);
+}
+
+.prose p {
+  max-width: none;
+}
+
+.prose p:first-of-type,
+.prose p:last-of-type {
+  color: var(--text);
+}
+
+/* -----------------------------------------------------------------------------
+   Header
+   The bar is opaque rather than translucent: no blur, no frosted panel — it
+   simply continues the page surface, so long headings never show through it.
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.25rem;
+  min-height: var(--header-h);
+  padding-block: 0.5rem;
+}
+
+.site-header__brand {
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.site-header__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+}
+
+.site-header__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text-muted);
+  font-size: 1rem;
+  transition: color var(--dur) var(--ease);
+}
+
+.site-header__link:hover {
+  color: var(--text);
+}
+
+/* On phones the bar stays one row: the optional link is dropped and the type
+   is tightened a step, rather than letting the navigation wrap under the name
+   and hold a two-row sticky bar over the content. */
+@media (max-width: 30rem) {
+  .site-header__inner {
+    gap: 0.25rem 0.75rem;
+  }
+
+  .site-header__brand {
+    font-size: 0.9375rem;
+  }
+
+  .site-header__links {
+    gap: 0.25rem 0.75rem;
+  }
+
+  .site-header__link {
+    font-size: 0.9375rem;
+  }
+
+  .site-header__link--optional {
+    display: none;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Hero
+   One composition: type on the left, the portrait plate on the right, both
+   sitting on the same grid. There is no fixed-height stage and therefore no
+   gap to fall into.
+   -------------------------------------------------------------------------- */
+
+.hero {
+  padding-block: clamp(2.5rem, 7vw, 5rem) 0;
+}
+
+.hero__grid {
+  display: grid;
+  gap: clamp(2rem, 6vw, 3.5rem);
+  align-items: end;
+}
+
+.hero__content {
+  display: grid;
+  gap: 1.25rem;
+  align-content: end;
+}
+
+.hero__role {
+  color: var(--text-muted);
+  font-size: var(--size-small);
+  letter-spacing: 0.02em;
+}
+
+.hero__title {
+  font-size: var(--size-h1);
+  letter-spacing: -0.025em;
+}
+
+.hero__intro {
+  max-width: 52ch;
+  color: var(--text-muted);
+  font-size: var(--size-lead);
+  line-height: 1.55;
+}
+
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  transition: color var(--dur) var(--ease);
+}
+
+.hero__link:hover {
+  color: var(--text);
+}
+
+.hero__link svg {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.hero__link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.hero__link--internal svg {
+  transform: translateY(1px);
+}
+
+.hero__link--internal:hover svg {
+  transform: translate(3px, 1px);
+}
+
+/* Portrait plate — navy, so the black suit in the photograph separates from
+   the black page instead of dissolving into it. The plate's ratio matches the
+   photograph's own (581 × 904), so the portrait fills it exactly and the space
+   is reserved before the image loads: no shift, no letterboxing. */
+.hero__plate {
+  position: relative;
+  overflow: hidden;
+  width: min(100%, 20rem);
+  aspect-ratio: 581 / 904;
+  border-radius: var(--radius-l);
+  background: var(--surface-raised);
+  background-image: radial-gradient(
+    120% 90% at 20% 0%,
+    rgba(255, 255, 255, 0.07),
+    transparent 60%
+  );
+}
+
+.hero__portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom center;
+}
+
+@media (min-width: 52rem) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 21rem);
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 21rem);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Work — the focus of the site. Four panels with real weight: a navy surface,
+   generous padding, and the title as the link into the project page.
+   -------------------------------------------------------------------------- */
+
+.work {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.project {
+  display: grid;
+  gap: 1rem;
+  height: 100%;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border-radius: var(--radius-l);
+  background: var(--surface-raised);
+  transition:
+    background-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease-out);
+}
+
+.project:hover {
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+}
+
+.project__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: var(--size-work);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.project__link {
+  display: inline-block;
+}
+
+/* The underline grows from the left instead of switching on, which keeps the
+   hover to transform/opacity only. */
+.project__link::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 0.2em;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.project:hover .project__link::after,
+.project__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.project__summary {
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.project__facts {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.project__fact dt {
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+}
+
+.project__fact dd {
+  color: var(--text-muted);
+  font-size: var(--size-small);
+  line-height: 1.55;
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.25rem;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--edge-on-navy);
+}
+
+.project__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 44px;
+  color: var(--text);
+  font-size: 1rem;
+  transition: color var(--dur) var(--ease);
+}
+
+.project__links a:hover {
+  color: var(--text-muted);
+}
+
+@media (min-width: 56rem) {
+  .work {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Background — experience, education, proof and skills in one quiet place.
+   A label column and a content column instead of cards, tables or dividers.
+   -------------------------------------------------------------------------- */
+
+.background {
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.background__block {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.background__label {
+  font-family: var(--font-body);
+  font-size: var(--size-small);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.background__list {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.entry {
+  display: grid;
+  gap: 0.35rem;
+  max-width: var(--measure);
+}
+
+.entry__title {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.entry__meta {
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+}
+
+.entry__body {
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 60rem) {
+  .background__block {
+    grid-template-columns: minmax(8rem, 11rem) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+}
+
+/* Rounds of the hackathon: a plain list, one line per round. */
+.rounds {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.rounds li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.6rem;
+  color: var(--text-muted);
+  font-size: var(--size-small);
+}
+
+.rounds strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.rounds a {
+  color: var(--text-quiet);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--dur) var(--ease),
+    text-decoration-color var(--dur) var(--ease);
+}
+
+.rounds a:hover {
+  color: var(--text);
+  text-decoration-color: currentColor;
+}
+
+/* Certificates: title, issuer and year on one line each. */
+.certificates {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.certificate {
+  display: grid;
+  gap: 0.25rem;
+  max-width: var(--measure);
+}
+
+.certificate__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.6rem;
+}
+
+.certificate__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.certificate__meta {
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+}
+
+.certificate__body {
+  color: var(--text-muted);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+.certificate__link {
+  justify-self: start;
+  color: var(--text-muted);
+  font-size: var(--size-small);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--dur) var(--ease),
+    text-decoration-color var(--dur) var(--ease);
+}
+
+.certificate__link:hover {
+  color: var(--text);
+  text-decoration-color: currentColor;
+}
+
+/* Skills: label and content, no chips, no bars, no icons. */
+.skills {
+  display: grid;
+  gap: 0.75rem;
+  max-width: var(--measure);
+}
+
+.skills__row {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.skills__row dt {
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+}
+
+.skills__row dd {
+  color: var(--text-muted);
+  font-size: var(--size-small);
+  line-height: 1.6;
+}
+
+/* -----------------------------------------------------------------------------
+   Closing
+   -------------------------------------------------------------------------- */
+
+.closing {
+  padding-block-start: var(--section-gap);
+}
+
+.closing__inner {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.closing h2 {
+  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.25rem);
+}
+
+.closing__line {
+  max-width: 46ch;
+  color: var(--text-muted);
+  font-size: var(--size-lead);
+  line-height: 1.55;
+}
+
+.closing__email {
+  justify-self: start;
+  color: var(--text);
+  font-size: clamp(1.125rem, 1rem + 0.8vw, 1.5rem);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+  transition: text-decoration-color var(--dur) var(--ease);
+}
+
+.closing__email:hover {
+  text-decoration-color: currentColor;
+}
+
+.closing__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.closing__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 44px;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  transition: color var(--dur) var(--ease);
+}
+
+.closing__links a:hover {
+  color: var(--text);
+}
+
+.closing__links svg {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.closing__links a:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* -----------------------------------------------------------------------------
+   Project page
+   -------------------------------------------------------------------------- */
+
+.project-page {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) 0;
+}
+
+.project-page__back {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+  transition: color var(--dur) var(--ease);
+}
+
+.project-page__back:hover {
+  color: var(--text);
+}
+
+.project-page__head {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.project-page__status {
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+}
+
+.project-page__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.project-page__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  color: var(--text);
+  font-size: 1.0625rem;
+  transition: color var(--dur) var(--ease);
+}
+
+.project-page__links a:hover {
+  color: var(--text-muted);
+}
+
+.project-page__links svg {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.project-page__links a:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.project-page__body {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.project-page__block {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.project-page__block h2 {
+  font-family: var(--font-body);
+  font-size: var(--size-small);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.project-page__list {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+}
+
+.project-page__list li {
+  max-width: 46ch;
+}
+
+@media (min-width: 56rem) {
+  .project-page__body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+}
+
+.more {
+  display: grid;
+  gap: 1rem;
+  margin-top: var(--section-gap);
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.more__title {
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+}
+
+.more__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+}
+
+.more__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  transition: color var(--dur) var(--ease);
+}
+
+.more__links a:hover {
+  color: var(--text);
+}
+
+/* -----------------------------------------------------------------------------
+   Not found
+   -------------------------------------------------------------------------- */
+
+.not-found {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+  max-width: 40rem;
+  padding-block: clamp(4rem, 12vw, 8rem);
+}
+
+/* -----------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: var(--section-gap);
+  padding-block: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.site-footer__note,
+.site-footer__link {
+  color: var(--text-quiet);
+  font-size: var(--size-small);
+}
+
+.site-footer__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  transition: color var(--dur) var(--ease);
+}
+
+.site-footer__link:hover {
+  color: var(--text);
+}
+
+/* -----------------------------------------------------------------------------
+   Page entry and scroll reveals
+   Only opacity and transform, once, and never in the way of the content: the
+   server-rendered markup is visible, and the reveal component can only ever
+   animate an element *towards* its resting state.
+   -------------------------------------------------------------------------- */
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    animation: page-in 300ms var(--ease-out) both;
+  }
+
+  [data-reveal="pending"] {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  [data-reveal="shown"] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 420ms var(--ease),
+      transform 480ms var(--ease-out);
+  }
+}

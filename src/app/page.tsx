@@ -1,43 +1,94 @@
-import NavBar from "@/components/layout/NavBar";
-import Footer from "@/components/layout/Footer";
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Work from "@/components/sections/Work";
-import Credentials from "@/components/sections/Credentials";
-import Skills from "@/components/sections/Skills";
-import Experience from "@/components/sections/Experience";
-import Contact from "@/components/sections/Contact";
+import type { Metadata } from "next";
+import Hero from "@/components/Hero";
+import WorkList from "@/components/WorkList";
+import Profile from "@/components/Profile";
+import Background from "@/components/Background";
+import Closing from "@/components/Closing";
+import JsonLd from "@/components/JsonLd";
+import {
+  absoluteUrl,
+  identity,
+  siteDescription,
+  siteTitle,
+  siteUrl,
+} from "@/data/site";
 
 /**
- * Page structure, in the order a reader needs it:
+ * Home.
  *
- *   Hero        who and what
- *   Profile     the longer story
- *   Work        the evidence they came for
- *   Credentials proof — hackathon results and certificates, one destination
- *   Capabilities what he can do
- *   Experience  where he has done it
- *   Contact     how to reach him
- *
- * Section ids, labels and numbering all come from src/lib/site.ts so the
- * navigation and the headings cannot drift apart.
+ * Five blocks and no more: hero, selected work, profile, background, closing.
+ * That is the whole page — the credentials, capability and experience sections
+ * that used to sit side by side are one background block, and the oversized
+ * contact statement is a closing line.
  */
+
+const title = siteTitle;
+const description = siteDescription;
+
+/**
+ * `absolute` because the layout's title template would otherwise append the
+ * name twice to the home page title.
+ */
+export const metadata: Metadata = {
+  title: { absolute: title },
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: identity.name,
+    title,
+    description,
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
+
+/** Person schema — only facts the content file actually holds. */
+const personSchema: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: identity.name,
+  url: siteUrl,
+  image: absoluteUrl("/hero-portrait.png"),
+  jobTitle: identity.role,
+  description,
+  email: `mailto:${identity.email}`,
+  sameAs: [identity.github, identity.linkedin],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: identity.location.city,
+    addressCountry: identity.location.countryCode,
+  },
+  knowsAbout: [
+    "Frontend development",
+    "Backend architecture",
+    "Database design",
+    "UI/UX planning",
+    "AI-assisted development workflows",
+  ],
+  worksFor: {
+    "@type": "Organization",
+    name: "WishCraft Studios",
+  },
+};
+
 export default function Home() {
   return (
     <>
-      <NavBar />
+      <JsonLd data={personSchema} />
 
-      <main id="main" className="site-main">
+      <main id="main" className="page-enter">
         <Hero />
-        <About />
-        <Work />
-        <Credentials />
-        <Skills />
-        <Experience />
-        <Contact />
+        <WorkList />
+        <Profile />
+        <Background />
+        <Closing />
       </main>
-
-      <Footer />
     </>
   );
 }
